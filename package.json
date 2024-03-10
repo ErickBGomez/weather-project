@@ -1,7 +1,7 @@
 {
-  "name": "the-odin-project-template",
+  "name": "weather-project",
   "version": "1.0.0",
-  "description": "Template for The Odin Project repos",
+  "description": "The Odin Project: Weather app usin FreeWeatherAPI",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
