@@ -9,6 +9,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "quotes": ["double"]
+    "quotes": ["error", "double", { "avoidEscape": true }]
   }
 }
