@@ -12,8 +12,21 @@
   font-family: "Outfit", sans-serif;
 
   /* Colors */
-  --Black: #25272c;
-  --White: #fafafa;
+  --Black: #292a2e;
+  --White: #f4f4f4;
+  --Primary: #3a94e8;
+  --Secondary: #e8a63a;
+  --SmallTextColor: #3e4755;
+  --Sun: #d2af69;
+  --Moon: #9abfcf;
+  --Cloud: #98a3af;
+  --Divider: #d0d7e0;
+  --Rain: #3981c5;
+  --UvIndex: #9967da;
+  --WhiteSmallText: #97a1ae;
+  --Footer: #232629;
+  --Background: #283454;
+  --DayBackground: linear-gradient(to bottom, #95bdda 0%, #2a80be 100%);
 }
 
 body {
