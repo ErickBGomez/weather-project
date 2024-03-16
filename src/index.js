@@ -1,4 +1,5 @@
 import "./style.css";
-import renderHeader from "./design/header-footer";
+import * as headerFooter from "./design/header-footer";
 
-renderHeader();
+headerFooter.renderHeader();
+headerFooter.renderFooter();
