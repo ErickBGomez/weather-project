@@ -8,7 +8,7 @@
 
 :root {
   /* Typography */
-  font-size: 20px;
+  font-size: 24px;
   font-family: "Outfit", sans-serif;
 
   /* Colors */
@@ -31,11 +31,7 @@
 
 body {
   color: var(--Black);
-  background-color: var(--White);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  background-color: var(--Background);
   margin: 0;
 }
 
@@ -48,11 +44,26 @@ h3 {
 
 input {
   display: block;
+  font-size: 0.8rem;
+  font-family: inherit;
+  padding: 10px 18px;
+  color: var(--SmallTextColor);
+  border: 1px solid var(--SmallTextColor);
+  border-radius: 8px 0 0 8px;
+  border-right: none;
+  max-width: 250px;
+  background-color: var(--White);
+}
+
+input::placeholder {
+  color: var(--WhiteSmallText);
+  font-weight: 300;
 }
 
 button {
   padding: 0;
   display: block;
+  border: none;
   cursor: pointer;
 }
 
@@ -60,14 +71,61 @@ svg {
   display: block;
 }
 
+/* Header */
+
+header {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--White);
+  padding: 16px 32px;
+}
+
+#app-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+#choose-area-button {
+  background-color: var(--Primary);
+  padding: 11px;
+  border-radius: 0 8px 8px 0;
+  transition: background-color 200ms;
+}
+
+#choose-area-button:hover {
+  background-color: #75b0e7;
+}
+
 #choose-area-button > svg {
   width: 24px;
   height: 24px;
-  fill: black;
+  fill: var(--White);
+}
+
+.header-buttons {
+  justify-self: end;
+}
+
+.config-button {
+  background: none;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color 200ms;
+}
+
+.config-button:hover {
+  background-color: #00000017;
 }
 
 .config-button > svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   fill: black;
 }
