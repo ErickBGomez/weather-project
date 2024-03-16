@@ -32,6 +32,9 @@
 body {
   color: var(--Black);
   background-color: var(--Background);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   margin: 0;
 }
 
@@ -128,6 +131,11 @@ header {
   width: 28px;
   height: 28px;
   fill: black;
+}
+
+/* Main body */
+main {
+  flex: 1;
 }
 
 /* Footer */
