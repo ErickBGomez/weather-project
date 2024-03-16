@@ -46,6 +46,28 @@ h3 {
   margin: 0;
 }
 
+input {
+  display: block;
+}
+
 button {
+  padding: 0;
+  display: block;
   cursor: pointer;
+}
+
+svg {
+  display: block;
+}
+
+#choose-area-button > svg {
+  width: 24px;
+  height: 24px;
+  fill: black;
+}
+
+.config-button > svg {
+  width: 24px;
+  height: 24px;
+  fill: black;
 }
