@@ -129,3 +129,19 @@ header {
   height: 28px;
   fill: black;
 }
+
+/* Footer */
+footer {
+  text-align: center;
+  background-color: var(--Black);
+  color: var(--White);
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 32px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--Primary);
+}
