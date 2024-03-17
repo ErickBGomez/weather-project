@@ -376,6 +376,38 @@ main {
   fill: var(--Black);
 }
 
+/* 6. Sun position and moon phase */
+
+#sun-position {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto repeat(2, min-content);
+  justify-items: center;
+  row-gap: 12px;
+}
+
+#sun-position .icon {
+  grid-column: 1 / -1;
+}
+
+#sun-position .sunset-value {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+#sun-position .icon > svg,
+#moon-phase .icon > svg {
+  max-width: 130px;
+  min-height: 130px;
+}
+
+#moon-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
 /* Footer */
 footer {
   text-align: center;
