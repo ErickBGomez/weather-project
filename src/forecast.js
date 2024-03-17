@@ -79,12 +79,12 @@ function createCurrentWeather(location, current, firstForecastDay) {
   return container;
 }
 
-function createHourForecast(forecastHour) {
+function createHourForecast(hourForecast) {
   const container = document.createElement("section");
 
   container.id = "hour-forecast";
 
-  forecastHour.forEach((hour) => {
+  hourForecast.forEach((hour) => {
     const timeValue = hour.time.split(" ")[1];
 
     const hourContainer = document.createElement("div");
@@ -125,6 +125,58 @@ function createHourForecast(forecastHour) {
   return container;
 }
 
+function createDayForecast(dayForecast) {
+  const container = document.createElement("section");
+
+  container.id = "day-forecast";
+
+  dayForecast.forEach((day, index) => {
+    const dayContainer = document.createElement("div");
+    const dayElement = document.createElement("span");
+    const temperatures = document.createElement("span");
+    const conditionContainer = document.createElement("div");
+    const conditionIcon = document.createElement("span");
+    const conditionValue = document.createElement("span");
+    const precipitationContainer = document.createElement("div");
+    const precipitationIcon = document.createElement("span");
+    const precipitationValue = document.createElement("span");
+
+    dayContainer.className = "day-container";
+    dayElement.className = "day";
+    dayElement.textContent = !index ? "Today" : day.date;
+
+    temperatures.className = "temperatures";
+    temperatures.textContent = `${Math.trunc(day.day.maxtemp_c)}° | ${Math.trunc(day.day.mintemp_c)}°`;
+
+    conditionContainer.className = "condition";
+    conditionIcon.className = "condition-icon";
+    conditionIcon.innerHTML = clearSunSvg;
+    conditionValue.className = "value";
+    conditionValue.textContent = day.day.condition.text;
+
+    conditionContainer.appendChild(conditionIcon);
+    conditionContainer.appendChild(conditionValue);
+
+    precipitationContainer.className = "precipitation";
+    precipitationIcon.className = "precipitation-icon";
+    precipitationIcon.innerHTML = rainSvg;
+    precipitationValue.className = "value very-small-text";
+    precipitationValue.textContent = `${day.day.daily_chance_of_rain}%`;
+
+    precipitationContainer.appendChild(precipitationIcon);
+    precipitationContainer.appendChild(precipitationValue);
+
+    dayContainer.appendChild(dayElement);
+    dayContainer.appendChild(temperatures);
+    dayContainer.appendChild(conditionContainer);
+    dayContainer.appendChild(precipitationContainer);
+
+    container.appendChild(dayContainer);
+  });
+
+  return container;
+}
+
 async function renderForecast() {
   const main = document.querySelector("main");
   const container = document.createElement("div");
@@ -142,6 +194,7 @@ async function renderForecast() {
   container.appendChild(
     createHourForecast(weather.forecast.forecastday[0].hour),
   );
+  container.appendChild(createDayForecast(weather.forecast.forecastday));
 
   main.appendChild(container);
 }
