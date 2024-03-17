@@ -161,11 +161,11 @@ main {
   width: 100%;
 }
 
-#forecast > section {
+#forecast section {
   border-radius: 16px;
 }
 
-#forecast > section:not(#current-weather) {
+#forecast section:not(#current-weather) {
   padding: 24px;
   background-color: white;
 }

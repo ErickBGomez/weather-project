@@ -1,5 +1,7 @@
 import clearSunSvg from "./img/forecast/clear-sun.svg";
 import rainSvg from "./img/forecast/rain.svg";
+import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
+import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
 
 let weather;
 
@@ -132,11 +134,11 @@ function createDayForecast(dayForecast) {
 
   dayForecast.forEach((day, index) => {
     const dayContainer = document.createElement("div");
-    const dayElement = document.createElement("span");
+    const dayElement = document.createElement("p");
     const temperatures = document.createElement("span");
     const conditionContainer = document.createElement("div");
     const conditionIcon = document.createElement("span");
-    const conditionValue = document.createElement("span");
+    const conditionValue = document.createElement("p");
     const precipitationContainer = document.createElement("div");
     const precipitationIcon = document.createElement("span");
     const precipitationValue = document.createElement("span");
@@ -175,6 +177,55 @@ function createDayForecast(dayForecast) {
   return container;
 }
 
+function createHumidityUv(current) {
+  const container = document.createElement("div");
+  container.className = "humidity-uv-container";
+
+  const humiditySection = document.createElement("section");
+  const humidityValue = document.createElement("span");
+  const humidityTextContainer = document.createElement("div");
+  const humidityIcon = document.createElement("span");
+  const humidityTitle = document.createElement("p");
+  const uvSection = document.createElement("section");
+  const uvValue = document.createElement("span");
+  const uvTextContainer = document.createElement("div");
+  const uvIcon = document.createElement("span");
+  const uvTitle = document.createElement("p");
+
+  humiditySection.id = "humidity";
+  humidityValue.className = "value";
+  humidityValue.textContent = `${current.humidity}%`;
+  humidityTextContainer.className = "title";
+  humidityIcon.className = "humidity-icon";
+  humidityIcon.innerHTML = rainOverlaySvg;
+  humidityTitle.className = "humidity-title";
+  humidityTitle.textContent = "Humidity";
+
+  humidityTextContainer.appendChild(humidityIcon);
+  humidityTextContainer.appendChild(humidityTitle);
+  humiditySection.appendChild(humidityValue);
+  humiditySection.appendChild(humidityTextContainer);
+
+  uvSection.id = "uv";
+  uvValue.className = "value";
+  uvValue.textContent = Math.trunc(current.uv);
+  uvTextContainer.className = "title";
+  uvIcon.className = "uv-icon";
+  uvIcon.innerHTML = uvOverlaySvg;
+  uvTitle.className = "uv-title";
+  uvTitle.textContent = "UV Index";
+
+  uvTextContainer.appendChild(uvIcon);
+  uvTextContainer.appendChild(uvTitle);
+  uvSection.appendChild(uvValue);
+  uvSection.appendChild(uvTextContainer);
+
+  container.appendChild(humiditySection);
+  container.appendChild(uvSection);
+
+  return container;
+}
+
 async function renderForecast() {
   const main = document.querySelector("main");
   const container = document.createElement("div");
@@ -193,6 +244,7 @@ async function renderForecast() {
     createHourForecast(weather.forecast.forecastday[0].hour),
   );
   container.appendChild(createDayForecast(weather.forecast.forecastday));
+  container.appendChild(createHumidityUv(weather.current));
 
   main.appendChild(container);
 }
