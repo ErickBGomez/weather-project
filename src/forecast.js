@@ -2,6 +2,10 @@ import clearSunSvg from "./img/forecast/clear-sun.svg";
 import rainSvg from "./img/forecast/rain.svg";
 import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
+import dewPointSvg from "./img/forecast/dew-point.svg";
+import windSvg from "./img/forecast/wind.svg";
+import visibilitySvg from "./img/forecast/visibility.svg";
+import pressureSvg from "./img/forecast/pressure.svg";
 
 let weather;
 
@@ -226,6 +230,54 @@ function createHumidityUv(current) {
   return container;
 }
 
+function createInformation(icon, title, value) {
+  const container = document.createElement("div");
+  const iconElement = document.createElement("span");
+  const titleElement = document.createElement("p");
+  const valueElement = document.createElement("span");
+
+  iconElement.className = "icon";
+  iconElement.innerHTML = icon;
+  titleElement.className = "title";
+  titleElement.textContent = title;
+  valueElement.className = "value";
+  valueElement.textContent = value;
+
+  container.appendChild(iconElement);
+  container.appendChild(titleElement);
+  container.appendChild(valueElement);
+
+  return container;
+}
+
+function createMoreWeatherInfo(current) {
+  const container = document.createElement("section");
+  const leftSide = document.createElement("div");
+  const dewPoint = createInformation(dewPointSvg, "Dew point", 0);
+  const wind = createInformation(windSvg, "Wind", current.wind_kph);
+  const rightSide = document.createElement("div");
+  const visibility = createInformation(
+    visibilitySvg,
+    "Visibility",
+    current.vis_km,
+  );
+  const pressure = createInformation(
+    pressureSvg,
+    "Pressure",
+    current.pressure_mb,
+  );
+
+  leftSide.appendChild(dewPoint);
+  leftSide.appendChild(wind);
+  rightSide.appendChild(visibility);
+  rightSide.appendChild(pressure);
+
+  container.appendChild(leftSide);
+  container.appendChild(rightSide);
+
+  return container;
+}
+
 async function renderForecast() {
   const main = document.querySelector("main");
   const container = document.createElement("div");
@@ -245,6 +297,7 @@ async function renderForecast() {
   );
   container.appendChild(createDayForecast(weather.forecast.forecastday));
   container.appendChild(createHumidityUv(weather.current));
+  container.appendChild(createMoreWeatherInfo(weather.current));
 
   main.appendChild(container);
 }
