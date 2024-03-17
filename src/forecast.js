@@ -321,7 +321,7 @@ function createSunAndMoonInfo(astro) {
 
   doubleContainer.className = "double-section-container";
 
-  sunSection.id = "sun-info";
+  sunSection.id = "sun-position";
   sunIcon.className = "icon";
   sunIcon.innerHTML = sunPositionSvg;
   sunriseValue.className = "sunrise-vale";
@@ -339,7 +339,7 @@ function createSunAndMoonInfo(astro) {
   sunSection.appendChild(sunsetValue);
   sunSection.appendChild(sunsetLabel);
 
-  moonSection.id = "moon-info";
+  moonSection.id = "moon-phase";
   moonIcon.className = "icon";
   moonIcon.innerHTML = moonPhaseSvg;
   moonPhaseValue.className = "moon-phase-value";
