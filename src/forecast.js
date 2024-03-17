@@ -1,3 +1,5 @@
+import clearSunSvg from "./img/forecast/clear-sun.svg";
+
 let forecastInfo;
 
 async function fetchForecast(location) {
@@ -26,6 +28,8 @@ function createCurrentWeather(location, current, firstForecastDay) {
   const tempDivider = document.createElement("span");
   const lowTemp = document.createElement("span");
   const feelsLikeTemp = document.createElement("span");
+
+  const conditionIcon = document.createElement("span");
 
   // Location
   locationContainer.className = "location";
@@ -65,9 +69,14 @@ function createCurrentWeather(location, current, firstForecastDay) {
   otherTempsContainer.appendChild(highLowTemps);
   otherTempsContainer.appendChild(feelsLikeTemp);
 
+  // Condition icon
+  conditionIcon.className = "condition-icon";
+  conditionIcon.innerHTML = clearSunSvg;
+
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
   container.appendChild(otherTempsContainer);
+  container.appendChild(conditionIcon);
 
   return container;
 }
