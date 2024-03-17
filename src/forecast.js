@@ -6,6 +6,8 @@ import dewPointSvg from "./img/forecast/dew-point.svg";
 import windSvg from "./img/forecast/wind.svg";
 import visibilitySvg from "./img/forecast/visibility.svg";
 import pressureSvg from "./img/forecast/pressure.svg";
+import sunPositionSvg from "./img/forecast/sun-position.svg";
+import moonPhaseSvg from "./img/forecast/moon-phase.svg";
 
 let weather;
 
@@ -182,8 +184,8 @@ function createDayForecast(dayForecast) {
 }
 
 function createHumidityUv(current) {
-  const container = document.createElement("div");
-  container.className = "double-section-container";
+  const doubleContainer = document.createElement("div");
+  doubleContainer.className = "double-section-container";
 
   const humiditySection = document.createElement("section");
   const humidityValue = document.createElement("span");
@@ -224,10 +226,10 @@ function createHumidityUv(current) {
   uvSection.appendChild(uvValue);
   uvSection.appendChild(uvTextContainer);
 
-  container.appendChild(humiditySection);
-  container.appendChild(uvSection);
+  doubleContainer.appendChild(humiditySection);
+  doubleContainer.appendChild(uvSection);
 
-  return container;
+  return doubleContainer;
 }
 
 function createInformation(icon, elementClass, label, value, valueUnits) {
@@ -303,6 +305,58 @@ function createMoreWeatherInfo(current) {
   return container;
 }
 
+function createSunAndMoonInfo(astro) {
+  const doubleContainer = document.createElement("div");
+
+  const sunSection = document.createElement("section");
+  const sunIcon = document.createElement("span");
+  const sunriseValue = document.createElement("span");
+  const sunriseLabel = document.createElement("p");
+  const sunsetValue = document.createElement("span");
+  const sunsetLabel = document.createElement("p");
+  const moonSection = document.createElement("section");
+  const moonIcon = document.createElement("span");
+  const moonPhaseValue = document.createElement("p");
+  const moonPhaseLabel = document.createElement("p");
+
+  doubleContainer.className = "double-section-container";
+
+  sunSection.id = "sun-info";
+  sunIcon.className = "icon";
+  sunIcon.innerHTML = sunPositionSvg;
+  sunriseValue.className = "sunrise-vale";
+  sunriseValue.textContent = astro.sunrise;
+  sunriseLabel.className = "sunrise-label small-text";
+  sunriseLabel.textContent = "Sunrise";
+  sunsetValue.className = "sunset-value";
+  sunsetValue.textContent = astro.sunset;
+  sunsetLabel.className = "sunset-label small-text";
+  sunsetLabel.textContent = "Sunset";
+
+  sunSection.appendChild(sunIcon);
+  sunSection.appendChild(sunriseValue);
+  sunSection.appendChild(sunriseLabel);
+  sunSection.appendChild(sunsetValue);
+  sunSection.appendChild(sunsetLabel);
+
+  moonSection.id = "moon-info";
+  moonIcon.className = "icon";
+  moonIcon.innerHTML = moonPhaseSvg;
+  moonPhaseValue.className = "moon-phase-value";
+  moonPhaseValue.textContent = astro.moon_phase;
+  moonPhaseLabel.className = "moon-phase-label small-text";
+  moonPhaseLabel.textContent = "Moon phase";
+
+  moonSection.appendChild(moonIcon);
+  moonSection.appendChild(moonPhaseValue);
+  moonSection.appendChild(moonPhaseLabel);
+
+  doubleContainer.appendChild(sunSection);
+  doubleContainer.appendChild(moonSection);
+
+  return doubleContainer;
+}
+
 async function renderForecast() {
   const main = document.querySelector("main");
   const container = document.createElement("div");
@@ -323,6 +377,9 @@ async function renderForecast() {
   container.appendChild(createDayForecast(weather.forecast.forecastday));
   container.appendChild(createHumidityUv(weather.current));
   container.appendChild(createMoreWeatherInfo(weather.current));
+  container.appendChild(
+    createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
+  );
 
   main.appendChild(container);
 }
