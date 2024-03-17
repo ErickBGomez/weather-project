@@ -193,12 +193,12 @@ main {
   color: var(--SmallTextColor);
 }
 
-.condition-icon {
+#current-weather .condition-icon {
   grid-column: 2 / 3;
   grid-row: 1 / -1;
 }
 
-.condition-icon > svg {
+#current-weather .condition-icon > svg {
   max-width: 200px;
   min-height: 200px;
 }
@@ -229,27 +229,55 @@ main {
   padding-right: 0;
 }
 
-.hour-container .time {
+#hour-forecast .time {
   color: var(--SmallTextColor);
 }
 
-.hour-container .condition-icon > svg {
+#hour-forecast .condition-icon > svg {
   max-width: 44px;
   min-height: 44px;
 }
 
-.hour-container .precipitation {
+#hour-forecast .precipitation {
   display: flex;
   gap: 4px;
 }
 
-.precipitation .value {
+#hour-forecast .precipitation .value {
   color: var(--WhiteSmallText);
 }
 
-.precipitation-icon > svg {
+#hour-forecast .precipitation-icon > svg {
+  fill: var(--WhiteSmallText);
   max-width: 16px;
   min-height: 16px;
+}
+
+/* 3. Day forecast */
+
+#day-forecast {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, max-content);
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 20px;
+}
+
+#day-forecast .condition,
+#day-forecast .precipitation {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#day-forecast .condition-icon > svg,
+#day-forecast .precipitation-icon > svg {
+  max-width: 24px;
+  min-height: 24px;
+}
+
+#day-forecast .precipitation-icon > svg {
+  fill: var(--Rain);
 }
 
 /* Footer */

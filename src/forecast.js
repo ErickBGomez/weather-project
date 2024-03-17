@@ -145,13 +145,13 @@ function createDayForecast(dayForecast) {
     dayElement.className = "day";
     dayElement.textContent = !index ? "Today" : day.date;
 
-    temperatures.className = "temperatures";
+    temperatures.className = "temperatures small-text";
     temperatures.textContent = `${Math.trunc(day.day.maxtemp_c)}° | ${Math.trunc(day.day.mintemp_c)}°`;
 
     conditionContainer.className = "condition";
     conditionIcon.className = "condition-icon";
     conditionIcon.innerHTML = clearSunSvg;
-    conditionValue.className = "value";
+    conditionValue.className = "value small-text";
     conditionValue.textContent = day.day.condition.text;
 
     conditionContainer.appendChild(conditionIcon);
@@ -160,18 +160,16 @@ function createDayForecast(dayForecast) {
     precipitationContainer.className = "precipitation";
     precipitationIcon.className = "precipitation-icon";
     precipitationIcon.innerHTML = rainSvg;
-    precipitationValue.className = "value very-small-text";
+    precipitationValue.className = "value small-text";
     precipitationValue.textContent = `${day.day.daily_chance_of_rain}%`;
 
     precipitationContainer.appendChild(precipitationIcon);
     precipitationContainer.appendChild(precipitationValue);
 
-    dayContainer.appendChild(dayElement);
-    dayContainer.appendChild(temperatures);
-    dayContainer.appendChild(conditionContainer);
-    dayContainer.appendChild(precipitationContainer);
-
-    container.appendChild(dayContainer);
+    container.appendChild(dayElement);
+    container.appendChild(temperatures);
+    container.appendChild(conditionContainer);
+    container.appendChild(precipitationContainer);
   });
 
   return container;
