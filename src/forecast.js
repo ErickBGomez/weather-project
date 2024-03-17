@@ -57,10 +57,10 @@ function createCurrentWeather(location, current, firstForecastDay) {
   highTemp.className = "high-value";
   highTemp.textContent = `${Math.trunc(firstForecastDay.day.maxtemp_c)}°C`;
   tempDivider.className = "temp-divider";
-  tempDivider.textContent = "|";
+  tempDivider.textContent = " | ";
   lowTemp.className = "low-value";
   lowTemp.textContent = `${Math.trunc(firstForecastDay.day.mintemp_c)}°C`;
-  feelsLikeTemp.className = "feels-like-temp";
+  feelsLikeTemp.className = "feelslike-temp small-text";
   feelsLikeTemp.textContent = `Feels like ${Math.trunc(current.feelslike_c)}°C`;
 
   highLowTemps.appendChild(highTemp);
