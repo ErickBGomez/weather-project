@@ -337,6 +337,45 @@ main {
 
 /* 5. More weather fnfo */
 
+#more-weather-info {
+  display: flex;
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.left-side {
+  border-right: 1px solid var(--Divider);
+  padding-right: 32px;
+  margin-right: 32px;
+}
+
+.left-side > div,
+.right-side > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.left-side .title,
+.right-side .title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#more-weather-info .icon > svg {
+  max-width: 24px;
+  min-width: 24px;
+  fill: var(--Black);
+}
+
 /* Footer */
 footer {
   text-align: center;

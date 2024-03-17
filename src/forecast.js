@@ -230,21 +230,25 @@ function createHumidityUv(current) {
   return container;
 }
 
-function createInformation(icon, elementClass, title, value, valueUnits) {
+function createInformation(icon, elementClass, label, value, valueUnits) {
   const container = document.createElement("div");
+  const titleElement = document.createElement("div");
   const iconElement = document.createElement("span");
-  const titleElement = document.createElement("p");
+  const labelElement = document.createElement("p");
   const valueElement = document.createElement("span");
 
   container.className = elementClass;
+  titleElement.className = "title";
   iconElement.className = "icon";
   iconElement.innerHTML = icon;
-  titleElement.className = "title";
-  titleElement.textContent = title;
-  valueElement.className = "value";
+  labelElement.className = "label";
+  labelElement.textContent = label;
+  valueElement.className = "value small-text";
   valueElement.textContent = `${value}${valueUnits}`;
 
-  container.appendChild(iconElement);
+  titleElement.appendChild(iconElement);
+  titleElement.appendChild(labelElement);
+
   container.appendChild(titleElement);
   container.appendChild(valueElement);
 
