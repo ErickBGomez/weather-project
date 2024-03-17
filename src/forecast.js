@@ -12,24 +12,21 @@ async function fetchForecast(location) {
 
 function createCurrentWeather(location, current, firstForecastDay) {
   const container = document.createElement("section");
-  container.id = "current-weather";
-
   const locationContainer = document.createElement("div");
   const locationName = document.createElement("p");
   const locationCountry = document.createElement("span");
-
   const currentTempContainer = document.createElement("div");
   const temperatureValue = document.createElement("span");
   const condition = document.createElement("p");
-
   const otherTempsContainer = document.createElement("div");
   const highLowTemps = document.createElement("div");
   const highTemp = document.createElement("span");
   const tempDivider = document.createElement("span");
   const lowTemp = document.createElement("span");
   const feelsLikeTemp = document.createElement("span");
-
   const conditionIcon = document.createElement("span");
+
+  container.id = "current-weather";
 
   // Location
   locationContainer.className = "location";
