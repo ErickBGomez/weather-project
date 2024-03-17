@@ -179,7 +179,7 @@ function createDayForecast(dayForecast) {
 
 function createHumidityUv(current) {
   const container = document.createElement("div");
-  container.className = "humidity-uv-container";
+  container.className = "double-section-container";
 
   const humiditySection = document.createElement("section");
   const humidityValue = document.createElement("span");
