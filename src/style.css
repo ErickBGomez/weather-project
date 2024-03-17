@@ -178,15 +178,11 @@ main {
   font-size: 2.917rem;
 }
 
-.other-temps .temp-divider {
-  color: var(--SmallTextColor);
-}
-
-.other-temps .low-value {
-  color: var(--SmallTextColor);
-}
-
+.location .country,
+.other-temps .temp-divider,
+.other-temps .low-value,
 .other-temps .feelslike-temp {
+  color: var(--SmallTextColor);
 }
 
 .condition-icon {
