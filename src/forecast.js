@@ -78,10 +78,48 @@ function createCurrentWeather(location, current, firstForecastDay) {
   return container;
 }
 
-function createHourForecast() {
+function createHourForecast(forecastHour) {
   const container = document.createElement("section");
 
   container.id = "hour-forecast";
+
+  forecastHour.forEach((hour) => {
+    const timeValue = hour.time.split(" ")[1];
+
+    const hourContainer = document.createElement("div");
+    const timeElement = document.createElement("span");
+    const conditionIcon = document.createElement("span");
+    const temperature = document.createElement("span");
+    const precipitationContainer = document.createElement("div");
+    const precipitationIcon = document.createElement("span");
+    const precipitationValue = document.createElement("span");
+
+    hourContainer.className = "hour-container";
+    timeElement.className = "time";
+    timeElement.textContent = timeValue;
+
+    conditionIcon.className = "condition-icon";
+    conditionIcon.innerHTML = clearSunSvg;
+
+    temperature.className = "temperature";
+    temperature.textContent = `${Math.trunc(hour.temp_c)}°C`;
+
+    precipitationContainer.className = "precipitation";
+    precipitationIcon.className = "precipitation-icon";
+    precipitationIcon.innerHTML = clearSunSvg;
+    precipitationValue.className = "value";
+    precipitationValue.textContent = `${hour.chance_of_rain}%`;
+
+    precipitationContainer.appendChild(precipitationIcon);
+    precipitationContainer.appendChild(precipitationValue);
+
+    hourContainer.appendChild(timeElement);
+    hourContainer.appendChild(conditionIcon);
+    hourContainer.appendChild(temperature);
+    hourContainer.appendChild(precipitationContainer);
+
+    container.appendChild(hourContainer);
+  });
 
   return container;
 }
@@ -100,7 +138,9 @@ async function renderForecast() {
       weather.forecast.forecastday[0],
     ),
   );
-  container.appendChild(createHourForecast());
+  container.appendChild(
+    createHourForecast(weather.forecast.forecastday[0].hour),
+  );
 
   main.appendChild(container);
 }
