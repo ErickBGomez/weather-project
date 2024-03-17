@@ -230,12 +230,13 @@ function createHumidityUv(current) {
   return container;
 }
 
-function createInformation(icon, title, value, valueUnits) {
+function createInformation(icon, elementClass, title, value, valueUnits) {
   const container = document.createElement("div");
   const iconElement = document.createElement("span");
   const titleElement = document.createElement("p");
   const valueElement = document.createElement("span");
 
+  container.className = elementClass;
   iconElement.className = "icon";
   iconElement.innerHTML = icon;
   titleElement.className = "title";
@@ -253,21 +254,39 @@ function createInformation(icon, title, value, valueUnits) {
 function createMoreWeatherInfo(current) {
   const container = document.createElement("section");
   const leftSide = document.createElement("div");
-  const dewPoint = createInformation(dewPointSvg, "Dew point", 0, "°");
-  const wind = createInformation(windSvg, "Wind", current.wind_kph, " km/h");
+  const dewPoint = createInformation(
+    dewPointSvg,
+    "dew-point",
+    "Dew point",
+    0,
+    "°",
+  );
+  const wind = createInformation(
+    windSvg,
+    "wind",
+    "Wind",
+    current.wind_kph,
+    " km/h",
+  );
   const rightSide = document.createElement("div");
   const visibility = createInformation(
     visibilitySvg,
+    "visibility",
     "Visibility",
     current.vis_km,
     " km",
   );
   const pressure = createInformation(
     pressureSvg,
+    "pressure",
     "Pressure",
     current.pressure_mb,
     " mb",
   );
+
+  container.id = "more-weather-info";
+  leftSide.className = "left-side";
+  rightSide.className = "right-side";
 
   leftSide.appendChild(dewPoint);
   leftSide.appendChild(wind);
