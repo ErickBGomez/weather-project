@@ -1,8 +1,8 @@
 import clearSunSvg from "./img/forecast/clear-sun.svg";
 
-let forecastInfo;
+let weather;
 
-async function fetchForecast(location) {
+async function fetchWeather(location) {
   const responseFetch = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${location}&days=3&aqi=no&alerts=no`,
     { mode: "cors" },
@@ -78,20 +78,29 @@ function createCurrentWeather(location, current, firstForecastDay) {
   return container;
 }
 
+function createHourForecast() {
+  const container = document.createElement("section");
+
+  container.id = "hour-forecast";
+
+  return container;
+}
+
 async function renderForecast() {
   const main = document.querySelector("main");
   const container = document.createElement("div");
-  forecastInfo = await fetchForecast("San Salvador");
+  weather = await fetchWeather("San Salvador");
 
   container.id = "forecast";
 
   container.appendChild(
     createCurrentWeather(
-      forecastInfo.location,
-      forecastInfo.current,
-      forecastInfo.forecast.forecastday[0],
+      weather.location,
+      weather.current,
+      weather.forecast.forecastday[0],
     ),
   );
+  container.appendChild(createHourForecast());
 
   main.appendChild(container);
 }
