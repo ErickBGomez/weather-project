@@ -3,11 +3,12 @@ let forecastInfo;
 async function fetchForecast(location) {
   const responseFetch = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${location}&days=3&aqi=no&alerts=no`,
+    { mode: "cors" },
   );
   return responseFetch.json();
 }
 
-function createCurrentWeather(location, current) {
+function createCurrentWeather(location, current, firstForecastDay) {
   const container = document.createElement("section");
   container.id = "current-weather";
 
@@ -18,6 +19,11 @@ function createCurrentWeather(location, current) {
   const currentTempContainer = document.createElement("div");
   const temperatureValue = document.createElement("span");
   const condition = document.createElement("p");
+
+  const highLowTempContainer = document.createElement("div");
+  const highTemp = document.createElement("span");
+  const tempDivider = document.createElement("span");
+  const lowTemp = document.createElement("span");
 
   // Location
   locationContainer.className = "location";
@@ -39,8 +45,16 @@ function createCurrentWeather(location, current) {
   currentTempContainer.appendChild(temperatureValue);
   currentTempContainer.appendChild(condition);
 
+  // High low temperatures
+  highLowTempContainer.className = "high-low-temp";
+  highTemp.className = "high-value";
+  highTemp.textContent = firstForecastDay.day.maxtemp_c;
+
+  highLowTempContainer.appendChild(highTemp);
+
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
+  container.appendChild(highLowTempContainer);
 
   return container;
 }
@@ -53,7 +67,11 @@ async function renderForecast() {
   container.id = "forecast";
 
   container.appendChild(
-    createCurrentWeather(forecastInfo.location, forecastInfo.current),
+    createCurrentWeather(
+      forecastInfo.location,
+      forecastInfo.current,
+      forecastInfo.forecast.forecastday[0],
+    ),
   );
 
   main.appendChild(container);
