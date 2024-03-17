@@ -203,6 +203,55 @@ main {
   min-height: 200px;
 }
 
+/* 2. Hour forecast */
+#hour-forecast {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.hour-container {
+  display: flex;
+  gap: 12px;
+  padding: 8px 18px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hour-container:not(:last-child) {
+  border-right: 1px solid var(--Divider);
+}
+
+.hour-container:first-child {
+  padding-left: 0;
+}
+
+.hour-container:last-child {
+  padding-right: 0;
+}
+
+.hour-container .time {
+  color: var(--SmallTextColor);
+}
+
+.hour-container .condition-icon > svg {
+  max-width: 44px;
+  min-height: 44px;
+}
+
+.hour-container .precipitation {
+  display: flex;
+  gap: 4px;
+}
+
+.precipitation .value {
+  color: var(--WhiteSmallText);
+}
+
+.precipitation-icon > svg {
+  max-width: 16px;
+  min-height: 16px;
+}
+
 /* Footer */
 footer {
   text-align: center;

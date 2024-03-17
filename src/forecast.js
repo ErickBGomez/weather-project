@@ -1,4 +1,5 @@
 import clearSunSvg from "./img/forecast/clear-sun.svg";
+import rainSvg from "./img/forecast/rain.svg";
 
 let weather;
 
@@ -95,19 +96,19 @@ function createHourForecast(forecastHour) {
     const precipitationValue = document.createElement("span");
 
     hourContainer.className = "hour-container";
-    timeElement.className = "time";
+    timeElement.className = "time very-small-text";
     timeElement.textContent = timeValue;
 
     conditionIcon.className = "condition-icon";
     conditionIcon.innerHTML = clearSunSvg;
 
-    temperature.className = "temperature";
-    temperature.textContent = `${Math.trunc(hour.temp_c)}°C`;
+    temperature.className = "temperature small-text";
+    temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
 
     precipitationContainer.className = "precipitation";
     precipitationIcon.className = "precipitation-icon";
-    precipitationIcon.innerHTML = clearSunSvg;
-    precipitationValue.className = "value";
+    precipitationIcon.innerHTML = rainSvg;
+    precipitationValue.className = "value very-small-text";
     precipitationValue.textContent = `${hour.chance_of_rain}%`;
 
     precipitationContainer.appendChild(precipitationIcon);
