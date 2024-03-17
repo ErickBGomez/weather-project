@@ -20,10 +20,12 @@ function createCurrentWeather(location, current, firstForecastDay) {
   const temperatureValue = document.createElement("span");
   const condition = document.createElement("p");
 
-  const highLowTempContainer = document.createElement("div");
+  const otherTempsContainer = document.createElement("div");
+  const highLowTemps = document.createElement("div");
   const highTemp = document.createElement("span");
   const tempDivider = document.createElement("span");
   const lowTemp = document.createElement("span");
+  const feelsLikeTemp = document.createElement("span");
 
   // Location
   locationContainer.className = "location";
@@ -38,7 +40,7 @@ function createCurrentWeather(location, current, firstForecastDay) {
   // Current Temperature and Condition
   currentTempContainer.className = "current-temp";
   temperatureValue.className = "value";
-  temperatureValue.textContent = `${current.temp_c}°C`;
+  temperatureValue.textContent = `${Math.trunc(current.temp_c)}°C`;
   condition.className = "condition";
   condition.textContent = current.condition.text;
 
@@ -46,15 +48,26 @@ function createCurrentWeather(location, current, firstForecastDay) {
   currentTempContainer.appendChild(condition);
 
   // High low temperatures
-  highLowTempContainer.className = "high-low-temp";
+  otherTempsContainer.className = "other-temps";
+  highLowTemps.className = "high-low-temp";
   highTemp.className = "high-value";
-  highTemp.textContent = firstForecastDay.day.maxtemp_c;
+  highTemp.textContent = `${Math.trunc(firstForecastDay.day.maxtemp_c)}°C`;
+  tempDivider.className = "temp-divider";
+  tempDivider.textContent = "|";
+  lowTemp.className = "low-value";
+  lowTemp.textContent = `${Math.trunc(firstForecastDay.day.mintemp_c)}°C`;
+  feelsLikeTemp.className = "feels-like-temp";
+  feelsLikeTemp.textContent = `Feels like ${Math.trunc(current.feelslike_c)}°C`;
 
-  highLowTempContainer.appendChild(highTemp);
+  highLowTemps.appendChild(highTemp);
+  highLowTemps.appendChild(tempDivider);
+  highLowTemps.appendChild(lowTemp);
+  otherTempsContainer.appendChild(highLowTemps);
+  otherTempsContainer.appendChild(feelsLikeTemp);
 
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
-  container.appendChild(highLowTempContainer);
+  container.appendChild(otherTempsContainer);
 
   return container;
 }
