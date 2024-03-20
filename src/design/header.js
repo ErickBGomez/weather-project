@@ -1,6 +1,14 @@
 import searchSvg from "../img/search.svg";
 import configSvg from "../img/config.svg";
 
+// Events
+function addSearchEvent(form, input) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(input.value);
+  });
+}
+
 function createAppTitle() {
   const title = document.createElement("h1");
   title.id = "app-title";
@@ -10,8 +18,9 @@ function createAppTitle() {
 }
 
 function createChooseAreaInput(id, placeholder) {
-  const container = document.createElement("div");
-  container.className = "input-container";
+  const form = document.createElement("form");
+  const inputContainer = document.createElement("div");
+  inputContainer.className = "input-container";
 
   const input = document.createElement("input");
   input.type = "text";
@@ -23,10 +32,14 @@ function createChooseAreaInput(id, placeholder) {
   button.id = "choose-area-button";
   button.innerHTML = searchSvg;
 
-  container.appendChild(input);
-  container.appendChild(button);
+  inputContainer.appendChild(input);
+  inputContainer.appendChild(button);
 
-  return container;
+  form.appendChild(inputContainer);
+
+  addSearchEvent(form, input);
+
+  return form;
 }
 
 function createHeaderButtons() {
