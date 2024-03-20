@@ -358,32 +358,37 @@ function createSunAndMoonInfo(astro) {
 }
 
 async function renderForecast(location) {
-  const main = document.querySelector("main");
-  const container = document.createElement("div");
-  weather = await fetchWeather(location);
+  try {
+    const main = document.querySelector("main");
+    const container = document.createElement("div");
+    weather = await fetchWeather(location);
 
-  container.id = "forecast";
+    container.id = "forecast";
 
-  container.appendChild(
-    createCurrentWeather(
-      weather.location,
-      weather.current,
-      weather.forecast.forecastday[0],
-    ),
-  );
-  container.appendChild(
-    createHourForecast(weather.forecast.forecastday[0].hour),
-  );
-  container.appendChild(createDayForecast(weather.forecast.forecastday));
-  container.appendChild(createHumidityUv(weather.current));
-  container.appendChild(createMoreWeatherInfo(weather.current));
-  container.appendChild(
-    createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
-  );
+    container.appendChild(
+      createCurrentWeather(
+        weather.location,
+        weather.current,
+        weather.forecast.forecastday[0],
+      ),
+    );
+    container.appendChild(
+      createHourForecast(weather.forecast.forecastday[0].hour),
+    );
+    container.appendChild(createDayForecast(weather.forecast.forecastday));
+    container.appendChild(createHumidityUv(weather.current));
+    container.appendChild(createMoreWeatherInfo(weather.current));
+    container.appendChild(
+      createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
+    );
 
-  // Reset main and add forecast information
-  main.innerHTML = "";
-  main.appendChild(container);
+    // Reset main and add forecast information
+    main.innerHTML = "";
+    main.appendChild(container);
+  } catch (error) {
+    alert(`${location} not found!`);
+    console.error(error);
+  }
 }
 
 function renderMain() {
