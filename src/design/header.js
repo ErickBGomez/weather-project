@@ -1,14 +1,8 @@
 import searchSvg from "../img/search.svg";
 import configSvg from "../img/config.svg";
+import { addSearchEvent } from "../forecast";
 
 // Events
-function addSearchEvent(form, input) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    console.log(input.value);
-    input.value = "";
-  });
-}
 
 function createAppTitle() {
   const title = document.createElement("h1");

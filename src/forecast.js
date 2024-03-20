@@ -357,10 +357,10 @@ function createSunAndMoonInfo(astro) {
   return doubleContainer;
 }
 
-async function renderForecast() {
+async function renderForecast(location) {
   const main = document.querySelector("main");
   const container = document.createElement("div");
-  weather = await fetchWeather("San Salvador");
+  weather = await fetchWeather(location);
 
   container.id = "forecast";
 
@@ -391,4 +391,12 @@ function renderMain() {
   document.body.appendChild(main);
 }
 
-export { renderForecast, renderMain };
+// Events
+function addSearchEvent(form, input) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    renderForecast(input.value);
+  });
+}
+
+export { renderForecast, renderMain, addSearchEvent };
