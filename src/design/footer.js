@@ -5,6 +5,7 @@ function renderFooter() {
   const credits = document.createElement("a");
   credits.className = "credits";
   credits.href = "https://www.github.com/ErickBGomez";
+  credits.target = "_blank";
   credits.textContent = "Erick B. Gómez";
 
   footer.appendChild(credits);
