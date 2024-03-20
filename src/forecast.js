@@ -381,6 +381,8 @@ async function renderForecast() {
     createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
   );
 
+  // Reset main and add forecast information
+  main.innerHTML = "";
   main.appendChild(container);
 }
 
