@@ -6,6 +6,7 @@ function addSearchEvent(form, input) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log(input.value);
+    input.value = "";
   });
 }
 
