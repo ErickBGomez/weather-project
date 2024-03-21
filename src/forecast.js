@@ -87,47 +87,71 @@ function createCurrentWeather(location, current, firstForecastDay) {
   return container;
 }
 
-function createHourForecast(hourForecast) {
+function createHourElement(hour, timeValue) {
+  const hourContainer = document.createElement("div");
+  const timeElement = document.createElement("span");
+  const conditionIcon = document.createElement("span");
+  const temperature = document.createElement("span");
+  const precipitationContainer = document.createElement("div");
+  const precipitationIcon = document.createElement("span");
+  const precipitationValue = document.createElement("span");
+
+  hourContainer.className = "hour-container";
+  timeElement.className = "time very-small-text";
+  timeElement.textContent = timeValue;
+
+  conditionIcon.className = "condition-icon";
+  conditionIcon.innerHTML = clearSunSvg;
+
+  temperature.className = "temperature small-text";
+  temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
+
+  precipitationContainer.className = "precipitation";
+  precipitationIcon.className = "icon";
+  precipitationIcon.innerHTML = rainSvg;
+  precipitationValue.className = "value very-small-text";
+  precipitationValue.textContent = `${hour.chance_of_rain}%`;
+
+  precipitationContainer.appendChild(precipitationIcon);
+  precipitationContainer.appendChild(precipitationValue);
+
+  hourContainer.appendChild(timeElement);
+  hourContainer.appendChild(conditionIcon);
+  hourContainer.appendChild(temperature);
+  hourContainer.appendChild(precipitationContainer);
+
+  return hourContainer;
+}
+
+function createHourForecast(current, todayHourForecast, tomorrowHourForecast) {
+  const currentTime = current.last_updated.split(" ")[1];
   const container = document.createElement("section");
+  let hourElements = 24;
 
   container.id = "hour-forecast";
 
-  hourForecast.forEach((hour) => {
+  // Display forecast based in current time
+  todayHourForecast.forEach((hour) => {
     const timeValue = hour.time.split(" ")[1];
 
-    const hourContainer = document.createElement("div");
-    const timeElement = document.createElement("span");
-    const conditionIcon = document.createElement("span");
-    const temperature = document.createElement("span");
-    const precipitationContainer = document.createElement("div");
-    const precipitationIcon = document.createElement("span");
-    const precipitationValue = document.createElement("span");
+    if (timeValue >= currentTime) {
+      const hourContainer = createHourElement(hour, timeValue);
+      container.appendChild(hourContainer);
 
-    hourContainer.className = "hour-container";
-    timeElement.className = "time very-small-text";
-    timeElement.textContent = timeValue;
+      hourElements--;
+    }
+  });
 
-    conditionIcon.className = "condition-icon";
-    conditionIcon.innerHTML = clearSunSvg;
+  // If current day display less than 24 hour elements, add forecast of tomorrow
+  tomorrowHourForecast.forEach((hour) => {
+    const timeValue = hour.time.split(" ")[1];
 
-    temperature.className = "temperature small-text";
-    temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
+    if (hourElements > 0) {
+      const hourContainer = createHourElement(hour, timeValue);
+      container.appendChild(hourContainer);
 
-    precipitationContainer.className = "precipitation";
-    precipitationIcon.className = "icon";
-    precipitationIcon.innerHTML = rainSvg;
-    precipitationValue.className = "value very-small-text";
-    precipitationValue.textContent = `${hour.chance_of_rain}%`;
-
-    precipitationContainer.appendChild(precipitationIcon);
-    precipitationContainer.appendChild(precipitationValue);
-
-    hourContainer.appendChild(timeElement);
-    hourContainer.appendChild(conditionIcon);
-    hourContainer.appendChild(temperature);
-    hourContainer.appendChild(precipitationContainer);
-
-    container.appendChild(hourContainer);
+      hourElements--;
+    }
   });
 
   return container;
@@ -364,6 +388,7 @@ async function renderForecast(location) {
     container.id = "forecast";
 
     weather = await fetchWeather(location);
+    console.log(weather);
 
     container.appendChild(
       createCurrentWeather(
@@ -373,7 +398,11 @@ async function renderForecast(location) {
       ),
     );
     container.appendChild(
-      createHourForecast(weather.forecast.forecastday[0].hour),
+      createHourForecast(
+        weather.current,
+        weather.forecast.forecastday[0].hour,
+        weather.forecast.forecastday[1].hour,
+      ),
     );
     container.appendChild(createDayForecast(weather.forecast.forecastday));
     container.appendChild(createHumidityUv(weather.current));
