@@ -114,7 +114,7 @@ function createHourForecast(hourForecast) {
     temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
 
     precipitationContainer.className = "precipitation";
-    precipitationIcon.className = "precipitation-icon";
+    precipitationIcon.className = "icon";
     precipitationIcon.innerHTML = rainSvg;
     precipitationValue.className = "value very-small-text";
     precipitationValue.textContent = `${hour.chance_of_rain}%`;
@@ -157,7 +157,7 @@ function createDayForecast(dayForecast) {
     temperatures.textContent = `${Math.trunc(day.day.maxtemp_c)}° | ${Math.trunc(day.day.mintemp_c)}°`;
 
     conditionContainer.className = "condition";
-    conditionIcon.className = "condition-icon";
+    conditionIcon.className = "icon";
     conditionIcon.innerHTML = clearSunSvg;
     conditionValue.className = "value small-text";
     conditionValue.textContent = day.day.condition.text;
@@ -166,7 +166,7 @@ function createDayForecast(dayForecast) {
     conditionContainer.appendChild(conditionValue);
 
     precipitationContainer.className = "precipitation";
-    precipitationIcon.className = "precipitation-icon";
+    precipitationIcon.className = "icon";
     precipitationIcon.innerHTML = rainSvg;
     precipitationValue.className = "value small-text";
     precipitationValue.textContent = `${day.day.daily_chance_of_rain}%`;
@@ -201,10 +201,10 @@ function createHumidityUv(current) {
   humiditySection.id = "humidity";
   humidityValue.className = "value";
   humidityValue.textContent = `${current.humidity}%`;
-  humidityTextContainer.className = "title";
-  humidityIcon.className = "humidity-icon";
+  humidityTextContainer.className = "title-container";
+  humidityIcon.className = "icon";
   humidityIcon.innerHTML = rainOverlaySvg;
-  humidityTitle.className = "humidity-title";
+  humidityTitle.className = "title";
   humidityTitle.textContent = "Humidity";
 
   humidityTextContainer.appendChild(humidityIcon);
@@ -215,10 +215,10 @@ function createHumidityUv(current) {
   uvSection.id = "uv";
   uvValue.className = "value";
   uvValue.textContent = Math.trunc(current.uv);
-  uvTextContainer.className = "title";
-  uvIcon.className = "uv-icon";
+  uvTextContainer.className = "title-container";
+  uvIcon.className = "icon";
   uvIcon.innerHTML = uvOverlaySvg;
-  uvTitle.className = "uv-title";
+  uvTitle.className = "title";
   uvTitle.textContent = "UV Index";
 
   uvTextContainer.appendChild(uvIcon);

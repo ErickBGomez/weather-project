@@ -247,7 +247,7 @@ main {
   color: var(--WhiteSmallText);
 }
 
-#hour-forecast .precipitation-icon > svg {
+#hour-forecast .precipitation .icon > svg {
   fill: var(--WhiteSmallText);
   max-width: 16px;
   min-height: 16px;
@@ -270,13 +270,13 @@ main {
   align-items: center;
 }
 
-#day-forecast .condition-icon > svg,
-#day-forecast .precipitation-icon > svg {
+#day-forecast .condition .icon > svg,
+#day-forecast .precipitation .icon > svg {
   max-width: 24px;
   min-height: 24px;
 }
 
-#day-forecast .precipitation-icon > svg {
+#day-forecast .precipitation .icon > svg {
   fill: var(--Rain);
 }
 
@@ -321,15 +321,15 @@ main {
   border-color: var(--UvIndex);
 }
 
-#humidity .title,
-#uv .title {
+#humidity .title-container,
+#uv .title-container {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-.humidity-icon > svg,
-.uv-icon > svg {
+#humidity .icon > svg,
+#uv .icon > svg {
   fill: var(--Black);
   max-width: 24px;
   min-height: 24px;
