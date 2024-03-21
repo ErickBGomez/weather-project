@@ -361,9 +361,9 @@ async function renderForecast(location) {
   try {
     const main = document.querySelector("main");
     const container = document.createElement("div");
-    weather = await fetchWeather(location);
-
     container.id = "forecast";
+
+    weather = await fetchWeather(location);
 
     container.appendChild(
       createCurrentWeather(
