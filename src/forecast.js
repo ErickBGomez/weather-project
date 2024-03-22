@@ -313,10 +313,10 @@ function createMoreWeatherInfo(current) {
   const leftSide = document.createElement("div");
   const dewPoint = createInformation(
     dewPointSvg,
-    "dew-point",
-    "Dew point",
-    0,
-    "°",
+    "precipitation",
+    "Precipitation",
+    current.precip_mm,
+    " mm",
   );
   const wind = createInformation(
     windSvg,
