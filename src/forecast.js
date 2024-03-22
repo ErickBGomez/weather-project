@@ -103,7 +103,8 @@ function createHourElement(hour, timeValue) {
   timeElement.textContent = timeValue;
 
   conditionIcon.className = "condition-icon";
-  conditionIcon.innerHTML = clearSunSvg;
+  conditionIcon.innerHTML =
+    timeValue >= "06:00" && timeValue <= "18:00" ? clearSunSvg : clearMoonSvg;
 
   temperature.className = "temperature small-text";
   temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
