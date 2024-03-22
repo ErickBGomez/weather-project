@@ -17,7 +17,8 @@
   --Primary: #3a94e8;
   --Secondary: #e8a63a;
   --SmallTextBlack: #3e4755;
-  --SmallTextWhite: #97a1ae;
+  --SmallTextWhite: #c0c8d1;
+  --Precipitation: #97a1ae;
   --Sun: #d2af69;
   --Moon: #9abfcf;
   --Cloud: #98a3af;
@@ -261,11 +262,11 @@ main {
 }
 
 #hour-forecast .precipitation .value {
-  color: var(--SmallTextWhite);
+  color: var(--Precipitation);
 }
 
 #hour-forecast .precipitation .icon > svg {
-  fill: var(--SmallTextWhite);
+  fill: var(--Precipitation);
   max-width: 16px;
   min-height: 16px;
 }
