@@ -176,7 +176,7 @@ main {
 #current-weather {
   display: grid;
   grid-template-rows: repeat(3, auto);
-  grid-template-columns: max-content min-content;
+  grid-template-columns: minmax(min-content, 320px) min-content;
   align-items: center;
   justify-content: space-between;
   row-gap: 32px;
@@ -195,6 +195,10 @@ main {
 
 .current-temp .value {
   font-size: 2.917rem;
+}
+
+#current-weather .condition {
+  overflow-wrap: break-word;
 }
 
 .day .location .country,
