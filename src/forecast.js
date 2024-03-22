@@ -36,6 +36,7 @@ function createCurrentWeather(location, current, firstForecastDay) {
   const conditionIcon = document.createElement("span");
 
   container.id = "current-weather";
+  container.className = current.is_day ? "day" : "night";
 
   // Location
   locationContainer.className = "location";

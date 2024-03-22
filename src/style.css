@@ -16,17 +16,18 @@
   --White: #f4f4f4;
   --Primary: #3a94e8;
   --Secondary: #e8a63a;
-  --SmallTextColor: #3e4755;
+  --SmallTextBlack: #3e4755;
+  --SmallTextWhite: #97a1ae;
   --Sun: #d2af69;
   --Moon: #9abfcf;
   --Cloud: #98a3af;
   --Divider: #d0d7e0;
   --Rain: #3981c5;
   --UvIndex: #9967da;
-  --WhiteSmallText: #97a1ae;
   --Footer: #232629;
   --Background: #283454;
   --DayBackground: linear-gradient(to right, #95bdda 0%, #2a80be 100%);
+  --NightBackground: linear-gradient(to right, #37465c 0%, #101733 100%);
 }
 
 body {
@@ -50,8 +51,8 @@ input {
   font-size: 0.8rem;
   font-family: inherit;
   padding: 10px 18px;
-  color: var(--SmallTextColor);
-  border: 1px solid var(--SmallTextColor);
+  color: var(--SmallTextBlack);
+  border: 1px solid var(--SmallTextBlack);
   border-radius: 8px 0 0 8px;
   border-right: none;
   max-width: 250px;
@@ -59,7 +60,7 @@ input {
 }
 
 input::placeholder {
-  color: var(--WhiteSmallText);
+  color: var(--SmallTextWhite);
   font-weight: 300;
 }
 
@@ -179,18 +180,34 @@ main {
   justify-content: space-between;
   row-gap: 32px;
   padding: 45px 90px;
+}
+
+#current-weather.day {
   background: var(--DayBackground);
+  color: var(--Black);
+}
+
+#current-weather.night {
+  background: var(--NightBackground);
+  color: var(--White);
 }
 
 .current-temp .value {
   font-size: 2.917rem;
 }
 
-.location .country,
-.other-temps .temp-divider,
-.other-temps .low-value,
-.other-temps .feelslike-temp {
-  color: var(--SmallTextColor);
+.day .location .country,
+.day .other-temps .temp-divider,
+.day .other-temps .low-value,
+.day .other-temps .feelslike-temp {
+  color: var(--SmallTextBlack);
+}
+
+.night .location .country,
+.night .other-temps .temp-divider,
+.night .other-temps .low-value,
+.night .other-temps .feelslike-temp {
+  color: var(--SmallTextWhite);
 }
 
 #current-weather .condition-icon {
@@ -230,7 +247,7 @@ main {
 }
 
 #hour-forecast .time {
-  color: var(--SmallTextColor);
+  color: var(--SmallTextBlack);
 }
 
 #hour-forecast .condition-icon > svg {
@@ -244,11 +261,11 @@ main {
 }
 
 #hour-forecast .precipitation .value {
-  color: var(--WhiteSmallText);
+  color: var(--SmallTextWhite);
 }
 
 #hour-forecast .precipitation .icon > svg {
-  fill: var(--WhiteSmallText);
+  fill: var(--SmallTextWhite);
   max-width: 16px;
   min-height: 16px;
 }
