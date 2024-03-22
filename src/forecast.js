@@ -5,6 +5,7 @@ import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
 import dewPointSvg from "./img/forecast/dew-point.svg";
 import windSvg from "./img/forecast/wind.svg";
+import windDirectionSvg from "./img/forecast/wind-direction.svg";
 import visibilitySvg from "./img/forecast/visibility.svg";
 import pressureSvg from "./img/forecast/pressure.svg";
 import sunPositionSvg from "./img/forecast/sun-position.svg";
@@ -259,7 +260,14 @@ function createHumidityUv(current) {
   return doubleContainer;
 }
 
-function createInformation(icon, elementClass, label, value, valueUnits) {
+function createInformation(
+  icon,
+  elementClass,
+  label,
+  value,
+  valueUnits,
+  moreInfo = { class: "", icon: "", value: "" },
+) {
   const container = document.createElement("div");
   const titleElement = document.createElement("div");
   const iconElement = document.createElement("span");
@@ -279,7 +287,23 @@ function createInformation(icon, elementClass, label, value, valueUnits) {
   titleElement.appendChild(labelElement);
 
   container.appendChild(titleElement);
-  container.appendChild(valueElement);
+
+  if (moreInfo.value) {
+    const valueContainer = document.createElement("div");
+    valueContainer.className = "value-container";
+
+    const moreInfoElement = document.createElement("span");
+    moreInfoElement.className = moreInfo.class;
+    moreInfoElement.innerHTML = moreInfo.icon;
+    moreInfoElement.style.transform = `rotate(${moreInfo.value}deg)`;
+
+    valueContainer.appendChild(moreInfoElement);
+    valueContainer.appendChild(valueElement);
+
+    container.appendChild(valueContainer);
+  } else {
+    container.appendChild(valueElement);
+  }
 
   return container;
 }
@@ -300,6 +324,7 @@ function createMoreWeatherInfo(current) {
     "Wind",
     current.wind_kph,
     " km/h",
+    { class: "direction", icon: windDirectionSvg, value: current.wind_degree },
   );
   const rightSide = document.createElement("div");
   const visibility = createInformation(

@@ -394,6 +394,18 @@ main {
   fill: var(--Black);
 }
 
+#more-weather-info .direction > svg {
+  max-width: 16px;
+  min-width: 16px;
+  fill: var(--SmallTextBlack);
+}
+
+.value-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 /* 6. Sun position and moon phase */
 
 #sun-position {
