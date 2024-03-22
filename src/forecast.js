@@ -1,4 +1,5 @@
 import clearSunSvg from "./img/forecast/clear-sun.svg";
+import clearMoonSvg from "./img/forecast/clear-moon.svg";
 import rainSvg from "./img/forecast/rain.svg";
 import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
@@ -78,7 +79,7 @@ function createCurrentWeather(location, current, firstForecastDay) {
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  conditionIcon.innerHTML = clearSunSvg;
+  conditionIcon.innerHTML = current.is_day ? clearSunSvg : clearMoonSvg;
 
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
