@@ -3,7 +3,7 @@ import clearMoonSvg from "./img/forecast/clear-moon.svg";
 import rainSvg from "./img/forecast/rain.svg";
 import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
-import dewPointSvg from "./img/forecast/dew-point.svg";
+import precipitationSvg from "./img/forecast/precipitation.svg";
 import windSvg from "./img/forecast/wind.svg";
 import windDirectionSvg from "./img/forecast/wind-direction.svg";
 import visibilitySvg from "./img/forecast/visibility.svg";
@@ -311,8 +311,8 @@ function createInformation(
 function createMoreWeatherInfo(current) {
   const container = document.createElement("section");
   const leftSide = document.createElement("div");
-  const dewPoint = createInformation(
-    dewPointSvg,
+  const precipitation = createInformation(
+    precipitationSvg,
     "precipitation",
     "Precipitation",
     current.precip_mm,
@@ -346,7 +346,7 @@ function createMoreWeatherInfo(current) {
   leftSide.className = "left-side";
   rightSide.className = "right-side";
 
-  leftSide.appendChild(dewPoint);
+  leftSide.appendChild(precipitation);
   leftSide.appendChild(wind);
   rightSide.appendChild(visibility);
   rightSide.appendChild(pressure);
