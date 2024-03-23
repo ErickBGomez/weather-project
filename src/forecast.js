@@ -439,6 +439,9 @@ function createSunAndMoonInfo(astro) {
   moonPhaseLabel.textContent = "Moon phase";
 
   // Experimental
+  const arc = moonIcon.querySelector(".arc-path");
+  arc.setAttribute("d", drawArc(50, 50, 44, 0, 0.5));
+
   moonSection.appendChild(moonIcon);
   moonSection.appendChild(moonPhaseValue);
   moonSection.appendChild(moonPhaseLabel);
