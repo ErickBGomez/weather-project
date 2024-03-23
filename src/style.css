@@ -442,6 +442,25 @@ main {
   align-items: center;
 }
 
+#moon-phase .icon {
+  /* transform: rotate(90deg); */
+}
+
+#moon-phase svg {
+  /* stroke-dasharray: 60; */
+  /* animation-name: circleAnim;
+  animation-duration: 2s;
+  animation-timing-function: ease-in; */
+}
+
+.circle-background {
+  stroke: var(--Divider);
+}
+
+.arc-path {
+  stroke: var(--Primary);
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -456,4 +475,14 @@ a {
   text-decoration: none;
   font-weight: 600;
   color: var(--Primary);
+}
+
+@keyframes circleAnim {
+  0% {
+    stroke-dasharray: 0 200;
+  }
+
+  100% {
+    stroke-dasharray: 200;
+  }
 }

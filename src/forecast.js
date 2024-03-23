@@ -10,6 +10,7 @@ import visibilitySvg from "./img/forecast/visibility.svg";
 import pressureSvg from "./img/forecast/pressure.svg";
 import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
+import circlePercentageSvg from "./img/circle-percentage.svg";
 
 let weather;
 
@@ -211,6 +212,44 @@ function createDayForecast(dayForecast) {
   return container;
 }
 
+// Functions to draw percentage arcs
+// Based on this post from Stack Exchange: https://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+
+  return {
+    x: centerX + radius * Math.cos(angleInRadians),
+    y: centerY + radius * Math.sin(angleInRadians),
+  };
+}
+
+function drawArc(xPosition, yPosition, radius, startAngle, arcPercentage) {
+  // Transform percentage to angle (in degrees)
+  // Approximate 360° when percentage is >= 100%
+  const endAngle = arcPercentage < 1 ? 360 * arcPercentage : 359.999;
+
+  const start = polarToCartesian(xPosition, yPosition, radius, endAngle);
+  const end = polarToCartesian(xPosition, yPosition, radius, startAngle);
+
+  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+  const d = [
+    "M",
+    start.x,
+    start.y,
+    "A",
+    radius,
+    radius,
+    0,
+    largeArcFlag,
+    0,
+    end.x,
+    end.y,
+  ].join(" ");
+
+  return d;
+}
+
 function createHumidityUv(current) {
   const doubleContainer = document.createElement("div");
   doubleContainer.className = "double-section-container";
@@ -393,12 +432,13 @@ function createSunAndMoonInfo(astro) {
 
   moonSection.id = "moon-phase";
   moonIcon.className = "icon";
-  moonIcon.innerHTML = moonPhaseSvg;
+  moonIcon.innerHTML = circlePercentageSvg;
   moonPhaseValue.className = "moon-phase-value";
   moonPhaseValue.textContent = astro.moon_phase;
   moonPhaseLabel.className = "moon-phase-label small-text";
   moonPhaseLabel.textContent = "Moon phase";
 
+  // Experimental
   moonSection.appendChild(moonIcon);
   moonSection.appendChild(moonPhaseValue);
   moonSection.appendChild(moonPhaseLabel);
