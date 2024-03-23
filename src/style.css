@@ -28,7 +28,7 @@
   --Footer: #232629;
   --Background: #283454;
   --DayBackground: linear-gradient(to right, #95bdda 0%, #2a80be 100%);
-  --NightBackground: linear-gradient(to right, #37465c 0%, #101733 100%);
+  --NightBackground: linear-gradient(to right, #1d2029 0%, #101733 100%);
 }
 
 body {
