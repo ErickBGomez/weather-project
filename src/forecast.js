@@ -250,6 +250,25 @@ function drawArc(xPosition, yPosition, radius, startAngle, arcPercentage) {
   return d;
 }
 
+function setPercentageCircle(
+  sectionId,
+  label,
+  labelIcon,
+  value,
+  maxValue,
+  units = "",
+) {
+  const section = document.createElement("section");
+  const valueContainer = document.createElement("div");
+  const valueElement = document.createElement("span");
+  const circlePercentage = document.createElement("span");
+
+  section.id = sectionId;
+  valueContainer.className = "value-container";
+  valueElement.className = "value";
+  valueElement.textContent = `${value}${units}`;
+}
+
 function createHumidityUv(current) {
   const doubleContainer = document.createElement("div");
   doubleContainer.className = "double-section-container";
@@ -432,15 +451,11 @@ function createSunAndMoonInfo(astro) {
 
   moonSection.id = "moon-phase";
   moonIcon.className = "icon";
-  moonIcon.innerHTML = circlePercentageSvg;
+  moonIcon.innerHTML = moonPhaseSvg;
   moonPhaseValue.className = "moon-phase-value";
   moonPhaseValue.textContent = astro.moon_phase;
   moonPhaseLabel.className = "moon-phase-label small-text";
   moonPhaseLabel.textContent = "Moon phase";
-
-  // Experimental
-  const arc = moonIcon.querySelector(".arc-path");
-  arc.setAttribute("d", drawArc(50, 50, 44, 0, 0.5));
 
   moonSection.appendChild(moonIcon);
   moonSection.appendChild(moonPhaseValue);
