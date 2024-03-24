@@ -46,15 +46,30 @@ function removeSuggestionsEvent(searchSuggestions) {
 }
 
 function addSuggestionsBehaviorEvent(input, searchSuggestions) {
+  let searchTimeout;
+
   input.addEventListener("input", () => {
+    // Reset timer when input event triggers
+    clearTimeout(searchTimeout);
+
     removeSuggestionsEvent(searchSuggestions);
+
+    // Wait 0.5s to fetch search suggestions
+    if (!input.value) return;
+    searchTimeout = setTimeout(
+      () => addSuggestionsEvent(input, searchSuggestions),
+      500,
+    );
   });
 
   input.addEventListener("blur", () => {
+    // Remove suggestion cooldown when blurring input and still waiting the suggestion fetch
+    clearTimeout(searchTimeout);
+
     removeSuggestionsEvent(searchSuggestions);
   });
 
-  input.addEventListener("change", async () => {
+  input.addEventListener("focus", async () => {
     if (!input.value) return;
 
     addSuggestionsEvent(input, searchSuggestions);
