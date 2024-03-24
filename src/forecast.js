@@ -511,6 +511,7 @@ function addSearchEvent(form, input) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     renderForecast(input.value);
+    input.blur();
   });
 }
 

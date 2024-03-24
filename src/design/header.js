@@ -4,6 +4,12 @@ import clearInputSvg from "../img/clear-input.svg";
 import { addSearchEvent } from "../forecast";
 
 // Events
+function addClearInputEvent(clear, input) {
+  clear.addEventListener("click", () => {
+    input.value = "";
+    input.focus();
+  });
+}
 
 function createAppTitle() {
   const title = document.createElement("h1");
@@ -38,6 +44,7 @@ function createChooseAreaInput(id, placeholder) {
   form.appendChild(inputContainer);
   form.appendChild(button);
 
+  addClearInputEvent(clearInput, input);
   addSearchEvent(form, input);
 
   return form;
