@@ -20,40 +20,44 @@ function addClearInputEvent(clear, input) {
   });
 }
 
-function removeSuggestionEvent(searchSuggestions) {
+async function addSuggestionsEvent(input, searchSuggestions) {
+  const suggestions = await fetchSearchSuggestions(input.value);
+
+  suggestions.forEach((suggestion) => {
+    const suggestionContainer = document.createElement("div");
+    const location = document.createElement("p");
+    const country = document.createElement("p");
+
+    suggestionContainer.className = "suggestion";
+    location.className = "location small-text";
+    location.textContent = suggestion.name;
+    country.className = "country very-small-text";
+    country.textContent = `${suggestion.region}, ${suggestion.country}`;
+
+    suggestionContainer.appendChild(location);
+    suggestionContainer.appendChild(country);
+
+    searchSuggestions.appendChild(suggestionContainer);
+  });
+}
+
+function removeSuggestionsEvent(searchSuggestions) {
   searchSuggestions.innerHTML = "";
 }
 
-function addSearchSuggestionsEvent(input, searchSuggestions) {
-  input.addEventListener("input", () =>
-    removeSuggestionEvent(searchSuggestions),
-  );
+function addSuggestionsBehaviorEvent(input, searchSuggestions) {
+  input.addEventListener("input", () => {
+    removeSuggestionsEvent(searchSuggestions);
+  });
 
-  input.addEventListener("blur", () =>
-    removeSuggestionEvent(searchSuggestions),
-  );
+  input.addEventListener("blur", () => {
+    removeSuggestionsEvent(searchSuggestions);
+  });
 
   input.addEventListener("change", async () => {
     if (!input.value) return;
 
-    const suggestions = await fetchSearchSuggestions(input.value);
-
-    suggestions.forEach((suggestion) => {
-      const suggestionContainer = document.createElement("div");
-      const location = document.createElement("p");
-      const country = document.createElement("p");
-
-      suggestionContainer.className = "suggestion";
-      location.className = "location small-text";
-      location.textContent = suggestion.name;
-      country.className = "country very-small-text";
-      country.textContent = `${suggestion.region}, ${suggestion.country}`;
-
-      suggestionContainer.appendChild(location);
-      suggestionContainer.appendChild(country);
-
-      searchSuggestions.appendChild(suggestionContainer);
-    });
+    addSuggestionsEvent(input, searchSuggestions);
   });
 }
 
@@ -99,7 +103,7 @@ function createChooseAreaInput(id, placeholder) {
 
   addClearInputEvent(clearInput, input);
   addSearchEvent(form, input);
-  addSearchSuggestionsEvent(input, searchSuggestions);
+  addSuggestionsBehaviorEvent(input, searchSuggestions);
 
   return form;
 }
