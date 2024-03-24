@@ -483,13 +483,3 @@ a {
   font-weight: 600;
   color: var(--Primary);
 }
-
-@keyframes circleAnim {
-  0% {
-    stroke-dasharray: 0 200;
-  }
-
-  100% {
-    stroke-dasharray: 200;
-  }
-}
