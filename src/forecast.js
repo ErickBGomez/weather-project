@@ -212,6 +212,16 @@ function createDayForecast(dayForecast) {
   return container;
 }
 
+function setDoubleSection(sectionOne, sectionTwo) {
+  const sections = document.createElement("div");
+  sections.className = "double-section-container";
+
+  sections.appendChild(sectionOne);
+  sections.appendChild(sectionTwo);
+
+  return sections;
+}
+
 // Functions to draw percentage arcs
 // Based on this post from Stack Exchange: https://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
@@ -294,9 +304,6 @@ function createArcSection(sectionId, title, icon, value, maxValue, units = "") {
 }
 
 function createHumidityUv(current) {
-  const doubleContainer = document.createElement("div");
-  doubleContainer.className = "double-section-container";
-
   const humidity = createArcSection(
     "humidity",
     "Humidity",
@@ -305,13 +312,9 @@ function createHumidityUv(current) {
     100,
     "%",
   );
-
   const uv = createArcSection("uv", "UV Index", uvOverlaySvg, current.uv, 11);
 
-  doubleContainer.appendChild(humidity);
-  doubleContainer.appendChild(uv);
-
-  return doubleContainer;
+  return setDoubleSection(humidity, uv);
 }
 
 function createInformation(
