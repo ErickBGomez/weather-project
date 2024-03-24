@@ -18,7 +18,7 @@
   --Secondary: #e8a63a;
   --SmallTextBlack: #3e4755;
   --SmallTextWhite: #c0c8d1;
-  --Precipitation: #97a1ae;
+  --GrayText: #97a1ae;
   --Sun: #d2af69;
   --Moon: #9abfcf;
   --Cloud: #98a3af;
@@ -61,7 +61,7 @@ input {
 }
 
 input::placeholder {
-  color: var(--SmallTextWhite);
+  color: var(--GrayText);
   font-weight: 300;
 }
 
@@ -266,11 +266,11 @@ main {
 }
 
 #hour-forecast .precipitation .value {
-  color: var(--Precipitation);
+  color: var(--GrayText);
 }
 
 #hour-forecast .precipitation .icon > svg {
-  fill: var(--Precipitation);
+  fill: var(--GrayText);
   max-width: 16px;
   min-height: 16px;
 }
