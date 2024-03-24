@@ -1,5 +1,6 @@
 import searchSvg from "../img/search.svg";
 import configSvg from "../img/config.svg";
+import clearInputSvg from "../img/clear-input.svg";
 import { addSearchEvent } from "../forecast";
 
 // Events
@@ -15,6 +16,7 @@ function createAppTitle() {
 function createChooseAreaInput(id, placeholder) {
   const form = document.createElement("form");
   const inputContainer = document.createElement("div");
+  const clearInput = document.createElement("span");
   inputContainer.className = "input-container";
 
   const input = document.createElement("input");
@@ -23,11 +25,15 @@ function createChooseAreaInput(id, placeholder) {
   input.name = id;
   input.placeholder = placeholder;
 
+  clearInput.className = "clear-input";
+  clearInput.innerHTML = clearInputSvg;
+
   const button = document.createElement("button");
   button.id = "choose-area-button";
   button.innerHTML = searchSvg;
 
   inputContainer.appendChild(input);
+  inputContainer.appendChild(clearInput);
 
   form.appendChild(inputContainer);
   form.appendChild(button);
