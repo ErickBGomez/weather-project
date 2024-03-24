@@ -10,7 +10,7 @@ import visibilitySvg from "./img/forecast/visibility.svg";
 import pressureSvg from "./img/forecast/pressure.svg";
 import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
-import circlePercentageSvg from "./img/circle-percentage.svg";
+import arcPercentageSvg from "./img/arc-percentage.svg";
 
 let weather;
 
@@ -250,23 +250,24 @@ function drawArc(xPosition, yPosition, radius, startAngle, arcPercentage) {
   return d;
 }
 
-function setPercentageCircle(
-  sectionId,
-  label,
-  labelIcon,
-  value,
-  maxValue,
-  units = "",
-) {
-  const section = document.createElement("section");
-  const valueContainer = document.createElement("div");
+function setArcPercentage(value, maxValue, units = "") {
+  const container = document.createElement("div");
   const valueElement = document.createElement("span");
-  const circlePercentage = document.createElement("span");
+  const arcPercentage = document.createElement("span");
 
-  section.id = sectionId;
-  valueContainer.className = "value-container";
+  container.className = "value-container";
   valueElement.className = "value";
   valueElement.textContent = `${value}${units}`;
+  arcPercentage.className = "arc-percentage";
+  arcPercentage.innerHTML = arcPercentageSvg;
+
+  const arc = arcPercentage.querySelector(".arc-path");
+  arc.setAttribute("d", drawArc(50, 50, 44, 0, value / maxValue));
+
+  container.appendChild(valueElement);
+  container.appendChild(arcPercentage);
+
+  return container;
 }
 
 function createHumidityUv(current) {
