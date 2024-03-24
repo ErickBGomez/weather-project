@@ -20,6 +20,32 @@ function addClearInputEvent(clear, input) {
   });
 }
 
+function addSearchSuggestionsEvent(input, searchSuggestions) {
+  input.addEventListener("change", async () => {
+    searchSuggestions.innerHTML = "";
+
+    const suggestions = await fetchSearchSuggestions(input.value);
+
+    suggestions.forEach((suggestion) => {
+      console.log(suggestion);
+      const suggestionContainer = document.createElement("div");
+      const location = document.createElement("p");
+      const country = document.createElement("p");
+
+      suggestionContainer.className = "suggestion";
+      location.className = "location small-text";
+      location.textContent = suggestion.name;
+      country.className = "country very-small-text";
+      country.textContent = `${suggestion.region}, ${suggestion.country}`;
+
+      suggestionContainer.appendChild(location);
+      suggestionContainer.appendChild(country);
+
+      searchSuggestions.appendChild(suggestionContainer);
+    });
+  });
+}
+
 // DOM Elements
 
 function createAppTitle() {
@@ -33,10 +59,13 @@ function createAppTitle() {
 function createChooseAreaInput(id, placeholder) {
   const form = document.createElement("form");
   const inputContainer = document.createElement("div");
+  const input = document.createElement("input");
   const clearInput = document.createElement("span");
+  const searchSuggestions = document.createElement("div");
+  const button = document.createElement("button");
+
   inputContainer.className = "input-container";
 
-  const input = document.createElement("input");
   input.type = "search";
   input.id = id;
   input.name = id;
@@ -45,18 +74,21 @@ function createChooseAreaInput(id, placeholder) {
   clearInput.className = "clear-input";
   clearInput.innerHTML = clearInputSvg;
 
-  const button = document.createElement("button");
+  searchSuggestions.className = "search-suggestions";
+
   button.id = "choose-area-button";
   button.innerHTML = searchSvg;
 
   inputContainer.appendChild(input);
   inputContainer.appendChild(clearInput);
+  inputContainer.appendChild(searchSuggestions);
 
   form.appendChild(inputContainer);
   form.appendChild(button);
 
   addClearInputEvent(clearInput, input);
   addSearchEvent(form, input);
+  addSearchSuggestionsEvent(input, searchSuggestions);
 
   return form;
 }

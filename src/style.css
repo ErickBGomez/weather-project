@@ -56,7 +56,7 @@ input {
   border: 1px solid var(--SmallTextBlack);
   border-radius: 8px 0 0 8px;
   border-right: none;
-  max-width: 250px;
+  max-width: 100%;
   background-color: var(--White);
 }
 
@@ -113,6 +113,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .input-container {
   position: relative;
+  max-width: 300px;
+  width: 100%;
 }
 
 .clear-input {
@@ -139,6 +141,31 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 
 .clear-input:hover > svg {
   fill: var(--Primary);
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 50px;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 16px;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.363));
+}
+
+.suggestion {
+  padding: 10px 12px;
+}
+
+.suggestion:not(:last-child) {
+  border-bottom: 1px solid var(--Divider);
+}
+
+.suggestion .location {
+  font-weight: 400;
+}
+
+.suggestion .country {
+  font-weight: 400;
 }
 
 #choose-area-button {
