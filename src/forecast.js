@@ -264,8 +264,6 @@ function createArcPercentage(value, maxValue, units = "") {
   const arc = arcPercentage.querySelector(".arc-path");
   arc.setAttribute("d", drawArc(50, 50, 44, 0, value / maxValue));
 
-  console.log(arc);
-
   container.appendChild(valueElement);
   container.appendChild(arcPercentage);
 

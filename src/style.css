@@ -327,20 +327,31 @@ main {
   height: 120px;
   align-items: center;
   justify-content: center;
-  border: 12px solid var(--Divider);
-  border-radius: 100%;
   font-size: 1.042rem;
   font-weight: 600;
 }
 
 #humidity .value {
   color: var(--Rain);
-  border-color: var(--Rain);
 }
 
 #uv .value {
   color: var(--UvIndex);
-  border-color: var(--UvIndex);
+}
+
+.arc-percentage {
+  display: block;
+  max-width: 120px;
+  min-width: 120px;
+  transform: rotate(180deg);
+}
+
+#humidity .arc-path {
+  stroke: var(--Rain);
+}
+
+#uv .arc-path {
+  stroke: var(--UvIndex);
 }
 
 #humidity .title-container,
