@@ -24,10 +24,11 @@ function addSearchSuggestionsEvent(input, searchSuggestions) {
   input.addEventListener("change", async () => {
     searchSuggestions.innerHTML = "";
 
+    if (!input.value) return;
+
     const suggestions = await fetchSearchSuggestions(input.value);
 
     suggestions.forEach((suggestion) => {
-      console.log(suggestion);
       const suggestionContainer = document.createElement("div");
       const location = document.createElement("p");
       const country = document.createElement("p");
