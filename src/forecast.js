@@ -250,7 +250,7 @@ function drawArc(xPosition, yPosition, radius, startAngle, arcPercentage) {
   return d;
 }
 
-function setArcPercentage(value, maxValue, units = "") {
+function createArcPercentage(value, maxValue, units = "") {
   const container = document.createElement("div");
   const valueElement = document.createElement("span");
   const arcPercentage = document.createElement("span");
@@ -264,57 +264,54 @@ function setArcPercentage(value, maxValue, units = "") {
   const arc = arcPercentage.querySelector(".arc-path");
   arc.setAttribute("d", drawArc(50, 50, 44, 0, value / maxValue));
 
+  console.log(arc);
+
   container.appendChild(valueElement);
   container.appendChild(arcPercentage);
 
   return container;
 }
 
+function createArcSection(sectionId, title, icon, value, maxValue, units = "") {
+  const section = document.createElement("section");
+  const arcValue = createArcPercentage(value, maxValue, units);
+  const titleContainer = document.createElement("div");
+  const titleElement = document.createElement("p");
+  const titleIcon = document.createElement("span");
+
+  section.id = sectionId;
+  titleContainer.className = "title-container";
+  titleElement.className = "title";
+  titleElement.textContent = title;
+  titleIcon.className = "icon";
+  titleIcon.innerHTML = icon;
+
+  titleContainer.appendChild(titleIcon);
+  titleContainer.appendChild(titleElement);
+
+  section.appendChild(arcValue);
+  section.appendChild(titleContainer);
+
+  return section;
+}
+
 function createHumidityUv(current) {
   const doubleContainer = document.createElement("div");
   doubleContainer.className = "double-section-container";
 
-  const humiditySection = document.createElement("section");
-  const humidityValue = document.createElement("span");
-  const humidityTextContainer = document.createElement("div");
-  const humidityIcon = document.createElement("span");
-  const humidityTitle = document.createElement("p");
-  const uvSection = document.createElement("section");
-  const uvValue = document.createElement("span");
-  const uvTextContainer = document.createElement("div");
-  const uvIcon = document.createElement("span");
-  const uvTitle = document.createElement("p");
+  const humidity = createArcSection(
+    "humidity",
+    "Humidity",
+    rainOverlaySvg,
+    current.humidity,
+    100,
+    "%",
+  );
 
-  humiditySection.id = "humidity";
-  humidityValue.className = "value";
-  humidityValue.textContent = `${current.humidity}%`;
-  humidityTextContainer.className = "title-container";
-  humidityIcon.className = "icon";
-  humidityIcon.innerHTML = rainOverlaySvg;
-  humidityTitle.className = "title";
-  humidityTitle.textContent = "Humidity";
+  const uv = createArcSection("uv", "UV Index", uvOverlaySvg, current.uv, 11);
 
-  humidityTextContainer.appendChild(humidityIcon);
-  humidityTextContainer.appendChild(humidityTitle);
-  humiditySection.appendChild(humidityValue);
-  humiditySection.appendChild(humidityTextContainer);
-
-  uvSection.id = "uv";
-  uvValue.className = "value";
-  uvValue.textContent = Math.trunc(current.uv);
-  uvTextContainer.className = "title-container";
-  uvIcon.className = "icon";
-  uvIcon.innerHTML = uvOverlaySvg;
-  uvTitle.className = "title";
-  uvTitle.textContent = "UV Index";
-
-  uvTextContainer.appendChild(uvIcon);
-  uvTextContainer.appendChild(uvTitle);
-  uvSection.appendChild(uvValue);
-  uvSection.appendChild(uvTextContainer);
-
-  doubleContainer.appendChild(humiditySection);
-  doubleContainer.appendChild(uvSection);
+  doubleContainer.appendChild(humidity);
+  doubleContainer.appendChild(uv);
 
   return doubleContainer;
 }
