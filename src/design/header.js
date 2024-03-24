@@ -70,8 +70,9 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
   });
 
   input.addEventListener("focus", async () => {
-    if (!input.value) return;
+    removeSuggestionsEvent(searchSuggestions);
 
+    if (!input.value) return;
     addSuggestionsEvent(input, searchSuggestions);
   });
 }
