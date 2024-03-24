@@ -65,6 +65,10 @@ input::placeholder {
   font-weight: 300;
 }
 
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
 button {
   padding: 0;
   display: block;
@@ -102,7 +106,7 @@ header {
   font-weight: 600;
 }
 
-.input-container {
+form {
   display: flex;
   align-items: center;
 }

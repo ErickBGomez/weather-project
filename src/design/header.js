@@ -18,7 +18,7 @@ function createChooseAreaInput(id, placeholder) {
   inputContainer.className = "input-container";
 
   const input = document.createElement("input");
-  input.type = "text";
+  input.type = "search";
   input.id = id;
   input.name = id;
   input.placeholder = placeholder;
@@ -28,9 +28,9 @@ function createChooseAreaInput(id, placeholder) {
   button.innerHTML = searchSvg;
 
   inputContainer.appendChild(input);
-  inputContainer.appendChild(button);
 
   form.appendChild(inputContainer);
+  form.appendChild(button);
 
   addSearchEvent(form, input);
 
