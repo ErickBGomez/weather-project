@@ -20,10 +20,20 @@ function addClearInputEvent(clear, input) {
   });
 }
 
-function addSearchSuggestionsEvent(input, searchSuggestions) {
-  input.addEventListener("change", async () => {
-    searchSuggestions.innerHTML = "";
+function removeSuggestionEvent(searchSuggestions) {
+  searchSuggestions.innerHTML = "";
+}
 
+function addSearchSuggestionsEvent(input, searchSuggestions) {
+  input.addEventListener("input", () =>
+    removeSuggestionEvent(searchSuggestions),
+  );
+
+  input.addEventListener("blur", () =>
+    removeSuggestionEvent(searchSuggestions),
+  );
+
+  input.addEventListener("change", async () => {
     if (!input.value) return;
 
     const suggestions = await fetchSearchSuggestions(input.value);
