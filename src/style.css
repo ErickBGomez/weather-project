@@ -27,6 +27,7 @@
   --UvIndex: #9967da;
   --Footer: #232629;
   --Background: #283454;
+  --SuggestionHover: #d4e5f3;
   --DayBackground: linear-gradient(to right, #95bdda 0%, #2a80be 100%);
   --NightBackground: linear-gradient(to right, #1d2029 0%, #101733 100%);
 }
@@ -154,6 +155,21 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 
 .suggestion {
   padding: 10px 12px;
+  cursor: pointer;
+}
+
+.suggestion:first-child {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.suggestion:last-child {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.suggestion:hover {
+  background-color: var(--SuggestionHover);
 }
 
 .suggestion:not(:last-child) {
