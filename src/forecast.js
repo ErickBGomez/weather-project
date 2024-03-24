@@ -414,56 +414,52 @@ function createMoreWeatherInfo(current) {
   return container;
 }
 
+function createAstroInfo(
+  sectionId,
+  icon,
+  information = [{ label: "", value: "" }],
+) {
+  const section = document.createElement("section");
+  const iconElement = document.createElement("span");
+
+  section.id = sectionId;
+  iconElement.className = "icon";
+  iconElement.innerHTML = icon;
+
+  section.appendChild(iconElement);
+
+  information.forEach((info) => {
+    const astroValue = document.createElement("div");
+    const valueElement = document.createElement("span");
+    const valueLabel = document.createElement("p");
+
+    astroValue.className = "astro-value";
+    valueElement.className = "value";
+    valueElement.textContent = info.value;
+
+    valueLabel.className = "label small-text";
+    valueLabel.textContent = info.label;
+
+    astroValue.appendChild(valueElement);
+    astroValue.appendChild(valueLabel);
+
+    section.appendChild(astroValue);
+  });
+
+  return section;
+}
+
 function createSunAndMoonInfo(astro) {
-  const doubleContainer = document.createElement("div");
+  const sun = createAstroInfo("sun-position", sunPositionSvg, [
+    { label: "Sunrise", value: astro.sunrise },
+    { label: "Sunset", value: astro.sunset },
+  ]);
 
-  const sunSection = document.createElement("section");
-  const sunIcon = document.createElement("span");
-  const sunriseValue = document.createElement("span");
-  const sunriseLabel = document.createElement("p");
-  const sunsetValue = document.createElement("span");
-  const sunsetLabel = document.createElement("p");
-  const moonSection = document.createElement("section");
-  const moonIcon = document.createElement("span");
-  const moonPhaseValue = document.createElement("p");
-  const moonPhaseLabel = document.createElement("p");
+  const moon = createAstroInfo("moon-phase", moonPhaseSvg, [
+    { label: "Moon phase", value: astro.moon_phase },
+  ]);
 
-  doubleContainer.className = "double-section-container";
-
-  sunSection.id = "sun-position";
-  sunIcon.className = "icon";
-  sunIcon.innerHTML = sunPositionSvg;
-  sunriseValue.className = "sunrise-vale";
-  sunriseValue.textContent = astro.sunrise;
-  sunriseLabel.className = "sunrise-label small-text";
-  sunriseLabel.textContent = "Sunrise";
-  sunsetValue.className = "sunset-value";
-  sunsetValue.textContent = astro.sunset;
-  sunsetLabel.className = "sunset-label small-text";
-  sunsetLabel.textContent = "Sunset";
-
-  sunSection.appendChild(sunIcon);
-  sunSection.appendChild(sunriseValue);
-  sunSection.appendChild(sunriseLabel);
-  sunSection.appendChild(sunsetValue);
-  sunSection.appendChild(sunsetLabel);
-
-  moonSection.id = "moon-phase";
-  moonIcon.className = "icon";
-  moonIcon.innerHTML = moonPhaseSvg;
-  moonPhaseValue.className = "moon-phase-value";
-  moonPhaseValue.textContent = astro.moon_phase;
-  moonPhaseLabel.className = "moon-phase-label small-text";
-  moonPhaseLabel.textContent = "Moon phase";
-
-  moonSection.appendChild(moonIcon);
-  moonSection.appendChild(moonPhaseValue);
-  moonSection.appendChild(moonPhaseLabel);
-
-  doubleContainer.appendChild(sunSection);
-  doubleContainer.appendChild(moonSection);
-
-  return doubleContainer;
+  return setDoubleSection(sun, moon);
 }
 
 async function renderForecast(location) {
