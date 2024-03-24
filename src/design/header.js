@@ -3,20 +3,21 @@ import configSvg from "../img/config.svg";
 import clearInputSvg from "../img/clear-input.svg";
 import { addSearchEvent } from "../forecast";
 
-// Events
-function addClearInputEvent(clear, input) {
-  clear.addEventListener("click", () => {
-    input.value = "";
-    input.focus();
-  });
-}
-
+// Fetch methods
 async function fetchSearchSuggestions(query) {
   const responseFetch = await fetch(
     `https://api.weatherapi.com/v1/search.json?key=d9bcc94c28e04844af1222420240303&q=${query}`,
   );
 
   return responseFetch.json();
+}
+
+// Events
+function addClearInputEvent(clear, input) {
+  clear.addEventListener("click", () => {
+    input.value = "";
+    input.focus();
+  });
 }
 
 // DOM Elements

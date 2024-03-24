@@ -12,6 +12,15 @@ import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
 import arcPercentageSvg from "./img/arc-percentage.svg";
 
+// Fetch methods
+async function fetchWeather(query) {
+  const responseFetch = await fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${query}&days=3&aqi=no&alerts=no`,
+    { mode: "cors" },
+  );
+  return responseFetch.json();
+}
+
 // Events
 function addSearchEvent(form, input) {
   form.addEventListener("submit", (e) => {
@@ -19,14 +28,6 @@ function addSearchEvent(form, input) {
     renderForecast(input.value);
     input.blur();
   });
-}
-
-async function fetchWeather(query) {
-  const responseFetch = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${query}&days=3&aqi=no&alerts=no`,
-    { mode: "cors" },
-  );
-  return responseFetch.json();
 }
 
 // DOM Elements
@@ -478,10 +479,7 @@ async function renderForecast(location) {
     container.id = "forecast";
 
     const weather = await fetchWeather(location);
-    const autocomplete = await fetchSearchSuggestions(location);
-
     console.log(weather);
-    console.log(autocomplete);
 
     container.appendChild(
       createCurrentWeather(
