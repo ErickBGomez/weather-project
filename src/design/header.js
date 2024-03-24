@@ -20,6 +20,12 @@ function addClearInputEvent(clear, input) {
   });
 }
 
+function addChooseSuggestionEvent(input, suggestion) {
+  suggestion.addEventListener("click", () =>
+    console.log(suggestion.dataset.value),
+  );
+}
+
 async function addSuggestionsEvent(input, searchSuggestions) {
   const suggestions = await fetchSearchSuggestions(input.value);
 
@@ -29,6 +35,7 @@ async function addSuggestionsEvent(input, searchSuggestions) {
     const country = document.createElement("p");
 
     suggestionContainer.className = "suggestion";
+    suggestionContainer.dataset.value = `${suggestion.name}, ${suggestion.country}`;
     location.className = "location small-text";
     location.textContent = suggestion.name;
     country.className = "country very-small-text";
@@ -36,6 +43,8 @@ async function addSuggestionsEvent(input, searchSuggestions) {
 
     suggestionContainer.appendChild(location);
     suggestionContainer.appendChild(country);
+
+    addChooseSuggestionEvent(input, suggestionContainer);
 
     searchSuggestions.appendChild(suggestionContainer);
   });
@@ -62,12 +71,12 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
     );
   });
 
-  input.addEventListener("blur", () => {
-    // Remove suggestion cooldown when blurring input and still waiting the suggestion fetch
-    clearTimeout(searchTimeout);
+  // input.addEventListener("blur", () => {
+  //   // Remove suggestion cooldown when blurring input and still waiting the suggestion fetch
+  //   clearTimeout(searchTimeout);
 
-    removeSuggestionsEvent(searchSuggestions);
-  });
+  //   removeSuggestionsEvent(searchSuggestions);
+  // });
 
   input.addEventListener("focus", async () => {
     removeSuggestionsEvent(searchSuggestions);

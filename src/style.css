@@ -52,7 +52,7 @@ input {
   display: block;
   font-size: 0.8rem;
   font-family: inherit;
-  padding: 10px 18px;
+  padding: 10px 32px 10px 18px;
   color: var(--SmallTextBlack);
   border: 1px solid var(--SmallTextBlack);
   border-radius: 8px 0 0 8px;
