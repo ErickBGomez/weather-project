@@ -12,15 +12,24 @@ import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
 import arcPercentageSvg from "./img/arc-percentage.svg";
 
-let weather;
+// Events
+function addSearchEvent(form, input) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    renderForecast(input.value);
+    input.blur();
+  });
+}
 
-async function fetchWeather(location) {
+async function fetchWeather(query) {
   const responseFetch = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${location}&days=3&aqi=no&alerts=no`,
+    `https://api.weatherapi.com/v1/forecast.json?key=d9bcc94c28e04844af1222420240303&q=${query}&days=3&aqi=no&alerts=no`,
     { mode: "cors" },
   );
   return responseFetch.json();
 }
+
+// DOM Elements
 
 function createCurrentWeather(location, current, firstForecastDay) {
   const container = document.createElement("section");
@@ -468,8 +477,11 @@ async function renderForecast(location) {
     const container = document.createElement("div");
     container.id = "forecast";
 
-    weather = await fetchWeather(location);
+    const weather = await fetchWeather(location);
+    const autocomplete = await fetchSearchSuggestions(location);
+
     console.log(weather);
+    console.log(autocomplete);
 
     container.appendChild(
       createCurrentWeather(
@@ -504,15 +516,6 @@ async function renderForecast(location) {
 function renderMain() {
   const main = document.createElement("main");
   document.body.appendChild(main);
-}
-
-// Events
-function addSearchEvent(form, input) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    renderForecast(input.value);
-    input.blur();
-  });
 }
 
 export { renderForecast, renderMain, addSearchEvent };
