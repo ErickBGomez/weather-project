@@ -320,6 +320,11 @@ main {
   align-items: center;
 }
 
+#humidity .value-container,
+#uv .value-container {
+  position: relative;
+}
+
 #humidity .value,
 #uv .value {
   display: flex;
@@ -340,6 +345,7 @@ main {
 }
 
 .arc-percentage {
+  position: absolute;
   display: block;
   max-width: 120px;
   min-width: 120px;
