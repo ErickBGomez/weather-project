@@ -20,12 +20,6 @@ function addClearInputEvent(clear, input) {
   });
 }
 
-function addChooseSuggestionEvent(input, suggestion) {
-  suggestion.addEventListener("click", () =>
-    console.log(suggestion.dataset.value),
-  );
-}
-
 async function addSuggestionsEvent(input, searchSuggestions) {
   const suggestions = await fetchSearchSuggestions(input.value);
 
@@ -50,7 +44,9 @@ async function addSuggestionsEvent(input, searchSuggestions) {
   });
 }
 
-function removeSuggestionsEvent(searchSuggestions) {
+function removeSuggestionsEvent() {
+  const searchSuggestions = document.querySelector(".search-suggestions");
+
   searchSuggestions.innerHTML = "";
 }
 
@@ -61,7 +57,7 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
     // Reset timer when input event triggers
     clearTimeout(searchTimeout);
 
-    removeSuggestionsEvent(searchSuggestions);
+    removeSuggestionsEvent();
 
     // Wait 0.5s to fetch search suggestions
     if (!input.value) return;
@@ -79,10 +75,20 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
   // });
 
   input.addEventListener("focus", async () => {
-    removeSuggestionsEvent(searchSuggestions);
+    removeSuggestionsEvent();
 
     if (!input.value) return;
     addSuggestionsEvent(input, searchSuggestions);
+  });
+}
+
+function addChooseSuggestionEvent(input, suggestion) {
+  const form = document.querySelector("#search-form");
+
+  suggestion.addEventListener("click", () => {
+    input.value = suggestion.dataset.value;
+    removeSuggestionsEvent();
+    form.requestSubmit(); // Trigger submit event
   });
 }
 
@@ -104,6 +110,7 @@ function createChooseAreaInput(id, placeholder) {
   const searchSuggestions = document.createElement("div");
   const button = document.createElement("button");
 
+  form.id = "search-form";
   inputContainer.className = "input-container";
 
   input.type = "search";
