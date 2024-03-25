@@ -26,3 +26,8 @@ The Odin Project: Weather app usin FreeWeatherAPI
 - `vis_km` and `vis_miles`: Abbreviation of "Visibility".
 
 # Settings
+- Temperature units (°C, °F)
+- Hour display (24 hour, 12 hour)
+- Speed and distance units (miles, kilometers)
+- Pressure units (inches, millibar)
+- Autorefresh (1 hour, 3 hours, 5 hours, 12 hours, 24 hours)
