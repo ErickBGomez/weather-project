@@ -87,6 +87,7 @@ function createChooseAreaInput(id, placeholder) {
   input.id = id;
   input.name = id;
   input.placeholder = placeholder;
+  input.autocomplete = "off";
 
   clearInput.className = "clear-input";
   clearInput.innerHTML = clearInputSvg;
