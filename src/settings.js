@@ -63,6 +63,8 @@ function renderSettingsDialog() {
     { name: "12 hours", value: "12" },
     { name: "24 hours", value: "24" },
   ]);
+  const sourceCode = document.createElement("div");
+  const sourceCodeLink = document.createElement("a");
 
   dialog.id = "settings-dialog";
 
@@ -70,6 +72,13 @@ function renderSettingsDialog() {
   title.textContent = "Settings";
 
   fields.className = "fields";
+
+  sourceCode.className = "source-code";
+  sourceCodeLink.textContent = "Open project source code";
+  sourceCodeLink.target = "_blank";
+  sourceCodeLink.href = "https://github.com/ErickBGomez/weather-project";
+
+  sourceCode.appendChild(sourceCodeLink);
 
   fields.appendChild(temperature);
   fields.appendChild(hour);
@@ -79,6 +88,7 @@ function renderSettingsDialog() {
 
   dialog.appendChild(title);
   dialog.appendChild(fields);
+  dialog.appendChild(sourceCode);
 
   document.body.appendChild(dialog);
 
