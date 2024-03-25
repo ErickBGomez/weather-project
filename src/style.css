@@ -184,6 +184,10 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
   font-weight: 400;
 }
 
+.suggestion.empty {
+  color: var(--GrayText);
+}
+
 #choose-area-button {
   background-color: var(--Primary);
   padding: 11px;

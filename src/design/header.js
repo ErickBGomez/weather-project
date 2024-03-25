@@ -20,36 +20,6 @@ function addClearInputEvent(clear, input) {
   });
 }
 
-async function addSuggestionsEvent(input, searchSuggestions) {
-  const suggestions = await fetchSearchSuggestions(input.value);
-
-  suggestions.forEach((suggestion) => {
-    const suggestionContainer = document.createElement("div");
-    const location = document.createElement("p");
-    const country = document.createElement("p");
-
-    suggestionContainer.className = "suggestion";
-    suggestionContainer.dataset.value = `${suggestion.name}, ${suggestion.country}`;
-    location.className = "location small-text";
-    location.textContent = suggestion.name;
-    country.className = "country very-small-text";
-    country.textContent = `${suggestion.region}, ${suggestion.country}`;
-
-    suggestionContainer.appendChild(location);
-    suggestionContainer.appendChild(country);
-
-    addChooseSuggestionEvent(input, suggestionContainer);
-
-    searchSuggestions.appendChild(suggestionContainer);
-  });
-}
-
-function removeSuggestionsEvent() {
-  const searchSuggestions = document.querySelector(".search-suggestions");
-
-  searchSuggestions.innerHTML = "";
-}
-
 function addSuggestionsBehaviorEvent(input, searchSuggestions) {
   let searchTimeout;
 
@@ -57,12 +27,12 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
     // Reset timer when input event triggers
     clearTimeout(searchTimeout);
 
-    removeSuggestionsEvent();
+    removeSuggestions();
 
     // Wait 0.5s to fetch search suggestions
     if (!input.value) return;
     searchTimeout = setTimeout(
-      () => addSuggestionsEvent(input, searchSuggestions),
+      () => addSuggestions(input, searchSuggestions),
       500,
     );
   });
@@ -75,10 +45,10 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
   // });
 
   input.addEventListener("focus", async () => {
-    removeSuggestionsEvent();
+    removeSuggestions();
 
     if (!input.value) return;
-    addSuggestionsEvent(input, searchSuggestions);
+    addSuggestions(input, searchSuggestions);
   });
 }
 
@@ -87,7 +57,7 @@ function addChooseSuggestionEvent(input, suggestion) {
 
   suggestion.addEventListener("click", () => {
     input.value = suggestion.dataset.value;
-    removeSuggestionsEvent();
+    removeSuggestions();
     form.requestSubmit(); // Trigger submit event
   });
 }
@@ -138,6 +108,62 @@ function createChooseAreaInput(id, placeholder) {
   addSuggestionsBehaviorEvent(input, searchSuggestions);
 
   return form;
+}
+
+function createEmptySuggestion(label) {
+  const suggestionContainer = document.createElement("div");
+  const suggestionLabel = document.createElement("p");
+
+  suggestionContainer.className = "suggestion empty";
+  suggestionLabel.className = "location small-text";
+  suggestionLabel.textContent = label;
+
+  suggestionContainer.appendChild(suggestionLabel);
+
+  return suggestionContainer;
+}
+
+function createSuggestion(input, suggestion) {
+  const suggestionContainer = document.createElement("div");
+  const location = document.createElement("p");
+  const country = document.createElement("p");
+
+  suggestionContainer.className = "suggestion";
+  suggestionContainer.dataset.value = `${suggestion.name}, ${suggestion.country}`;
+  location.className = "location small-text";
+  location.textContent = suggestion.name;
+  country.className = "country very-small-text";
+  country.textContent = `${suggestion.region}, ${suggestion.country}`;
+
+  suggestionContainer.appendChild(location);
+  suggestionContainer.appendChild(country);
+
+  addChooseSuggestionEvent(input, suggestionContainer);
+
+  return suggestionContainer;
+}
+
+async function addSuggestions(input, searchSuggestions) {
+  const suggestions = await fetchSearchSuggestions(input.value);
+
+  if (!suggestions.length) {
+    const emptySuggestions = createEmptySuggestion(
+      "Location cannot be found...",
+    );
+    searchSuggestions.appendChild(emptySuggestions);
+    return;
+  }
+
+  suggestions.forEach((suggestion) => {
+    const suggestionElement = createSuggestion(input, suggestion);
+    searchSuggestions.appendChild(suggestionElement);
+  });
+}
+
+function removeSuggestions() {
+  const searchSuggestions = document.querySelector(".search-suggestions");
+
+  searchSuggestions.innerHTML = "";
 }
 
 function createHeaderButtons() {
