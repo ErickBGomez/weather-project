@@ -44,6 +44,25 @@ function renderSettingsDialog() {
     { name: "24 hours", value: "24h" },
     { name: "12 hours", value: "12h" },
   ]);
+  const distanceSpeed = createSettingField(
+    "distance-speed-units",
+    "Distance and speed units",
+    [
+      { name: "Miles and mph", value: "m" },
+      { name: "Kilometers and km/h", value: "km" },
+    ],
+  );
+  const pressure = createSettingField("pressure-units", "Pressure units", [
+    { name: "Inch (in)", value: "in" },
+    { name: "Millibar (mb)", value: "mb" },
+  ]);
+  const autorefresh = createSettingField("autorefresh-rate", "Autorefresh", [
+    { name: "1 hour", value: "1" },
+    { name: "3 hours", value: "3" },
+    { name: "5 hours", value: "5" },
+    { name: "12 hours", value: "12" },
+    { name: "24 hours", value: "24" },
+  ]);
 
   dialog.id = "settings-dialog";
 
@@ -54,6 +73,9 @@ function renderSettingsDialog() {
 
   fields.appendChild(temperature);
   fields.appendChild(hour);
+  fields.appendChild(distanceSpeed);
+  fields.appendChild(pressure);
+  fields.appendChild(autorefresh);
 
   dialog.appendChild(title);
   dialog.appendChild(fields);
