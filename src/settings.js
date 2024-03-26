@@ -5,6 +5,10 @@ function writeSettings(settings = { property: "value" }) {
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
+function readSettings() {
+  return JSON.parse(localStorage.getItem("settings"));
+}
+
 function addWriteSettingsEvent(form) {
   const inputs = Array.from(form.querySelectorAll("select"));
   const settings = {};
