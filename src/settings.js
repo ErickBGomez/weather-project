@@ -1,7 +1,9 @@
 import clearInputSvg from "./img/clear-input.svg";
 
 // Events
-function writeSettings(settings = { property: "value" }) {}
+function writeSettings(settings = { property: "value" }) {
+  localStorage.setItem("settings", JSON.stringify(settings));
+}
 
 function addWriteSettingsEvent(form) {
   const inputs = Array.from(form.querySelectorAll("select"));
