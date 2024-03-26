@@ -549,6 +549,30 @@ main {
   stroke: var(--Primary);
 }
 
+/* Settings dialog */
+dialog {
+  background-color: var(--White);
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+dialog::backdrop {
+  background: #00000085;
+}
+
+#settings-dialog h1.title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.close-dialog > svg {
+  max-width: 24px;
+  min-height: 24px;
+}
+
 /* Footer */
 footer {
   text-align: center;

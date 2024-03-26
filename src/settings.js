@@ -1,3 +1,5 @@
+import clearInputSvg from "./img/clear-input.svg";
+
 function createSettingField(
   inputId,
   title,
@@ -30,7 +32,9 @@ function createSettingField(
 
 function renderSettingsDialog() {
   const dialog = document.createElement("dialog");
-  const title = document.createElement("h2");
+  const titleContainer = document.createElement("div");
+  const title = document.createElement("h1");
+  const closeDialog = document.createElement("span");
   const fields = document.createElement("div");
   const units = createSettingField("units", "Display units", [
     { name: "°C", value: "c" },
@@ -52,8 +56,14 @@ function renderSettingsDialog() {
 
   dialog.id = "settings-dialog";
 
+  titleContainer.className = "title-container";
   title.className = "title";
   title.textContent = "Settings";
+  closeDialog.className = "close-dialog";
+  closeDialog.innerHTML = clearInputSvg;
+
+  titleContainer.appendChild(title);
+  titleContainer.appendChild(closeDialog);
 
   fields.className = "fields";
 
@@ -68,7 +78,7 @@ function renderSettingsDialog() {
   fields.appendChild(hourFormat);
   fields.appendChild(autorefresh);
 
-  dialog.appendChild(title);
+  dialog.appendChild(titleContainer);
   dialog.appendChild(fields);
   dialog.appendChild(sourceCode);
 
