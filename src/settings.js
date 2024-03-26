@@ -1,7 +1,13 @@
 import clearInputSvg from "./img/clear-input.svg";
 
 // Events
-function writeSettings(settings = { property: "value" }) {
+function writeSettings(inputs) {
+  const settings = {};
+
+  inputs.forEach((input) => {
+    settings[input.name] = input.value;
+  });
+
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
@@ -9,18 +15,20 @@ function readSettings() {
   return JSON.parse(localStorage.getItem("settings"));
 }
 
+function checkDefaultSettings() {
+  if (!localStorage.getItem("settings")) {
+    const inputs = Array.from(document.querySelectorAll("#settings select"));
+    writeSettings(inputs);
+  }
+}
+
 function addWriteSettingsEvent(form) {
   const inputs = Array.from(form.querySelectorAll("select"));
-  const settings = {};
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    inputs.forEach((input) => {
-      settings[input.name] = input.value;
-    });
-
-    writeSettings(settings);
+    writeSettings(inputs);
   });
 }
 
@@ -124,4 +132,4 @@ function renderSettingsDialog() {
   dialog.showModal();
 }
 
-export default renderSettingsDialog;
+export { checkDefaultSettings, renderSettingsDialog };
