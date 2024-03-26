@@ -2,16 +2,17 @@ import clearInputSvg from "./img/clear-input.svg";
 
 function createSettingField(
   inputId,
-  title,
+  label,
   selectOptions = [{ name: "option-name", value: "option-value" }],
 ) {
   const container = document.createElement("div");
-  const fieldTitle = document.createElement("p");
+  const fieldLabel = document.createElement("label");
   const selectInput = document.createElement("select");
 
   container.className = "settings-field";
-  fieldTitle.className = "title";
-  fieldTitle.textContent = title;
+  fieldLabel.className = "title";
+  fieldLabel.setAttribute("for", inputId);
+  fieldLabel.textContent = label;
 
   selectInput.id = inputId;
   selectInput.name = inputId;
@@ -24,7 +25,7 @@ function createSettingField(
     selectInput.appendChild(optionElement);
   });
 
-  container.appendChild(fieldTitle);
+  container.appendChild(fieldLabel);
   container.appendChild(selectInput);
 
   return container;
@@ -35,7 +36,7 @@ function renderSettingsDialog() {
   const titleContainer = document.createElement("div");
   const title = document.createElement("h1");
   const closeDialog = document.createElement("button");
-  const fields = document.createElement("div");
+  const form = document.createElement("form");
   const units = createSettingField("units", "Display units", [
     { name: "°C", value: "c" },
     { name: "°F", value: "f" },
@@ -65,7 +66,7 @@ function renderSettingsDialog() {
   titleContainer.appendChild(title);
   titleContainer.appendChild(closeDialog);
 
-  fields.className = "fields";
+  form.id = "settings";
 
   sourceCode.className = "source-code";
   sourceCodeLink.textContent = "Open project source code";
@@ -74,12 +75,12 @@ function renderSettingsDialog() {
 
   sourceCode.appendChild(sourceCodeLink);
 
-  fields.appendChild(units);
-  fields.appendChild(hourFormat);
-  fields.appendChild(autorefresh);
+  form.appendChild(units);
+  form.appendChild(hourFormat);
+  form.appendChild(autorefresh);
 
   dialog.appendChild(titleContainer);
-  dialog.appendChild(fields);
+  dialog.appendChild(form);
   dialog.appendChild(sourceCode);
 
   document.body.appendChild(dialog);

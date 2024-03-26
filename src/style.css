@@ -104,7 +104,7 @@ header {
   font-weight: 600;
 }
 
-form {
+header form {
   display: flex;
   align-items: center;
 }
@@ -571,7 +571,6 @@ dialog::backdrop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
 }
 
 #settings-dialog h1.title {
@@ -589,11 +588,14 @@ dialog::backdrop {
   min-height: 24px;
 }
 
-#settings-dialog .fields {
+form#settings {
+  margin: 30px 0;
+}
+
+#settings-dialog form#settings {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 24px;
 }
 
 #settings-dialog .settings-field {
@@ -615,7 +617,7 @@ dialog::backdrop {
 #settings-dialog .source-code {
   text-align: center;
   font-size: 0.8rem;
-  padding: 12px 0;
+  padding-bottom: 12px;
 }
 
 #settings-dialog .source-code a {
