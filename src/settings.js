@@ -1,5 +1,31 @@
 import clearInputSvg from "./img/clear-input.svg";
 
+// Events
+function writeSettings(settings = { property: "value" }) {}
+
+function addWriteSettingsEvent(form) {
+  const inputs = Array.from(form.querySelectorAll("select"));
+  const settings = {};
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    inputs.forEach((input) => {
+      settings[input.name] = input.value;
+    });
+
+    writeSettings(settings);
+  });
+}
+
+function addInputChangeEvent(form) {
+  const inputs = Array.from(form.querySelectorAll("select"));
+
+  inputs.forEach((input) => {
+    input.addEventListener("change", () => form.requestSubmit());
+  });
+}
+
 function createSettingField(
   inputId,
   label,
@@ -82,6 +108,10 @@ function renderSettingsDialog() {
   dialog.appendChild(titleContainer);
   dialog.appendChild(form);
   dialog.appendChild(sourceCode);
+
+  // add events
+  addInputChangeEvent(form);
+  addWriteSettingsEvent(form);
 
   document.body.appendChild(dialog);
 
