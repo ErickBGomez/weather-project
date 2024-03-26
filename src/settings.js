@@ -32,31 +32,15 @@ function renderSettingsDialog() {
   const dialog = document.createElement("dialog");
   const title = document.createElement("h2");
   const fields = document.createElement("div");
-  const temperature = createSettingField(
-    "temperature-units",
-    "Temperature units",
-    [
-      { name: "°C", value: "c" },
-      { name: "°F", value: "f" },
-    ],
-  );
-  const hour = createSettingField("hour-display", "Hour Display", [
-    { name: "24 hours", value: "24h" },
+  const units = createSettingField("units", "Display units", [
+    { name: "°C", value: "c" },
+    { name: "°F", value: "f" },
+  ]);
+  const hourFormat = createSettingField("hour-format", "Hour format", [
     { name: "12 hours", value: "12h" },
+    { name: "24 hours", value: "24h" },
   ]);
-  const distanceSpeed = createSettingField(
-    "distance-speed-units",
-    "Distance and speed units",
-    [
-      { name: "Miles and mph", value: "m" },
-      { name: "Kilometers and km/h", value: "km" },
-    ],
-  );
-  const pressure = createSettingField("pressure-units", "Pressure units", [
-    { name: "Inch (in)", value: "in" },
-    { name: "Millibar (mb)", value: "mb" },
-  ]);
-  const autorefresh = createSettingField("autorefresh-rate", "Autorefresh", [
+  const autorefresh = createSettingField("autorefresh", "Auto refresh", [
     { name: "1 hour", value: "1" },
     { name: "3 hours", value: "3" },
     { name: "5 hours", value: "5" },
@@ -80,10 +64,8 @@ function renderSettingsDialog() {
 
   sourceCode.appendChild(sourceCodeLink);
 
-  fields.appendChild(temperature);
-  fields.appendChild(hour);
-  fields.appendChild(distanceSpeed);
-  fields.appendChild(pressure);
+  fields.appendChild(units);
+  fields.appendChild(hourFormat);
   fields.appendChild(autorefresh);
 
   dialog.appendChild(title);
