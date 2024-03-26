@@ -34,7 +34,7 @@ function renderSettingsDialog() {
   const dialog = document.createElement("dialog");
   const titleContainer = document.createElement("div");
   const title = document.createElement("h1");
-  const closeDialog = document.createElement("span");
+  const closeDialog = document.createElement("button");
   const fields = document.createElement("div");
   const units = createSettingField("units", "Display units", [
     { name: "°C", value: "c" },

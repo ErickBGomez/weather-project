@@ -71,6 +71,7 @@ button {
   display: block;
   border: none;
   cursor: pointer;
+  background: none;
 }
 
 svg {
@@ -555,22 +556,70 @@ dialog {
   outline: none;
   border: none;
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px 24px;
 }
 
 dialog::backdrop {
   background: #00000085;
 }
 
+#settings-dialog {
+  width: 400px;
+}
+
+#settings-dialog .title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
 #settings-dialog h1.title {
   font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 16px;
+}
+
+.close-dialog {
+  padding: 4px;
+  border-radius: 8px;
 }
 
 .close-dialog > svg {
   max-width: 24px;
   min-height: 24px;
+}
+
+#settings-dialog .fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+#settings-dialog .settings-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#settings-dialog .settings-field .title {
+  font-size: 0.8rem;
+}
+
+#settings-dialog .settings-field select {
+  max-width: 80px;
+  width: 100%;
+  height: 24px;
+}
+
+#settings-dialog .source-code {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 12px 0;
+}
+
+#settings-dialog .source-code a {
+  font-weight: 400;
 }
 
 /* Footer */
