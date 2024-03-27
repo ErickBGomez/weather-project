@@ -33,19 +33,19 @@ function addSearchEvent(form, input) {
 }
 
 // Settings methods
-function getTemperature(current, unitsSettings, displayUnits = true) {
+function getTemperature(origin, unitsSettings, displayUnits = true) {
   let value;
   let units;
 
   if (unitsSettings === "c") {
-    value = current.temp_c;
-    units = "°C";
+    value = origin.temp_c;
+    units = "C";
   } else {
-    value = current.temp_f;
-    units = "°F";
+    value = origin.temp_f;
+    units = "F";
   }
 
-  return `${Math.trunc(value)}${displayUnits ? units : "°"}`;
+  return `${Math.trunc(value)}°${displayUnits ? units : ""}`;
 }
 
 // DOM Elements
