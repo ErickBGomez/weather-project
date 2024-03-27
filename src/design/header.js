@@ -2,6 +2,7 @@ import searchSvg from "../img/search.svg";
 import configSvg from "../img/config.svg";
 import clearInputSvg from "../img/clear-input.svg";
 import { addSearchEvent } from "../forecast";
+import * as settings from "../settings";
 
 // Fetch methods
 async function fetchSearchSuggestions(query) {
@@ -60,6 +61,10 @@ function addChooseSuggestionEvent(input, suggestion) {
     removeSuggestions();
     form.requestSubmit(); // Trigger submit event
   });
+}
+
+function addOpenSettingsDialogEvent(settingsButton) {
+  settingsButton.addEventListener("click", settings.renderSettingsDialog);
 }
 
 // DOM Elements
@@ -171,11 +176,13 @@ function createHeaderButtons() {
   const container = document.createElement("div");
   container.className = "header-buttons";
 
-  const configButton = document.createElement("button");
-  configButton.className = "config-button";
-  configButton.innerHTML = configSvg;
+  const settingsButton = document.createElement("button");
+  settingsButton.className = "settings-button";
+  settingsButton.innerHTML = configSvg;
 
-  container.appendChild(configButton);
+  addOpenSettingsDialogEvent(settingsButton);
+
+  container.appendChild(settingsButton);
 
   return container;
 }

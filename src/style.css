@@ -210,18 +210,18 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
   justify-self: end;
 }
 
-.config-button {
+.settings-button {
   background: none;
   padding: 6px;
   border-radius: 8px;
   transition: background-color 200ms;
 }
 
-.config-button:hover {
+.settings-button:hover {
   background-color: #00000017;
 }
 
-.config-button > svg {
+.settings-button > svg {
   width: 28px;
   height: 28px;
   fill: black;

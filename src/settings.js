@@ -40,6 +40,15 @@ function addInputChangeEvent(form) {
   });
 }
 
+function addCloseDialogEvent(dialog, closeButton) {
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+    document.body.removeChild(dialog);
+  });
+}
+
+// DOM Methods
+
 function createSettingField(
   inputId,
   label,
@@ -81,7 +90,7 @@ function renderSettingsDialog() {
     { name: "°C", value: "c" },
     { name: "°F", value: "f" },
   ]);
-  const hourFormat = createSettingField("hour-format", "Hour format", [
+  const hourFormat = createSettingField("time-format", "Time format", [
     { name: "12 hours", value: "12h" },
     { name: "24 hours", value: "24h" },
   ]);
@@ -126,6 +135,7 @@ function renderSettingsDialog() {
   // add events
   addInputChangeEvent(form);
   addWriteSettingsEvent(form);
+  addCloseDialogEvent(dialog, closeDialog);
 
   document.body.appendChild(dialog);
 
