@@ -66,18 +66,16 @@ function getMagnitude(
   return `${selectedMagnitude.value} ${selectedMagnitude.units}`;
 }
 
-// Based this post: https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no
 function convertTo12Hour(time) {
-  // Check correct time format and split into components
-  time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)?$/) || [time];
+  let [hours, minutes] = time.split(":");
+  const modifier = hours < "12" ? "AM" : "PM";
 
-  if (time.length > 1) {
-    // If time format correct
-    time = time.slice(1); // Remove full string match value
-    time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
-    time[0] = +time[0] % 12 || 12; // Adjust hours
-  }
-  return time.join("");
+  if (hours === "00") hours = "12";
+  else if (hours > "12") hours = +hours - 12;
+
+  if (hours < 10) hours = `0${hours}`;
+
+  return `${hours}:${minutes} ${modifier}`;
 }
 
 function convertTo24Hour(time) {
@@ -94,8 +92,6 @@ function convertTo24Hour(time) {
 }
 
 function getTime(time, currentFormat, timeSettings) {
-  if (currentFormat === timeSettings) return time;
-
   let convertedTime;
 
   if (timeSettings === "12h") {
