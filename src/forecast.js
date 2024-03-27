@@ -80,6 +80,19 @@ function convertTo12Hour(time) {
   return time.join("");
 }
 
+function convertTo24Hour(time) {
+  const [timeValue, modifier] = time.split(" ");
+  let [hours, minutes] = timeValue.split(":");
+
+  if (modifier === "AM" && hours === "12") {
+    hours = 0;
+  } else if (modifier === "PM") {
+    if (hours !== "12") hours = +hours + 12;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
 function getTime(time, currentFormat, timeSettings) {
   if (currentFormat === timeSettings) return time;
 
@@ -88,7 +101,7 @@ function getTime(time, currentFormat, timeSettings) {
   if (timeSettings === "12h") {
     convertedTime = convertTo12Hour(time);
   } else if (timeSettings === "24h") {
-    // convertedTime;
+    convertedTime = convertTo24Hour(time);
   }
 
   return convertedTime;
