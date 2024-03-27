@@ -53,6 +53,19 @@ function getTemperature(
   return `${Math.trunc(value)}°${displayUnits ? units : ""}`;
 }
 
+// Return correct magnitude measurement based on user settings
+// Example: if unitsSettings === "c", then show precipitation: mm, wind speed: km/h, etc...
+// but if unitsSettings === "f", then show precipitation: in, wind speed: mph, ...
+function getMagnitudeValue(
+  cMagnitude = { value: "", units: "" },
+  fMagnitude = { value: "", units: "" },
+  unitsSettings = "",
+) {
+  const selectedMagnitude = unitsSettings === "c" ? cMagnitude : fMagnitude;
+
+  return `${selectedMagnitude.value} ${selectedMagnitude.units}`;
+}
+
 // DOM Elements
 
 function createCurrentWeather(
