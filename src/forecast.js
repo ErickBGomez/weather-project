@@ -33,15 +33,20 @@ function addSearchEvent(form, input) {
 }
 
 // Settings methods
-function getTemperature(origin, unitsSettings, displayUnits = true) {
+function getTemperature(
+  celsius,
+  fahrenheit,
+  unitsSettings,
+  displayUnits = true,
+) {
   let value;
   let units;
 
   if (unitsSettings === "c") {
-    value = origin.temp_c;
+    value = celsius;
     units = "C";
   } else {
-    value = origin.temp_f;
+    value = fahrenheit;
     units = "F";
   }
 
@@ -87,7 +92,11 @@ function createCurrentWeather(
   // Current Temperature and Condition
   currentTempContainer.className = "current-temp";
   temperatureValue.className = "value";
-  temperatureValue.textContent = getTemperature(current, unitsSettings);
+  temperatureValue.textContent = getTemperature(
+    current.temp_c,
+    current.temp_f,
+    unitsSettings,
+  );
   condition.className = "condition";
   condition.textContent = current.condition.text;
 
@@ -98,13 +107,21 @@ function createCurrentWeather(
   otherTempsContainer.className = "other-temps";
   highLowTemps.className = "high-low-temp";
   highTemp.className = "high-value";
-  highTemp.textContent = `${Math.trunc(firstForecastDay.day.maxtemp_c)}°C`;
+  highTemp.textContent = getTemperature(
+    firstForecastDay.day.maxtemp_c,
+    firstForecastDay.day.maxtemp_f,
+    unitsSettings,
+  );
   tempDivider.className = "temp-divider";
   tempDivider.textContent = " | ";
   lowTemp.className = "low-value";
-  lowTemp.textContent = `${Math.trunc(firstForecastDay.day.mintemp_c)}°C`;
+  lowTemp.textContent = getTemperature(
+    firstForecastDay.day.mintemp_c,
+    firstForecastDay.day.mintemp_f,
+    unitsSettings,
+  );
   feelsLikeTemp.className = "feelslike-temp small-text";
-  feelsLikeTemp.textContent = `Feels like ${Math.trunc(current.feelslike_c)}°C`;
+  feelsLikeTemp.textContent = `Feels like ${getTemperature(current.feelslike_c, current.feelslike_f, unitsSettings)}`;
 
   highLowTemps.appendChild(highTemp);
   highLowTemps.appendChild(tempDivider);
@@ -124,7 +141,7 @@ function createCurrentWeather(
   return container;
 }
 
-function createHourElement(hour, timeValue) {
+function createHourElement(hour, timeValue, unitsSettings) {
   const hourContainer = document.createElement("div");
   const timeElement = document.createElement("span");
   const conditionIcon = document.createElement("span");
@@ -142,7 +159,12 @@ function createHourElement(hour, timeValue) {
     timeValue >= "06:00" && timeValue <= "18:00" ? clearSunSvg : clearMoonSvg;
 
   temperature.className = "temperature small-text";
-  temperature.textContent = `${Math.trunc(hour.temp_c)}°`;
+  temperature.textContent = getTemperature(
+    hour.temp_c,
+    hour.temp_f,
+    unitsSettings,
+    false,
+  );
 
   precipitationContainer.className = "precipitation";
   precipitationIcon.className = "icon";
@@ -161,7 +183,12 @@ function createHourElement(hour, timeValue) {
   return hourContainer;
 }
 
-function createHourForecast(current, todayHourForecast, tomorrowHourForecast) {
+function createHourForecast(
+  current,
+  todayHourForecast,
+  tomorrowHourForecast,
+  unitsSettings,
+) {
   const currentTime = current.last_updated.split(" ")[1];
   const container = document.createElement("section");
   let hourElements = 24;
@@ -173,7 +200,7 @@ function createHourForecast(current, todayHourForecast, tomorrowHourForecast) {
     const timeValue = hour.time.split(" ")[1];
 
     if (timeValue >= currentTime) {
-      const hourContainer = createHourElement(hour, timeValue);
+      const hourContainer = createHourElement(hour, timeValue, unitsSettings);
       container.appendChild(hourContainer);
 
       hourElements--;
@@ -185,7 +212,7 @@ function createHourForecast(current, todayHourForecast, tomorrowHourForecast) {
     const timeValue = hour.time.split(" ")[1];
 
     if (hourElements > 0) {
-      const hourContainer = createHourElement(hour, timeValue);
+      const hourContainer = createHourElement(hour, timeValue, unitsSettings);
       container.appendChild(hourContainer);
 
       hourElements--;
@@ -195,7 +222,7 @@ function createHourForecast(current, todayHourForecast, tomorrowHourForecast) {
   return container;
 }
 
-function createDayForecast(dayForecast) {
+function createDayForecast(dayForecast, unitsSettings) {
   const container = document.createElement("section");
 
   container.id = "day-forecast";
@@ -216,7 +243,7 @@ function createDayForecast(dayForecast) {
     dayElement.textContent = !index ? "Today" : day.date;
 
     temperatures.className = "temperatures small-text";
-    temperatures.textContent = `${Math.trunc(day.day.maxtemp_c)}° | ${Math.trunc(day.day.mintemp_c)}°`;
+    temperatures.textContent = `${getTemperature(day.day.maxtemp_c, day.day.maxtemp_f, unitsSettings, false)} | ${getTemperature(day.day.mintemp_c, day.day.mintemp_f, unitsSettings, false)}`;
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
@@ -519,9 +546,12 @@ async function renderForecast(location) {
         weather.current,
         weather.forecast.forecastday[0].hour,
         weather.forecast.forecastday[1].hour,
+        settings.units,
       ),
     );
-    container.appendChild(createDayForecast(weather.forecast.forecastday));
+    container.appendChild(
+      createDayForecast(weather.forecast.forecastday, settings.units),
+    );
     container.appendChild(createHumidityUv(weather.current));
     container.appendChild(createMoreWeatherInfo(weather.current));
     container.appendChild(
