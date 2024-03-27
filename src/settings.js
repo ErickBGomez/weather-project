@@ -91,8 +91,8 @@ function renderSettingsDialog() {
     { name: "°F", value: "f" },
   ]);
   const hourFormat = createSettingField("time-format", "Time format", [
-    { name: "12 hours", value: "12h" },
     { name: "24 hours", value: "24h" },
+    { name: "12 hours", value: "12h" },
   ]);
   const autorefresh = createSettingField("autorefresh", "Auto refresh", [
     { name: "1 hour", value: "1" },

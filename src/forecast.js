@@ -66,6 +66,34 @@ function getMagnitude(
   return `${selectedMagnitude.value} ${selectedMagnitude.units}`;
 }
 
+// Based this post: https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no
+function convertTo12Hour(time) {
+  // Check correct time format and split into components
+  time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)?$/) || [time];
+
+  if (time.length > 1) {
+    // If time format correct
+    time = time.slice(1); // Remove full string match value
+    time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
+    time[0] = +time[0] % 12 || 12; // Adjust hours
+  }
+  return time.join("");
+}
+
+function getTime(time, currentFormat, timeSettings) {
+  if (currentFormat === timeSettings) return time;
+
+  let convertedTime;
+
+  if (timeSettings === "12h") {
+    convertedTime = convertTo12Hour(time);
+  } else if (timeSettings === "24h") {
+    // convertedTime;
+  }
+
+  return convertedTime;
+}
+
 // DOM Elements
 
 function createCurrentWeather(
@@ -154,7 +182,7 @@ function createCurrentWeather(
   return container;
 }
 
-function createHourElement(hour, timeValue, unitsSettings) {
+function createHourElement(hour, timeValue, settings) {
   const hourContainer = document.createElement("div");
   const timeElement = document.createElement("span");
   const conditionIcon = document.createElement("span");
@@ -165,7 +193,7 @@ function createHourElement(hour, timeValue, unitsSettings) {
 
   hourContainer.className = "hour-container";
   timeElement.className = "time very-small-text";
-  timeElement.textContent = timeValue;
+  timeElement.textContent = getTime(timeValue, "24h", settings["time-format"]);
 
   conditionIcon.className = "condition-icon";
   conditionIcon.innerHTML =
@@ -175,7 +203,7 @@ function createHourElement(hour, timeValue, unitsSettings) {
   temperature.textContent = getTemperature(
     hour.temp_c,
     hour.temp_f,
-    unitsSettings,
+    settings.units,
     false,
   );
 
@@ -200,7 +228,7 @@ function createHourForecast(
   current,
   todayHourForecast,
   tomorrowHourForecast,
-  unitsSettings,
+  settings,
 ) {
   const currentTime = current.last_updated.split(" ")[1];
   const container = document.createElement("section");
@@ -213,7 +241,7 @@ function createHourForecast(
     const timeValue = hour.time.split(" ")[1];
 
     if (timeValue >= currentTime) {
-      const hourContainer = createHourElement(hour, timeValue, unitsSettings);
+      const hourContainer = createHourElement(hour, timeValue, settings);
       container.appendChild(hourContainer);
 
       hourElements--;
@@ -225,7 +253,7 @@ function createHourForecast(
     const timeValue = hour.time.split(" ")[1];
 
     if (hourElements > 0) {
-      const hourContainer = createHourElement(hour, timeValue, unitsSettings);
+      const hourContainer = createHourElement(hour, timeValue, settings);
       container.appendChild(hourContainer);
 
       hourElements--;
@@ -534,10 +562,10 @@ function createAstroInfo(
   return section;
 }
 
-function createSunAndMoonInfo(astro) {
+function createSunAndMoonInfo(astro, timeSettings) {
   const sun = createAstroInfo("sun-position", sunPositionSvg, [
-    { label: "Sunrise", value: astro.sunrise },
-    { label: "Sunset", value: astro.sunset },
+    { label: "Sunrise", value: getTime(astro.sunrise, "12h", timeSettings) },
+    { label: "Sunset", value: getTime(astro.sunset, "12h", timeSettings) },
   ]);
 
   const moon = createAstroInfo("moon-phase", moonPhaseSvg, [
@@ -571,7 +599,7 @@ async function renderForecast(location) {
         weather.current,
         weather.forecast.forecastday[0].hour,
         weather.forecast.forecastday[1].hour,
-        settings.units,
+        settings,
       ),
     );
     container.appendChild(
@@ -582,7 +610,10 @@ async function renderForecast(location) {
       createMoreWeatherInfo(weather.current, settings.units),
     );
     container.appendChild(
-      createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
+      createSunAndMoonInfo(
+        weather.forecast.forecastday[0].astro,
+        settings["time-format"],
+      ),
     );
 
     // Reset main and add forecast information
