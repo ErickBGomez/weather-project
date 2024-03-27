@@ -66,19 +66,27 @@ function getMagnitude(
   return `${selectedMagnitude.value} ${selectedMagnitude.units}`;
 }
 
-function convertTo12Hour(time) {
+// From 24 hours to 12 hours
+function convertTo12Hour(time, timePattern) {
+  // Avoid if time is already 24 hours format
+  if (timePattern.test(time)) return time;
+
   let [hours, minutes] = time.split(":");
   const modifier = hours < "12" ? "AM" : "PM";
 
   if (hours === "00") hours = "12";
   else if (hours > "12") hours = +hours - 12;
 
-  if (hours < 10) hours = `0${+hours}`;
+  if (hours < 10) hours = `0${+hours}`; // Add extra 0 from 1:00 to 9:00
 
   return `${hours}:${minutes} ${modifier}`;
 }
 
-function convertTo24Hour(time) {
+// From 12 hours to 24 hours
+function convertTo24Hour(time, timePattern) {
+  // Avoid if time is already 12 hours format
+  if (!timePattern.test(time)) return time;
+
   const [timeValue, modifier] = time.split(" ");
   let [hours, minutes] = timeValue.split(":");
 
@@ -91,13 +99,14 @@ function convertTo24Hour(time) {
   return `${hours}:${minutes}`;
 }
 
-function getTime(time, currentFormat, timeSettings) {
+function getTime(time, timeSettings) {
+  const timePattern = /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
   let convertedTime;
 
   if (timeSettings === "12h") {
-    convertedTime = convertTo12Hour(time);
+    convertedTime = convertTo12Hour(time, timePattern);
   } else if (timeSettings === "24h") {
-    convertedTime = convertTo24Hour(time);
+    convertedTime = convertTo24Hour(time, timePattern);
   }
 
   return convertedTime;
@@ -202,7 +211,7 @@ function createHourElement(hour, timeValue, settings) {
 
   hourContainer.className = "hour-container";
   timeElement.className = "time very-small-text";
-  timeElement.textContent = getTime(timeValue, "24h", settings["time-format"]);
+  timeElement.textContent = getTime(timeValue, settings["time-format"]);
 
   conditionIcon.className = "condition-icon";
   conditionIcon.innerHTML =
@@ -573,8 +582,8 @@ function createAstroInfo(
 
 function createSunAndMoonInfo(astro, timeSettings) {
   const sun = createAstroInfo("sun-position", sunPositionSvg, [
-    { label: "Sunrise", value: getTime(astro.sunrise, "12h", timeSettings) },
-    { label: "Sunset", value: getTime(astro.sunset, "12h", timeSettings) },
+    { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
+    { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
   ]);
 
   const moon = createAstroInfo("moon-phase", moonPhaseSvg, [
