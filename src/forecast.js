@@ -73,7 +73,7 @@ function convertTo12Hour(time) {
   if (hours === "00") hours = "12";
   else if (hours > "12") hours = +hours - 12;
 
-  if (hours < 10) hours = `0${hours}`;
+  if (hours < 10) hours = `0${+hours}`;
 
   return `${hours}:${minutes} ${modifier}`;
 }
