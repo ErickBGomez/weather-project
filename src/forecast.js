@@ -12,6 +12,8 @@ import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
 import arcPercentageSvg from "./img/arc-percentage.svg";
 
+import { readSettings } from "./settings";
+
 // Fetch methods
 async function fetchWeather(query) {
   const responseFetch = await fetch(
@@ -30,9 +32,30 @@ function addSearchEvent(form, input) {
   });
 }
 
+// Settings methods
+function getTemperature(current, unitsSettings, displayUnits = true) {
+  let value;
+  let units;
+
+  if (unitsSettings === "c") {
+    value = current.temp_c;
+    units = "°C";
+  } else {
+    value = current.temp_f;
+    units = "°F";
+  }
+
+  return `${Math.trunc(value)}${displayUnits ? units : "°"}`;
+}
+
 // DOM Elements
 
-function createCurrentWeather(location, current, firstForecastDay) {
+function createCurrentWeather(
+  location,
+  current,
+  firstForecastDay,
+  unitsSettings,
+) {
   const container = document.createElement("section");
   const locationContainer = document.createElement("div");
   const locationName = document.createElement("p");
@@ -64,7 +87,7 @@ function createCurrentWeather(location, current, firstForecastDay) {
   // Current Temperature and Condition
   currentTempContainer.className = "current-temp";
   temperatureValue.className = "value";
-  temperatureValue.textContent = `${Math.trunc(current.temp_c)}°C`;
+  temperatureValue.textContent = getTemperature(current, unitsSettings);
   condition.className = "condition";
   condition.textContent = current.condition.text;
 
@@ -481,11 +504,14 @@ async function renderForecast(location) {
     const weather = await fetchWeather(location);
     console.log(weather);
 
+    const settings = readSettings();
+
     container.appendChild(
       createCurrentWeather(
         weather.location,
         weather.current,
         weather.forecast.forecastday[0],
+        settings.units,
       ),
     );
     container.appendChild(

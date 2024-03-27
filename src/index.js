@@ -6,8 +6,9 @@ import * as settings from "./settings";
 
 const defaultLocation = "San Salvador";
 
+settings.checkDefaultSettings();
+
 renderHeader();
 forecast.renderMain();
 forecast.renderForecast(defaultLocation);
 renderFooter();
-settings.checkDefaultSettings();

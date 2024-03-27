@@ -142,4 +142,4 @@ function renderSettingsDialog() {
   dialog.showModal();
 }
 
-export { checkDefaultSettings, renderSettingsDialog };
+export { checkDefaultSettings, readSettings, renderSettingsDialog };
