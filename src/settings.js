@@ -1,4 +1,4 @@
-import clearInputSvg from "./img/clear-input.svg";
+import closeSvg from "./img/close.svg";
 
 // Events
 function writeSettings(inputs) {
@@ -110,7 +110,7 @@ function renderSettingsDialog() {
   title.className = "title";
   title.textContent = "Settings";
   closeDialog.className = "close-dialog";
-  closeDialog.innerHTML = clearInputSvg;
+  closeDialog.innerHTML = closeSvg;
 
   titleContainer.appendChild(title);
   titleContainer.appendChild(closeDialog);

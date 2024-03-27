@@ -1,6 +1,6 @@
 import searchSvg from "../img/search.svg";
-import configSvg from "../img/config.svg";
-import clearInputSvg from "../img/clear-input.svg";
+import settingsSvg from "../img/settings.svg";
+import closeSvg from "../img/close.svg";
 import { addSearchEvent } from "../forecast";
 import * as settings from "../settings";
 
@@ -95,7 +95,7 @@ function createChooseAreaInput(id, placeholder) {
   input.autocomplete = "off";
 
   clearInput.className = "clear-input";
-  clearInput.innerHTML = clearInputSvg;
+  clearInput.innerHTML = closeSvg;
 
   searchSuggestions.className = "search-suggestions";
 
@@ -178,7 +178,7 @@ function createHeaderButtons() {
 
   const settingsButton = document.createElement("button");
   settingsButton.className = "settings-button";
-  settingsButton.innerHTML = configSvg;
+  settingsButton.innerHTML = settingsSvg;
 
   addOpenSettingsDialogEvent(settingsButton);
 
