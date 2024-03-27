@@ -56,7 +56,7 @@ function getTemperature(
 // Return correct magnitude measurement based on user settings
 // Example: if unitsSettings === "c", then show precipitation: mm, wind speed: km/h, etc...
 // but if unitsSettings === "f", then show precipitation: in, wind speed: mph, ...
-function getMagnitudeValue(
+function getMagnitude(
   cMagnitude = { value: "", units: "" },
   fMagnitude = { value: "", units: "" },
   unitsSettings = "",
@@ -394,8 +394,7 @@ function createInformation(
   icon,
   elementClass,
   label,
-  value,
-  valueUnits,
+  magnitude,
   moreInfo = { class: "", icon: "", value: "" },
 ) {
   const container = document.createElement("div");
@@ -411,7 +410,8 @@ function createInformation(
   labelElement.className = "label";
   labelElement.textContent = label;
   valueElement.className = "value small-text";
-  valueElement.textContent = `${value}${valueUnits}`;
+  valueElement.textContent = magnitude;
+  console.log(magnitude);
 
   titleElement.appendChild(iconElement);
   titleElement.appendChild(labelElement);
@@ -438,22 +438,28 @@ function createInformation(
   return container;
 }
 
-function createMoreWeatherInfo(current) {
+function createMoreWeatherInfo(current, unitsSettings) {
   const container = document.createElement("section");
   const leftSide = document.createElement("div");
   const precipitation = createInformation(
     precipitationSvg,
     "precipitation",
     "Precipitation",
-    current.precip_mm,
-    " mm",
+    getMagnitude(
+      { value: current.precip_mm, units: "mm" },
+      { value: current.precip_in, units: "in" },
+      unitsSettings,
+    ),
   );
   const wind = createInformation(
     windSvg,
     "wind",
     "Wind",
-    current.wind_kph,
-    " km/h",
+    getMagnitude(
+      { value: current.wind_kph, units: "km/h" },
+      { value: current.wind_mph, units: "mph" },
+      unitsSettings,
+    ),
     { class: "direction", icon: windDirectionSvg, value: current.wind_degree },
   );
   const rightSide = document.createElement("div");
@@ -461,15 +467,21 @@ function createMoreWeatherInfo(current) {
     visibilitySvg,
     "visibility",
     "Visibility",
-    current.vis_km,
-    " km",
+    getMagnitude(
+      { value: current.vis_km, units: "km" },
+      { value: current.vis_miles, units: "mi" },
+      unitsSettings,
+    ),
   );
   const pressure = createInformation(
     pressureSvg,
     "pressure",
     "Pressure",
-    current.pressure_mb,
-    " mb",
+    getMagnitude(
+      { value: current.pressure_mb, units: "mb" },
+      { value: current.pressure_in, units: "in" },
+      unitsSettings,
+    ),
   );
 
   container.id = "more-weather-info";
@@ -566,7 +578,9 @@ async function renderForecast(location) {
       createDayForecast(weather.forecast.forecastday, settings.units),
     );
     container.appendChild(createHumidityUv(weather.current));
-    container.appendChild(createMoreWeatherInfo(weather.current));
+    container.appendChild(
+      createMoreWeatherInfo(weather.current, settings.units),
+    );
     container.appendChild(
       createSunAndMoonInfo(weather.forecast.forecastday[0].astro),
     );
