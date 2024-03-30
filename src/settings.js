@@ -115,7 +115,6 @@ function renderSettingsDialog() {
   const title = document.createElement("h1");
   const dialogButtons = createDialogButtons("Save changes", "Cancel");
   const submitButton = dialogButtons.querySelector("button.primary");
-  const closeButton = dialogButtons.querySelector("button.secondary");
   const form = document.createElement("form");
   const units = createSettingField("units", "Display units", settings.units, [
     { name: "°C", value: "c" },
