@@ -11,6 +11,7 @@ import pressureSvg from "./img/forecast/pressure.svg";
 import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
 import arcPercentageSvg from "./img/arc-percentage.svg";
+import loadingSvg from "./img/loading.svg";
 
 import { readSettings } from "./settings";
 
@@ -598,10 +599,19 @@ function createSunAndMoonInfo(astro, timeSettings) {
 function renderLoadingScreen() {
   const main = document.querySelector("main");
   main.innerHTML = "";
-  const container = document.createElement("section");
-  container.id = "loading-screen";
 
-  container.textContent = "Loading... please wait";
+  const container = document.createElement("section");
+  const icon = document.createElement("span");
+  const label = document.createElement("p");
+
+  container.id = "loading-screen";
+  icon.className = "icon";
+  icon.innerHTML = loadingSvg;
+  label.className = "label";
+  label.textContent = "Loading... please wait";
+
+  container.appendChild(icon);
+  container.appendChild(label);
 
   main.appendChild(container);
 }

@@ -553,10 +553,22 @@ main {
 /* Loading screen */
 #loading-screen {
   display: flex;
+  flex-direction: column;
+  gap: 32px;
   align-items: center;
   justify-content: center;
   height: 100%;
   color: var(--White);
+}
+
+#loading-screen .icon {
+  animation: loadingAnimation 1.2s linear infinite;
+}
+
+#loading-screen .icon svg {
+  max-width: 120px;
+  min-height: 120px;
+  stroke: var(--White);
 }
 
 /* Settings dialog */
@@ -663,4 +675,15 @@ a {
   text-decoration: none;
   font-weight: 600;
   color: var(--Primary);
+}
+
+/* Animations */
+
+@keyframes loadingAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
