@@ -33,15 +33,21 @@ function addWriteSettingsEvent(form) {
   });
 }
 
-function addCloseDialogEvent(dialog, closeButton) {
-  closeButton.addEventListener("click", () => {
-    dialog.close();
-    document.body.removeChild(dialog);
-  });
+function addCloseDialogEvent(dialog, dialogButtons) {
+  const closeButtons = Array.from(dialogButtons.querySelectorAll("button"));
+
+  closeButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      dialog.close();
+      document.body.removeChild(dialog);
+    }),
+  );
 }
 
-function addSubmitSettinsEvent(form, submitButton) {
-  submitButton.addEventListener("click", () => form.requestSubmit());
+function addSubmitSettingsEvent(form, submitButton) {
+  submitButton.addEventListener("click", () => {
+    form.requestSubmit();
+  });
 }
 
 // DOM Methods
@@ -81,12 +87,33 @@ function createSettingField(
   return container;
 }
 
+function createDialogButtons(primaryLabel, secondaryLabel) {
+  const container = document.createElement("div");
+  const primary = document.createElement("button");
+  const secondary = document.createElement("button");
+
+  primary.className = "primary";
+  primary.type = "submit";
+  primary.textContent = primaryLabel;
+
+  secondary.className = "secondary";
+  secondary.type = "button";
+  secondary.textContent = secondaryLabel;
+
+  container.appendChild(primary);
+  container.appendChild(secondary);
+
+  return container;
+}
+
 function renderSettingsDialog() {
   const settings = readSettings();
   const dialog = document.createElement("dialog");
   const titleContainer = document.createElement("div");
   const title = document.createElement("h1");
-  const closeDialog = document.createElement("button");
+  const dialogButtons = createDialogButtons("Save changes", "Cancel");
+  const submitButton = dialogButtons.querySelector("button.primary");
+  const closeButton = dialogButtons.querySelector("button.secondary");
   const form = document.createElement("form");
   const units = createSettingField("units", "Display units", settings.units, [
     { name: "°C", value: "c" },
@@ -121,12 +148,8 @@ function renderSettingsDialog() {
   titleContainer.className = "title-container";
   title.className = "title";
   title.textContent = "Settings";
-  closeDialog.className = "close-dialog";
-  closeDialog.type = "submit";
-  closeDialog.innerHTML = closeSvg;
 
   titleContainer.appendChild(title);
-  titleContainer.appendChild(closeDialog);
 
   form.id = "settings";
 
@@ -144,11 +167,12 @@ function renderSettingsDialog() {
   dialog.appendChild(titleContainer);
   dialog.appendChild(form);
   dialog.appendChild(sourceCode);
+  dialog.appendChild(dialogButtons);
 
   // add events
   addWriteSettingsEvent(form);
-  addSubmitSettinsEvent(form, closeDialog);
-  addCloseDialogEvent(dialog, closeDialog);
+  addSubmitSettingsEvent(form, submitButton);
+  addCloseDialogEvent(dialog, dialogButtons);
 
   document.body.appendChild(dialog);
 
