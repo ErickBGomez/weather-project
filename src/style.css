@@ -578,16 +578,6 @@ dialog::backdrop {
   font-weight: 700;
 }
 
-.close-dialog {
-  padding: 4px;
-  border-radius: 8px;
-}
-
-.close-dialog > svg {
-  max-width: 24px;
-  min-height: 24px;
-}
-
 form#settings {
   margin: 30px 0;
 }
@@ -623,6 +613,31 @@ form#settings {
 
 #settings-dialog .source-code a {
   font-weight: 400;
+}
+
+.dialog-buttons {
+  margin-top: 12px;
+  flex-direction: row-reverse;
+  display: flex;
+  gap: 8px;
+}
+
+.dialog-buttons > button {
+  font-family: inherit;
+  font-size: 0.7rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.dialog-buttons .primary {
+  background-color: var(--Primary);
+  color: var(--White);
+}
+
+.dialog-buttons .secondary {
+  border: 2px solid var(--Primary);
+  color: var(--Primary);
 }
 
 /* Footer */
