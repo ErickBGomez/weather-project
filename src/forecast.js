@@ -595,11 +595,24 @@ function createSunAndMoonInfo(astro, timeSettings) {
   return setDoubleSection(sun, moon);
 }
 
+function renderLoadingScreen() {
+  const main = document.querySelector("main");
+  main.innerHTML = "";
+  const container = document.createElement("section");
+  container.id = "loading-screen";
+
+  container.textContent = "Loading... please wait";
+
+  main.appendChild(container);
+}
+
 async function renderForecast(location) {
   try {
     const main = document.querySelector("main");
     const container = document.createElement("div");
     container.id = "forecast";
+
+    renderLoadingScreen();
 
     weather = await fetchWeather(location);
     console.log(weather);
@@ -650,4 +663,4 @@ function renderMain() {
   document.body.appendChild(main);
 }
 
-export { renderForecast, renderMain, addSearchEvent };
+export { renderForecast, renderMain, addSearchEvent, renderLoadingScreen };

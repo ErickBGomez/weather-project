@@ -10,5 +10,6 @@ settings.checkDefaultSettings();
 
 renderHeader();
 forecast.renderMain();
-forecast.renderForecast(defaultLocation);
+// forecast.renderForecast(defaultLocation);
+forecast.renderLoadingScreen();
 renderFooter();

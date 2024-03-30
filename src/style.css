@@ -550,6 +550,15 @@ main {
   stroke: var(--Primary);
 }
 
+/* Loading screen */
+#loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--White);
+}
+
 /* Settings dialog */
 dialog {
   background-color: var(--White);
