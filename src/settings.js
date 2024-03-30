@@ -52,6 +52,7 @@ function addCloseDialogEvent(dialog, closeButton) {
 function createSettingField(
   inputId,
   label,
+  settingsValue,
   selectOptions = [{ name: "option-name", value: "option-value" }],
 ) {
   const container = document.createElement("div");
@@ -70,6 +71,9 @@ function createSettingField(
     const optionElement = document.createElement("option");
     optionElement.textContent = option.name;
     optionElement.value = option.value;
+    if (option.value === settingsValue) {
+      optionElement.setAttribute("selected", "selected");
+    }
 
     selectInput.appendChild(optionElement);
   });
@@ -81,26 +85,37 @@ function createSettingField(
 }
 
 function renderSettingsDialog() {
+  const settings = readSettings();
   const dialog = document.createElement("dialog");
   const titleContainer = document.createElement("div");
   const title = document.createElement("h1");
   const closeDialog = document.createElement("button");
   const form = document.createElement("form");
-  const units = createSettingField("units", "Display units", [
+  const units = createSettingField("units", "Display units", settings.units, [
     { name: "°C", value: "c" },
     { name: "°F", value: "f" },
   ]);
-  const hourFormat = createSettingField("time-format", "Time format", [
-    { name: "24 hours", value: "24h" },
-    { name: "12 hours", value: "12h" },
-  ]);
-  const autorefresh = createSettingField("autorefresh", "Auto refresh", [
-    { name: "1 hour", value: "1" },
-    { name: "3 hours", value: "3" },
-    { name: "5 hours", value: "5" },
-    { name: "12 hours", value: "12" },
-    { name: "24 hours", value: "24" },
-  ]);
+  const hourFormat = createSettingField(
+    "time-format",
+    "Time format",
+    settings["time-format"],
+    [
+      { name: "24 hours", value: "24h" },
+      { name: "12 hours", value: "12h" },
+    ],
+  );
+  const autorefresh = createSettingField(
+    "autorefresh",
+    "Auto refresh",
+    settings.autorefresh,
+    [
+      { name: "1 hour", value: "1" },
+      { name: "3 hours", value: "3" },
+      { name: "5 hours", value: "5" },
+      { name: "12 hours", value: "12" },
+      { name: "24 hours", value: "24" },
+    ],
+  );
   const sourceCode = document.createElement("div");
   const sourceCodeLink = document.createElement("a");
 
