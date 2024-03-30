@@ -1,4 +1,6 @@
-import closeSvg from "./img/close.svg";
+import unitsSvg from "./img/units.svg";
+import timeFormatSvg from "./img/time-format.svg";
+import autorefreshSvg from "./img/autorefresh.svg";
 import { renderForecast } from "./forecast";
 
 // Events
@@ -55,17 +57,23 @@ function addSubmitSettingsEvent(form, submitButton) {
 function createSettingField(
   inputId,
   label,
+  icon,
   settingsValue,
   selectOptions = [{ name: "option-name", value: "option-value" }],
 ) {
   const container = document.createElement("div");
+  const fieldTitleContainer = document.createElement("div");
   const fieldLabel = document.createElement("label");
+  const fieldIcon = document.createElement("span");
   const selectInput = document.createElement("select");
 
   container.className = "settings-field";
+  fieldTitleContainer.className = "field-title";
   fieldLabel.className = "title";
   fieldLabel.setAttribute("for", inputId);
   fieldLabel.textContent = label;
+  fieldIcon.className = "icon";
+  fieldIcon.innerHTML = icon;
 
   selectInput.id = inputId;
   selectInput.name = inputId;
@@ -81,7 +89,10 @@ function createSettingField(
     selectInput.appendChild(optionElement);
   });
 
-  container.appendChild(fieldLabel);
+  fieldTitleContainer.appendChild(fieldIcon);
+  fieldTitleContainer.appendChild(fieldLabel);
+
+  container.appendChild(fieldTitleContainer);
   container.appendChild(selectInput);
 
   return container;
@@ -116,13 +127,20 @@ function renderSettingsDialog() {
   const dialogButtons = createDialogButtons("Save changes", "Cancel");
   const submitButton = dialogButtons.querySelector("button.primary");
   const form = document.createElement("form");
-  const units = createSettingField("units", "Display units", settings.units, [
-    { name: "°C", value: "c" },
-    { name: "°F", value: "f" },
-  ]);
+  const units = createSettingField(
+    "units",
+    "Display units",
+    unitsSvg,
+    settings.units,
+    [
+      { name: "°C", value: "c" },
+      { name: "°F", value: "f" },
+    ],
+  );
   const hourFormat = createSettingField(
     "time-format",
     "Time format",
+    timeFormatSvg,
     settings["time-format"],
     [
       { name: "24 hours", value: "24h" },
@@ -132,6 +150,7 @@ function renderSettingsDialog() {
   const autorefresh = createSettingField(
     "autorefresh",
     "Auto refresh",
+    autorefreshSvg,
     settings.autorefresh,
     [
       { name: "1 hour", value: "1" },
@@ -141,8 +160,6 @@ function renderSettingsDialog() {
       { name: "24 hours", value: "24" },
     ],
   );
-  const sourceCode = document.createElement("div");
-  const sourceCodeLink = document.createElement("a");
 
   dialog.id = "settings-dialog";
 
@@ -154,20 +171,12 @@ function renderSettingsDialog() {
 
   form.id = "settings";
 
-  sourceCode.className = "source-code";
-  sourceCodeLink.textContent = "Open project source code";
-  sourceCodeLink.target = "_blank";
-  sourceCodeLink.href = "https://github.com/ErickBGomez/weather-project";
-
-  sourceCode.appendChild(sourceCodeLink);
-
   form.appendChild(units);
   form.appendChild(hourFormat);
   form.appendChild(autorefresh);
 
   dialog.appendChild(titleContainer);
   dialog.appendChild(form);
-  dialog.appendChild(sourceCode);
   dialog.appendChild(dialogButtons);
 
   // add events
