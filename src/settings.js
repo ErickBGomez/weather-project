@@ -1,4 +1,5 @@
 import closeSvg from "./img/close.svg";
+import { renderForecast } from "./forecast";
 
 // Events
 function writeSettings(inputs) {
@@ -27,16 +28,8 @@ function addWriteSettingsEvent(form) {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
     writeSettings(inputs);
-  });
-}
-
-function addInputChangeEvent(form) {
-  const inputs = Array.from(form.querySelectorAll("select"));
-
-  inputs.forEach((input) => {
-    input.addEventListener("change", () => form.requestSubmit());
+    renderForecast("San Salvador");
   });
 }
 
@@ -45,6 +38,10 @@ function addCloseDialogEvent(dialog, closeButton) {
     dialog.close();
     document.body.removeChild(dialog);
   });
+}
+
+function addSubmitSettinsEvent(form, submitButton) {
+  submitButton.addEventListener("click", () => form.requestSubmit());
 }
 
 // DOM Methods
@@ -125,6 +122,7 @@ function renderSettingsDialog() {
   title.className = "title";
   title.textContent = "Settings";
   closeDialog.className = "close-dialog";
+  closeDialog.type = "submit";
   closeDialog.innerHTML = closeSvg;
 
   titleContainer.appendChild(title);
@@ -148,8 +146,8 @@ function renderSettingsDialog() {
   dialog.appendChild(sourceCode);
 
   // add events
-  addInputChangeEvent(form);
   addWriteSettingsEvent(form);
+  addSubmitSettinsEvent(form, closeDialog);
   addCloseDialogEvent(dialog, closeDialog);
 
   document.body.appendChild(dialog);

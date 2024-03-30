@@ -14,6 +14,8 @@ import arcPercentageSvg from "./img/arc-percentage.svg";
 
 import { readSettings } from "./settings";
 
+let weather;
+
 // Fetch methods
 async function fetchWeather(query) {
   const responseFetch = await fetch(
@@ -599,7 +601,7 @@ async function renderForecast(location) {
     const container = document.createElement("div");
     container.id = "forecast";
 
-    const weather = await fetchWeather(location);
+    weather = await fetchWeather(location);
     console.log(weather);
 
     const settings = readSettings();
