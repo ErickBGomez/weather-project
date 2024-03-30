@@ -335,6 +335,7 @@ main {
 
 #hour-forecast .time {
   color: var(--SmallTextBlack);
+  text-wrap: nowrap;
 }
 
 #hour-forecast .condition-icon > svg {
