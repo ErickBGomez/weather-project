@@ -608,7 +608,7 @@ function renderLoadingScreen() {
   icon.className = "icon";
   icon.innerHTML = loadingSvg;
   label.className = "label";
-  label.textContent = "Loading... please wait";
+  label.textContent = "Loading...";
 
   container.appendChild(icon);
   container.appendChild(label);
