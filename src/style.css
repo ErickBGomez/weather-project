@@ -66,6 +66,17 @@ input::placeholder {
   font-weight: 300;
 }
 
+select {
+  font-family: inherit;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  background-color: var(--White);
+  color: var(--Black);
+  padding: 6px 8px;
+  max-width: 110px;
+  width: 100%;
+}
+
 button {
   padding: 0;
   display: block;
@@ -630,13 +641,6 @@ form#settings {
 
 #settings .settings-field .title {
   font-size: 0.8rem;
-}
-
-#settings .settings-field select {
-  font-family: inherit;
-  padding: 6px 8px;
-  max-width: 90px;
-  width: 100%;
 }
 
 #settings-dialog .source-code {
