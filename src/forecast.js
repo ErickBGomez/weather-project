@@ -1,7 +1,7 @@
 import clearSunSvg from "./img/forecast/clear-sun.svg";
 import clearMoonSvg from "./img/forecast/clear-moon.svg";
 import rainSvg from "./img/forecast/rain.svg";
-import rainOverlaySvg from "./img/forecast/rain-overlay.svg";
+import humidityOverlaySvg from "./img/forecast/humidity-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
 import precipitationSvg from "./img/forecast/precipitation.svg";
 import windSvg from "./img/forecast/wind.svg";
@@ -434,7 +434,7 @@ function createHumidityUv(current) {
   const humidity = createArcSection(
     "humidity",
     "Humidity",
-    rainOverlaySvg,
+    humidityOverlaySvg,
     current.humidity,
     100,
     "%",
