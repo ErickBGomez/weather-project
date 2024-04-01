@@ -284,6 +284,11 @@ function createHourForecast(
   return container;
 }
 
+function convertDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", { weekday: "long" });
+}
+
 function createDayForecast(dayForecast, unitsSettings) {
   const container = document.createElement("section");
 
@@ -302,7 +307,7 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     dayContainer.className = "day-container";
     dayElement.className = "day";
-    dayElement.textContent = !index ? "Today" : day.date;
+    dayElement.textContent = !index ? "Today" : convertDate(day.date);
 
     temperatures.className = "temperatures small-text";
     temperatures.textContent = `${getTemperature(day.day.maxtemp_c, day.day.maxtemp_f, unitsSettings, false)} | ${getTemperature(day.day.mintemp_c, day.day.mintemp_f, unitsSettings, false)}`;
