@@ -9,6 +9,11 @@
     "sourceType": "module"
   },
   "rules": {
-    "quotes": ["error", "double", { "avoidEscape": true }]
+    "quotes": ["error", "double", { "avoidEscape": true }],
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-use-before-define": "off",
+    "object-curly-newline": "off",
+    "import/no-cycle": "off"
   }
 }

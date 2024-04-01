@@ -38,12 +38,12 @@ function addWriteSettingsEvent(form) {
 function addCloseDialogEvent(dialog, dialogButtons) {
   const closeButtons = Array.from(dialogButtons.querySelectorAll("button"));
 
-  closeButtons.forEach((button) =>
+  closeButtons.forEach((button) => {
     button.addEventListener("click", () => {
       dialog.close();
       document.body.removeChild(dialog);
-    }),
-  );
+    });
+  });
 }
 
 function addSubmitSettingsEvent(form, submitButton) {
