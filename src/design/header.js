@@ -139,7 +139,7 @@ function createSuggestion(input, suggestion) {
   location.className = "location small-text";
   location.textContent = suggestion.name;
   country.className = "country very-small-text";
-  country.textContent = `${suggestion.region}, ${suggestion.country}`;
+  country.textContent = suggestion.country;
 
   suggestionContainer.appendChild(location);
   suggestionContainer.appendChild(country);
