@@ -465,7 +465,6 @@ function createInformation(
   labelElement.textContent = label;
   valueElement.className = "value small-text";
   valueElement.textContent = magnitude;
-  console.log(magnitude);
 
   titleElement.appendChild(iconElement);
   titleElement.appendChild(labelElement);
