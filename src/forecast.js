@@ -1,5 +1,5 @@
-import clearSunSvg from "./img/forecast/clear-sun.svg";
-import clearMoonSvg from "./img/forecast/clear-moon.svg";
+import clearDaySvg from "./img/forecast/clear-day.svg";
+import clearNightSvg from "./img/forecast/clear-night.svg";
 import rainSvg from "./img/forecast/rain.svg";
 import humidityOverlaySvg from "./img/forecast/humidity-overlay.svg";
 import uvOverlaySvg from "./img/forecast/uv-overlay.svg";
@@ -193,7 +193,7 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  conditionIcon.innerHTML = current.is_day ? clearSunSvg : clearMoonSvg;
+  conditionIcon.innerHTML = current.is_day ? clearDaySvg : clearNightSvg;
 
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
@@ -218,7 +218,7 @@ function createHourElement(hour, timeValue, settings) {
 
   conditionIcon.className = "condition-icon";
   conditionIcon.innerHTML =
-    timeValue >= "06:00" && timeValue <= "18:00" ? clearSunSvg : clearMoonSvg;
+    timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
 
   temperature.className = "temperature small-text";
   temperature.textContent = getTemperature(
@@ -314,7 +314,7 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
-    conditionIcon.innerHTML = clearSunSvg;
+    conditionIcon.innerHTML = clearDaySvg;
     conditionValue.className = "value small-text";
     conditionValue.textContent = day.day.condition.text;
 
