@@ -218,8 +218,6 @@ function createHourElement(hour, timeValue, settings) {
   timeElement.textContent = getTime(timeValue, settings["time-format"]);
 
   conditionIcon.className = "condition-icon";
-  // conditionIcon.innerHTML =
-  //   timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
   getConditionIcon(hour.condition.code, hour.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
