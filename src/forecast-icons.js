@@ -23,9 +23,9 @@ async function getConditionIcon(conditionCode, isDay = 1) {
     : currentCondition.icon;
 
   // Fetch svg from "./img/forecast"
-  const svg = await import(`${path}${iconName}`).default;
+  const svg = await import(`${path}${iconName}`);
 
-  return svg;
+  return svg.default;
 }
 
 export default getConditionIcon;
