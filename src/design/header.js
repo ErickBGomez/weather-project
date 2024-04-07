@@ -1,6 +1,6 @@
-import searchSvg from "../img/search.svg";
-import settingsSvg from "../img/settings.svg";
-import closeSvg from "../img/close.svg";
+import searchSvg from "../img/ui/search.svg";
+import settingsSvg from "../img/ui/settings.svg";
+import closeSvg from "../img/ui/close.svg";
 import { addSearchEvent } from "../forecast";
 import * as settings from "../settings";
 

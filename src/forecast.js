@@ -10,8 +10,8 @@ import visibilitySvg from "./img/forecast/visibility.svg";
 import pressureSvg from "./img/forecast/pressure.svg";
 import sunPositionSvg from "./img/forecast/sun-position.svg";
 import moonPhaseSvg from "./img/forecast/moon-phase.svg";
-import arcPercentageSvg from "./img/arc-percentage.svg";
-import loadingSvg from "./img/loading.svg";
+import arcPercentageSvg from "./img/ui/arc-percentage.svg";
+import loadingSvg from "./img/ui/loading.svg";
 
 import { readSettings } from "./settings";
 

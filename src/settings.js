@@ -1,6 +1,6 @@
-import unitsSvg from "./img/units.svg";
-import timeFormatSvg from "./img/time-format.svg";
-import autorefreshSvg from "./img/autorefresh.svg";
+import unitsSvg from "./img/ui/units.svg";
+import timeFormatSvg from "./img/ui/time-format.svg";
+import autorefreshSvg from "./img/ui/autorefresh.svg";
 import { renderForecast } from "./forecast";
 
 // Events
