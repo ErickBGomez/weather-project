@@ -1,5 +1,3 @@
-import clearDaySvg from "./img/forecast/clear-day.svg";
-import clearNightSvg from "./img/forecast/clear-night.svg";
 import rainSvg from "./img/ui/rain.svg";
 import humidityOverlaySvg from "./img/ui/humidity-overlay.svg";
 import uvOverlaySvg from "./img/ui/uv-overlay.svg";
@@ -17,6 +15,7 @@ import { readSettings } from "./settings";
 import getConditionIcon from "./forecast-icons";
 
 let weather;
+const conditionTest = 1063;
 
 // Fetch methods
 async function fetchWeather(query) {
@@ -194,7 +193,7 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  getConditionIcon(1003, current.is_day).then((icon) => {
+  getConditionIcon(conditionTest, current.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
 
@@ -222,7 +221,7 @@ function createHourElement(hour, timeValue, settings) {
   conditionIcon.className = "condition-icon";
   // conditionIcon.innerHTML =
   //   timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
-  getConditionIcon(1003, hour.is_day).then((icon) => {
+  getConditionIcon(conditionTest, hour.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
 
@@ -320,7 +319,7 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
-    getConditionIcon(1003).then((icon) => {
+    getConditionIcon(conditionTest).then((icon) => {
       conditionIcon.innerHTML = icon;
     });
     conditionValue.className = "value small-text";

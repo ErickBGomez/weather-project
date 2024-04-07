@@ -4,11 +4,15 @@
     "icon": ["clear-night.svg", "clear-day.svg"]
   },
   {
-    "codes": [1003],
+    "codes": [1003, 1006],
     "icon": ["cloud-night.svg", "cloud-day.svg"]
   },
   {
-    "codes": [1006, 1009, 1030, 1135],
+    "codes": [1009, 1030, 1135],
     "icon": "cloud.svg"
+  },
+  {
+    "codes": [1063],
+    "icon": ["rain-night.svg", "rain-day.svg"]
   }
 ]
