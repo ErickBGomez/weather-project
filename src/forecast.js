@@ -15,7 +15,6 @@ import { readSettings } from "./settings";
 import getConditionIcon from "./forecast-icons";
 
 let weather;
-const conditionTest = 1282;
 
 // Fetch methods
 async function fetchWeather(query) {
@@ -193,7 +192,7 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  getConditionIcon(conditionTest, current.is_day).then((icon) => {
+  getConditionIcon(current.condition.code, current.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
 
@@ -221,7 +220,7 @@ function createHourElement(hour, timeValue, settings) {
   conditionIcon.className = "condition-icon";
   // conditionIcon.innerHTML =
   //   timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
-  getConditionIcon(conditionTest, hour.is_day).then((icon) => {
+  getConditionIcon(hour.condition.code, hour.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
 
@@ -319,7 +318,7 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
-    getConditionIcon(conditionTest).then((icon) => {
+    getConditionIcon(day.day.condition.code).then((icon) => {
       conditionIcon.innerHTML = icon;
     });
     conditionValue.className = "value small-text";
