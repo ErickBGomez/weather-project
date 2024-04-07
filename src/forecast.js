@@ -15,7 +15,7 @@ import { readSettings } from "./settings";
 import getConditionIcon from "./forecast-icons";
 
 let weather;
-const conditionTest = 1063;
+const conditionTest = 1282;
 
 // Fetch methods
 async function fetchWeather(query) {
