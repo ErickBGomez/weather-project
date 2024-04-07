@@ -14,5 +14,9 @@ forecast.renderMain();
 forecast.renderForecast(defaultLocation);
 renderFooter();
 
-console.log(getConditionIcon(1000, 1));
-console.log(getConditionIcon(1135, 0));
+getConditionIcon(1000, 1).then((request) => {
+  console.log(request);
+});
+
+// console.log(getConditionIcon(1000, 1));
+// console.log(getConditionIcon(1135, 0));
