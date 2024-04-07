@@ -194,7 +194,7 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  getConditionIcon(1000, current.is_day).then((icon) => {
+  getConditionIcon(1003, current.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });
 
@@ -220,8 +220,11 @@ function createHourElement(hour, timeValue, settings) {
   timeElement.textContent = getTime(timeValue, settings["time-format"]);
 
   conditionIcon.className = "condition-icon";
-  conditionIcon.innerHTML =
-    timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
+  // conditionIcon.innerHTML =
+  //   timeValue >= "06:00" && timeValue <= "18:00" ? clearDaySvg : clearNightSvg;
+  getConditionIcon(1003, hour.is_day).then((icon) => {
+    conditionIcon.innerHTML = icon;
+  });
 
   temperature.className = "temperature small-text";
   temperature.textContent = getTemperature(
@@ -317,7 +320,9 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
-    conditionIcon.innerHTML = clearDaySvg;
+    getConditionIcon(1003).then((icon) => {
+      conditionIcon.innerHTML = icon;
+    });
     conditionValue.className = "value small-text";
     conditionValue.textContent = day.day.condition.text;
 
