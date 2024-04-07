@@ -194,7 +194,6 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  // conditionIcon.innerHTML = current.is_day ? clearDaySvg : clearNightSvg;
   getConditionIcon(1000, current.is_day).then((icon) => {
     conditionIcon.innerHTML = icon;
   });

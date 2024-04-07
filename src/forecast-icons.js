@@ -1,13 +1,4 @@
-const conditions = [
-  {
-    codes: [1000],
-    icon: ["clear-night.svg", "clear-day.svg"],
-  },
-  {
-    codes: [1006, 1009, 1030, 1135],
-    icon: "cloud.svg",
-  },
-];
+import conditions from "./conditions.json";
 
 async function getConditionIcon(conditionCode, isDay = 1) {
   const path = "./img/forecast/";
