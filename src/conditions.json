@@ -4,20 +4,32 @@
     "icon": ["clear-night.svg", "clear-day.svg"]
   },
   {
+    "codes": [1009, 1030, 1135],
+    "icon": "cloud.svg"
+  },
+  {
     "codes": [1003, 1006],
     "icon": ["cloud-night.svg", "cloud-day.svg"]
   },
   {
-    "codes": [1009, 1030, 1135],
-    "icon": "cloud.svg"
+    "codes": [1153, 1186, 1189, 1192, 1195, 1243, 1246],
+    "icon": "rain.svg"
   },
   {
     "codes": [1150, 1063, 1180, 1183, 1240],
     "icon": ["rain-night.svg", "rain-day.svg"]
   },
   {
+    "codes": [1114, 1117, 1147, 1168, 1171, 1219, 1225, 1237, 1258, 1264],
+    "icon": "snow.svg"
+  },
+  {
     "codes": [1066, 1210, 1213, 1216, 1222, 1255, 1261],
     "icon": ["snow-night.svg", "snow-day.svg"]
+  },
+  {
+    "codes": [1201, 1207, 1252],
+    "icon": "sleet.svg"
   },
   {
     "codes": [1069, 1072, 1198, 1204, 1249],
@@ -28,31 +40,19 @@
     "icon": "thunder.svg"
   },
   {
-    "codes": [1114, 1117, 1147, 1168, 1171, 1219, 1225, 1237, 1258, 1264],
-    "icon": "snow.svg"
-  },
-  {
-    "codes": [1153, 1186, 1189, 1192, 1195, 1243, 1246],
-    "icon": "rain.svg"
-  },
-  {
-    "codes": [1201, 1207, 1252],
-    "icon": "sleet.svg"
+    "codes": [1276],
+    "icon": "thunder-rain.svg"
   },
   {
     "codes": [1273],
     "icon": ["thunder-rain-night.svg", "thunder-rain-day.svg"]
   },
   {
-    "codes": [1276],
-    "icon": "thunder-rain.svg"
+    "codes": [1282],
+    "icon": "thunder-snow.svg"
   },
   {
     "codes": [1279],
     "icon": ["thunder-snow-night.svg", "thunder-snow-day.svg"]
-  },
-  {
-    "codes": [1282],
-    "icon": "thunder-snow.svg"
   }
 ]
