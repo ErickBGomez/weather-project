@@ -310,8 +310,8 @@ main {
 }
 
 #current-weather .condition-icon > svg {
-  max-width: 200px;
-  min-height: 200px;
+  max-width: 250px;
+  min-height: 250px;
 }
 
 /* 2. Hour forecast */
@@ -346,8 +346,8 @@ main {
 }
 
 #hour-forecast .condition-icon > svg {
-  max-width: 44px;
-  min-height: 44px;
+  max-width: 60px;
+  min-height: 60px;
 }
 
 #hour-forecast .precipitation {
@@ -382,14 +382,23 @@ main {
   align-items: center;
 }
 
-#day-forecast .condition .icon > svg,
-#day-forecast .precipitation .icon > svg {
-  max-width: 24px;
-  min-height: 24px;
+#day-forecast .condition {
+  gap: 8px;
+}
+
+#day-forecast .precipitation {
+  gap: 4px;
+}
+
+#day-forecast .condition .icon > svg {
+  max-width: 35px;
+  min-height: 35px;
 }
 
 #day-forecast .precipitation .icon > svg {
   fill: var(--Rain);
+  max-width: 24px;
+  min-height: 24px;
 }
 
 /* 4. Humidity and UV Index */
@@ -530,7 +539,7 @@ main {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto min-content;
   justify-items: center;
-  row-gap: 24px;
+  row-gap: 12px;
 }
 
 #sun-position .icon {
@@ -539,14 +548,14 @@ main {
 
 #sun-position .icon > svg,
 #moon-phase .icon > svg {
-  max-width: 130px;
-  min-height: 130px;
+  max-width: 170px;
+  min-height: 170px;
 }
 
 #moon-phase {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
   align-items: center;
 }
 
