@@ -1,8 +1,8 @@
-import searchSvg from "../img/ui/search.svg";
-import settingsSvg from "../img/ui/settings.svg";
-import closeSvg from "../img/ui/close.svg";
-import { addSearchEvent } from "../forecast";
-import * as settings from "../settings";
+import searchSvg from "./img/ui/search.svg";
+import settingsSvg from "./img/ui/settings.svg";
+import closeSvg from "./img/ui/close.svg";
+import { addSearchEvent } from "./forecast";
+import * as settings from "./settings";
 
 // Fetch methods
 async function fetchSearchSuggestions(query) {

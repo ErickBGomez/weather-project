@@ -1,9 +1,8 @@
 import "./style.css";
-import renderHeader from "./design/header";
+import renderHeader from "./header";
 import * as forecast from "./forecast";
-import renderFooter from "./design/footer";
+import renderFooter from "./footer";
 import * as settings from "./settings";
-import getConditionIcon from "./forecast-icons";
 
 const defaultLocation = "San Salvador";
 
