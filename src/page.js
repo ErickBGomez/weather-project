@@ -4,6 +4,8 @@ import closeSvg from "./img/ui/close.svg";
 import { addSearchEvent } from "./forecast";
 import * as settings from "./settings";
 
+// Header
+
 // Fetch methods
 async function fetchSearchSuggestions(query) {
   const responseFetch = await fetch(
@@ -196,4 +198,20 @@ function renderHeader() {
   document.body.appendChild(header);
 }
 
-export default renderHeader;
+// Footer
+function renderFooter() {
+  const footer = document.createElement("footer");
+  footer.textContent = "Made by ";
+
+  const credits = document.createElement("a");
+  credits.className = "credits";
+  credits.href = "https://www.github.com/ErickBGomez";
+  credits.target = "_blank";
+  credits.textContent = "Erick B. Gómez";
+
+  footer.appendChild(credits);
+
+  document.body.appendChild(footer);
+}
+
+export { renderHeader, renderFooter };

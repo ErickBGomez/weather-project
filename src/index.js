@@ -1,17 +1,16 @@
 import "./style.css";
-import renderHeader from "./header";
+import * as page from "./page";
 import * as forecast from "./forecast";
-import renderFooter from "./footer";
 import * as settings from "./settings";
 
 const defaultLocation = "San Salvador";
 
 settings.checkDefaultSettings();
 
-renderHeader();
+page.renderHeader();
 forecast.renderMain();
 forecast.renderForecast(defaultLocation);
-renderFooter();
+page.renderFooter();
 
 // console.log(getConditionIcon(1000, 1));
 // console.log(getConditionIcon(1135, 0));
