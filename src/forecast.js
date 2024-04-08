@@ -73,6 +73,7 @@ function convertTo12Hour(time, timePattern) {
   // Avoid if time is already 24 hours format
   if (timePattern.test(time)) return time;
 
+  // eslint-disable-next-line prefer-const
   let [hours, minutes] = time.split(":");
   const modifier = hours < "12" ? "AM" : "PM";
 
@@ -90,6 +91,7 @@ function convertTo24Hour(time, timePattern) {
   if (!timePattern.test(time)) return time;
 
   const [timeValue, modifier] = time.split(" ");
+  // eslint-disable-next-line prefer-const
   let [hours, minutes] = timeValue.split(":");
 
   if (modifier === "AM" && hours === "12") {

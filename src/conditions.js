@@ -3,9 +3,10 @@ import conditions from "./json/conditions.json";
 async function getConditionIcon(conditionCode, isDay = true) {
   const path = "./img/forecast/";
 
-  const currentCondition = conditions.find((condition) =>
-    condition.codes.includes(conditionCode),
-  );
+  // eslint-disable-next-line arrow-body-style
+  const currentCondition = conditions.find((condition) => {
+    return condition.codes.includes(conditionCode);
+  });
 
   // Return empty string if conditionCode doesn't exist
   if (!currentCondition) {
