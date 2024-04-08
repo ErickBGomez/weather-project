@@ -8,6 +8,8 @@ async function getMoonPhaseIcon(phaseValue) {
     return phase.name === phaseValue;
   });
 
+  if (!currentPhase) return "";
+
   const svg = await import(`${path}${currentPhase.icon}`);
 
   return svg.default;

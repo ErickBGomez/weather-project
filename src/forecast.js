@@ -13,6 +13,7 @@ import loadingSvg from "./img/ui/loading.svg";
 
 import { readSettings } from "./settings";
 import getConditionIcon from "./conditions";
+import getMoonPhaseIcon from "./moon-phases";
 
 let weather;
 
@@ -593,13 +594,15 @@ function createAstroInfo(
   return section;
 }
 
-function createSunAndMoonInfo(astro, timeSettings) {
+async function createSunAndMoonInfo(astro, timeSettings) {
+  const moonIcon = await getMoonPhaseIcon(astro.moon_phase);
+
   const sun = createAstroInfo("sun-position", sunPositionSvg, [
     { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
     { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
   ]);
 
-  const moon = createAstroInfo("moon-phase", moonPhaseSvg, [
+  const moon = createAstroInfo("moon-phase", moonIcon, [
     { label: "Moon phase", value: astro.moon_phase },
   ]);
 
@@ -663,7 +666,7 @@ async function renderForecast(location) {
       createMoreWeatherInfo(weather.current, settings.units),
     );
     container.appendChild(
-      createSunAndMoonInfo(
+      await createSunAndMoonInfo(
         weather.forecast.forecastday[0].astro,
         settings["time-format"],
       ),
