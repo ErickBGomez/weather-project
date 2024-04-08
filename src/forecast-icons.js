@@ -1,4 +1,4 @@
-import conditions from "./conditions.json";
+import conditions from "./json/conditions.json";
 
 async function getConditionIcon(conditionCode, isDay = true) {
   const path = "./img/forecast/";
