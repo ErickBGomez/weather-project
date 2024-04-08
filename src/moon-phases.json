@@ -1,0 +1,34 @@
+[
+  {
+    "name": "New moon",
+    "icon": "new-moon.svg"
+  },
+  {
+    "name": "Waxing Crescent",
+    "icon": "waxing-crescent.svg"
+  },
+  {
+    "name": "First Quarter",
+    "icon": "first-quarter.svg"
+  },
+  {
+    "name": "Waxing Gibbous",
+    "icon": "waxing-gibbous.svg"
+  },
+  {
+    "name": "Full Moon",
+    "icon": "full-moon.svg"
+  },
+  {
+    "name": "Waning Gibbous",
+    "icon": "waning-gibbous.svg"
+  },
+  {
+    "name": "Last Quarter",
+    "icon": "last-quarter.svg"
+  },
+  {
+    "name": "Waning Crescent",
+    "icon": "waning-crescent.svg"
+  }
+]
