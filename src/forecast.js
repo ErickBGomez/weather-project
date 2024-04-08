@@ -12,7 +12,7 @@ import arcPercentageSvg from "./img/ui/arc-percentage.svg";
 import loadingSvg from "./img/ui/loading.svg";
 
 import { readSettings } from "./settings";
-import getConditionIcon from "./forecast-icons";
+import getConditionIcon from "./conditions";
 
 let weather;
 
