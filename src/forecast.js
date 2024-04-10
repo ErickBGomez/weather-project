@@ -6,7 +6,7 @@ import windSvg from "./img/ui/wind.svg";
 import windDirectionSvg from "./img/ui/wind-direction.svg";
 import visibilitySvg from "./img/ui/visibility.svg";
 import pressureSvg from "./img/ui/pressure.svg";
-import sunPositionSvg from "./img/ui/sun-position.svg";
+import sunPositionSvg from "./img/sun-positions/sun-1.svg";
 import arcPercentageSvg from "./img/ui/arc-percentage.svg";
 import loadingSvg from "./img/ui/loading.svg";
 
