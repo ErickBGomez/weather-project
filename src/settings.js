@@ -3,15 +3,25 @@ import timeFormatSvg from "./img/ui/time-format.svg";
 import autorefreshSvg from "./img/ui/autorefresh.svg";
 import { renderForecast } from "./forecast";
 
+const defaultSettings = {
+  units: "c",
+  timeFormat: "12h",
+  autorefresh: "1",
+};
+
 // Events
-function writeSettings(inputs) {
+function writeSettings(settings) {
+  localStorage.setItem("settings", JSON.stringify(settings));
+}
+
+function writeInputSettings(inputs) {
   const settings = {};
 
   inputs.forEach((input) => {
     settings[input.name] = input.value;
   });
 
-  localStorage.setItem("settings", JSON.stringify(settings));
+  writeSettings(settings);
 }
 
 function readSettings() {
@@ -20,8 +30,7 @@ function readSettings() {
 
 function checkDefaultSettings() {
   if (!localStorage.getItem("settings")) {
-    const inputs = Array.from(document.querySelectorAll("#settings select"));
-    writeSettings(inputs);
+    writeSettings(defaultSettings);
   }
 }
 
@@ -32,7 +41,7 @@ function addWriteSettingsEvent(form) {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    writeSettings(inputs);
+    writeInputSettings(inputs);
     renderForecast("San Salvador");
   });
 }
