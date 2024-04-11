@@ -198,6 +198,12 @@ function renderHeader() {
   document.body.appendChild(header);
 }
 
+// Main
+function renderMain() {
+  const main = document.createElement("main");
+  document.body.appendChild(main);
+}
+
 // Footer
 function renderFooter() {
   const footer = document.createElement("footer");
@@ -214,4 +220,4 @@ function renderFooter() {
   document.body.appendChild(footer);
 }
 
-export { renderHeader, renderFooter };
+export { renderHeader, renderMain, renderFooter };

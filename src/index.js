@@ -8,6 +8,6 @@ const defaultLocation = "San Salvador";
 settings.checkDefaultSettings();
 
 page.renderHeader();
-forecast.renderMain();
+page.renderMain();
 forecast.renderForecast(defaultLocation);
 page.renderFooter();

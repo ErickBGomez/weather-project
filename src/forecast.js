@@ -651,9 +651,4 @@ async function renderForecast(location) {
   }
 }
 
-function renderMain() {
-  const main = document.createElement("main");
-  document.body.appendChild(main);
-}
-
-export { renderForecast, renderMain, addSearchEvent, renderLoadingScreen };
+export { renderForecast, addSearchEvent, renderLoadingScreen };
