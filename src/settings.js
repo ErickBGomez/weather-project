@@ -25,6 +25,8 @@ function checkDefaultSettings() {
   }
 }
 
+// Dialog events
+
 function addWriteSettingsEvent(form) {
   const inputs = Array.from(form.querySelectorAll("select"));
 
@@ -138,10 +140,10 @@ function renderSettingsDialog() {
     ],
   );
   const hourFormat = createSettingField(
-    "time-format",
+    "timeFormat",
     "Time format",
     timeFormatSvg,
-    settings["time-format"],
+    settings.timeFormat,
     [
       { name: "24 hours", value: "24h" },
       { name: "12 hours", value: "12h" },

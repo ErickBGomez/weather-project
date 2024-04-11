@@ -182,7 +182,7 @@ function createHourElement(hour, timeValue, settings) {
 
   hourContainer.className = "hour-container";
   timeElement.className = "time very-small-text";
-  timeElement.textContent = getTime(timeValue, settings["time-format"]);
+  timeElement.textContent = getTime(timeValue, settings.timeFormat);
 
   conditionIcon.className = "condition-icon";
   getConditionIcon(hour.condition.code, hour.is_day).then((icon) => {
@@ -638,7 +638,7 @@ async function renderForecast(location) {
       await createSunAndMoonInfo(
         weather.forecast.forecastday[0].astro,
         weather.current.last_updated,
-        settings["time-format"],
+        settings.timeFormat,
       ),
     );
 
