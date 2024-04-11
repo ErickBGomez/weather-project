@@ -36,6 +36,7 @@ function convertTo24Hour(time) {
 }
 
 function parseTimeToNumber(time) {
+  time = convertTo24Hour(time);
   const [hours, minutes] = time.split(":");
   return parseInt(hours, 10) + parseInt(minutes, 10) / 60;
 }
