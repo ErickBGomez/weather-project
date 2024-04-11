@@ -6,13 +6,13 @@ import windSvg from "./img/ui/wind.svg";
 import windDirectionSvg from "./img/ui/wind-direction.svg";
 import visibilitySvg from "./img/ui/visibility.svg";
 import pressureSvg from "./img/ui/pressure.svg";
-import sunPositionSvg from "./img/sun-positions/sun-1.svg";
 import arcPercentageSvg from "./img/ui/arc-percentage.svg";
 import loadingSvg from "./img/ui/loading.svg";
 
 import { readSettings } from "./settings";
 import getConditionIcon from "./conditions";
 import getMoonPhaseIcon from "./moon-phases";
+import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
 
 let weather;
@@ -558,10 +558,15 @@ function createAstroInfo(
   return section;
 }
 
-async function createSunAndMoonInfo(astro, timeSettings) {
+async function createSunAndMoonInfo(astro, lastTimeUpdated, timeSettings) {
+  const sunIcon = await getSunPositionIcon(
+    astro.sunrise,
+    astro.sunset,
+    lastTimeUpdated.split(" ")[1],
+  );
   const moonIcon = await getMoonPhaseIcon(astro.moon_phase);
 
-  const sun = createAstroInfo("sun-position", sunPositionSvg, [
+  const sun = createAstroInfo("sun-position", sunIcon, [
     { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
     { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
   ]);
@@ -632,6 +637,7 @@ async function renderForecast(location) {
     container.appendChild(
       await createSunAndMoonInfo(
         weather.forecast.forecastday[0].astro,
+        weather.current.last_updated,
         settings["time-format"],
       ),
     );
