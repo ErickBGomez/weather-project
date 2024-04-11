@@ -8,14 +8,9 @@ function getSunPositionIndex(sunrise, sunset, currentTime) {
 
   const percentage = (currentTime - sunrise) / (sunset - sunrise);
 
-  console.log(sunrise);
-  console.log(sunset);
-  console.log(currentTime);
-  console.log(percentage);
-
   if (percentage < 0 || percentage > 1) return 0; // Night
-  if (percentage < 0.4) return 1; // Sunrise
-  if (percentage >= 0.4 && percentage <= 0.6) return 2; // Noon
+  if (percentage < 0.2) return 1; // Sunrise
+  if (percentage >= 0.2 && percentage <= 0.8) return 2; // Noon
   return 3; // Sunset
 }
 
