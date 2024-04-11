@@ -70,13 +70,12 @@ function getMagnitude(
 }
 
 function getTime(timeValue, timeSettings) {
-  const timePattern = /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
   let convertedTime;
 
   if (timeSettings === "12h") {
-    convertedTime = time.convertTo12Hour(timeValue, timePattern);
+    convertedTime = time.convertTo12Hour(timeValue);
   } else if (timeSettings === "24h") {
-    convertedTime = time.convertTo24Hour(timeValue, timePattern);
+    convertedTime = time.convertTo24Hour(timeValue);
   }
 
   return convertedTime;

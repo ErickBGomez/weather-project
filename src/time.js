@@ -1,5 +1,7 @@
+const timePattern = /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
+
 // From 24 hours to 12 hours
-function convertTo12Hour(time, timePattern) {
+function convertTo12Hour(time) {
   // Avoid if time is already 24 hours format
   if (timePattern.test(time)) return time;
 
@@ -16,7 +18,7 @@ function convertTo12Hour(time, timePattern) {
 }
 
 // From 12 hours to 24 hours
-function convertTo24Hour(time, timePattern) {
+function convertTo24Hour(time) {
   // Avoid if time is already 12 hours format
   if (!timePattern.test(time)) return time;
 
