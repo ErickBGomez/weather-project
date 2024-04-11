@@ -33,4 +33,9 @@ function convertTo24Hour(time, timePattern) {
   return `${hours}:${minutes}`;
 }
 
-export { convertTo12Hour, convertTo24Hour };
+function parseTimeToFloat(time) {
+  const [hours, minutes] = time.split(":");
+  return parseInt(hours, 10) + parseInt(minutes, 10) / 60;
+}
+
+export { convertTo12Hour, convertTo24Hour, parseTimeToFloat };
