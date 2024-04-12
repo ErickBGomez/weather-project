@@ -652,10 +652,12 @@ async function renderForecast(location) {
 function setWeather(location) {
   // Reset interval each time function is invoked
   let forecastRefresh;
+  const autorefreshInterval = parseInt(readSettings().autorefresh, 10) * 36000;
+
   clearInterval(forecastRefresh);
 
   renderForecast(location);
-  setInterval(renderForecast, 50000, location);
+  setInterval(renderForecast, autorefreshInterval, location);
 }
 
 export { setWeather, addSearchEvent, renderLoadingScreen };
