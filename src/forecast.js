@@ -15,6 +15,8 @@ import getMoonPhaseIcon from "./moon-phases";
 import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
 
+let lastLocation;
+
 // Fetch methods
 async function fetchWeather(query) {
   const responseFetch = await fetch(
@@ -28,7 +30,7 @@ async function fetchWeather(query) {
 function addSearchEvent(form, input) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    renderForecast(input.value);
+    setWeather(input.value);
     input.blur();
   });
 }
@@ -649,7 +651,10 @@ async function renderForecast(location) {
   }
 }
 
-function setWeather(location) {
+function setWeather(location = lastLocation) {
+  // Save last location on every invocation
+  lastLocation = location;
+
   let forecastRefresh;
   const autorefreshInterval = parseInt(readSettings().autorefresh, 10) * 3600;
 

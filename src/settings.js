@@ -42,7 +42,7 @@ function addWriteSettingsEvent(form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     writeInputSettings(inputs);
-    setWeather("San Salvador"); // Experimental
+    setWeather(); // Refresh weather
   });
 }
 
