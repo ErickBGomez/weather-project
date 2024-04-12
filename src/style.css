@@ -25,7 +25,7 @@
   --Background: #283454;
   --SuggestionHover: #d4e5f3;
   --DayBackground: linear-gradient(to right, #95bdda 0%, #2a80be 100%);
-  --NightBackground: linear-gradient(to right, #1d2029 0%, #101733 100%);
+  --NightBackground: linear-gradient(to right, #1d2130 0%, #121936 100%);
 }
 
 body {
@@ -319,7 +319,7 @@ main {
 }
 
 #current-weather.night .condition-icon > svg {
-  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.61));
+  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.59));
 }
 
 /* 2. Hour forecast */
