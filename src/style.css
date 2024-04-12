@@ -314,6 +314,14 @@ main {
   min-height: 250px;
 }
 
+#current-weather.day .condition-icon > svg {
+  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.17));
+}
+
+#current-weather.night .condition-icon > svg {
+  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.61));
+}
+
 /* 2. Hour forecast */
 #hour-forecast {
   display: flex;
