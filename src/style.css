@@ -269,6 +269,7 @@ main {
   align-items: center;
   justify-content: space-between;
   row-gap: 32px;
+  column-gap: 50px;
   padding: 45px 90px;
 }
 
