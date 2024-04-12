@@ -9,5 +9,5 @@ settings.checkDefaultSettings();
 
 page.renderHeader();
 page.renderMain();
-forecast.renderForecast(defaultLocation);
+forecast.setWeather(defaultLocation);
 page.renderFooter();

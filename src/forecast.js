@@ -15,8 +15,6 @@ import getMoonPhaseIcon from "./moon-phases";
 import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
 
-let weather;
-
 // Fetch methods
 async function fetchWeather(query) {
   const responseFetch = await fetch(
@@ -606,7 +604,7 @@ async function renderForecast(location) {
 
     renderLoadingScreen();
 
-    weather = await fetchWeather(location);
+    const weather = await fetchWeather(location);
     console.log(weather);
 
     const settings = readSettings();
@@ -651,4 +649,13 @@ async function renderForecast(location) {
   }
 }
 
-export { renderForecast, addSearchEvent, renderLoadingScreen };
+function setWeather(location) {
+  // Reset interval each time function is invoked
+  let forecastRefresh;
+  clearInterval(forecastRefresh);
+
+  renderForecast(location);
+  setInterval(renderForecast, 50000, location);
+}
+
+export { setWeather, addSearchEvent, renderLoadingScreen };

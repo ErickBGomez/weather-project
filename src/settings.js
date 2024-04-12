@@ -1,7 +1,7 @@
 import unitsSvg from "./img/ui/units.svg";
 import timeFormatSvg from "./img/ui/time-format.svg";
 import autorefreshSvg from "./img/ui/autorefresh.svg";
-import { renderForecast } from "./forecast";
+import { setWeather } from "./forecast";
 
 const defaultSettings = {
   units: "c",
@@ -42,7 +42,7 @@ function addWriteSettingsEvent(form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     writeInputSettings(inputs);
-    renderForecast("San Salvador");
+    setWeather("San Salvador"); // Experimental
   });
 }
 
