@@ -656,13 +656,14 @@ function setWeather(location = lastLocation) {
   lastLocation = location;
 
   let forecastRefresh;
-  const autorefreshInterval = parseInt(readSettings().autorefresh, 10) * 3600;
+  // Interval from hours to miliseconds
+  const autorefresh = parseInt(readSettings().autorefresh, 10) * 3600000;
 
   // Reset interval each time function is invoked
   clearInterval(forecastRefresh);
 
   renderForecast(location);
-  setInterval(renderForecast, autorefreshInterval, location);
+  setInterval(renderForecast, autorefresh, location);
 }
 
 export { setWeather, addSearchEvent, renderLoadingScreen };
