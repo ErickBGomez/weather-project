@@ -1,10 +1,14 @@
 import searchSvg from "./img/ui/search.svg";
 import settingsSvg from "./img/ui/settings.svg";
 import closeSvg from "./img/ui/close.svg";
-import { addSearchEvent } from "./forecast";
-import * as settings from "./settings";
+import unitsSvg from "./img/ui/units.svg";
+import timeFormatSvg from "./img/ui/time-format.svg";
+import autorefreshSvg from "./img/ui/autorefresh.svg";
+import { addSearchEvent, setWeather } from "./forecast";
+import { writeInputSettings, readSettings } from "./settings";
+import Dialog from "./dialogs";
 
-// Header
+const settingsDialog = new Dialog("settings-dialog");
 
 // Fetch methods
 async function fetchSearchSuggestions(query) {
@@ -15,7 +19,8 @@ async function fetchSearchSuggestions(query) {
   return responseFetch.json();
 }
 
-// Events
+// Events:
+// - Search events
 function addClearInputEvent(clear, input) {
   clear.addEventListener("click", () => {
     input.value = "";
@@ -40,13 +45,6 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
     );
   });
 
-  // input.addEventListener("blur", () => {
-  //   // Remove suggestion cooldown when blurring input and still waiting the suggestion fetch
-  //   clearTimeout(searchTimeout);
-
-  //   removeSuggestionsEvent(searchSuggestions);
-  // });
-
   input.addEventListener("focus", async () => {
     removeSuggestions();
 
@@ -66,11 +64,29 @@ function addChooseSuggestionEvent(input, suggestion) {
 }
 
 function addOpenSettingsDialogEvent(settingsButton) {
-  settingsButton.addEventListener("click", settings.renderSettingsDialog);
+  settingsButton.addEventListener("click", () => {
+    settingsDialog.showDialog();
+  });
 }
 
-// DOM Elements
+// - Settings dialog events
+function addWriteSettingsEvent(form) {
+  const inputs = Array.from(form.querySelectorAll("select"));
 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    writeInputSettings(inputs);
+    setWeather(); // Refresh weather
+  });
+}
+
+function addSubmitSettingsEvent(form, submitButton) {
+  submitButton.addEventListener("click", () => {
+    form.requestSubmit();
+  });
+}
+
+// Header
 function createAppTitle() {
   const title = document.createElement("h1");
   title.id = "app-title";
@@ -189,11 +205,123 @@ function createHeaderButtons() {
   return container;
 }
 
+function createSettingField(
+  inputId,
+  label,
+  icon,
+  settingsValue,
+  selectOptions = [{ name: "option-name", value: "option-value" }],
+) {
+  const container = document.createElement("div");
+  const fieldTitleContainer = document.createElement("div");
+  const fieldLabel = document.createElement("label");
+  const fieldIcon = document.createElement("span");
+  const selectInput = document.createElement("select");
+
+  container.className = "settings-field";
+  fieldTitleContainer.className = "field-title";
+  fieldLabel.className = "title";
+  fieldLabel.setAttribute("for", inputId);
+  fieldLabel.textContent = label;
+  fieldIcon.className = "icon";
+  fieldIcon.innerHTML = icon;
+
+  selectInput.id = inputId;
+  selectInput.name = inputId;
+
+  selectOptions.forEach((option) => {
+    const optionElement = document.createElement("option");
+    optionElement.textContent = option.name;
+    optionElement.value = option.value;
+    if (option.value === settingsValue) {
+      optionElement.setAttribute("selected", "selected");
+    }
+
+    selectInput.appendChild(optionElement);
+  });
+
+  fieldTitleContainer.appendChild(fieldIcon);
+  fieldTitleContainer.appendChild(fieldLabel);
+
+  container.appendChild(fieldTitleContainer);
+  container.appendChild(selectInput);
+
+  return container;
+}
+
+function setupSettingsDialogContent() {
+  const settings = readSettings();
+  const content = document.createElement("div");
+  const titleContainer = document.createElement("div");
+  const title = document.createElement("h1");
+  const form = document.createElement("form");
+  const units = createSettingField(
+    "units",
+    "Display units",
+    unitsSvg,
+    settings.units,
+    [
+      { name: "°C", value: "c" },
+      { name: "°F", value: "f" },
+    ],
+  );
+  const hourFormat = createSettingField(
+    "timeFormat",
+    "Time format",
+    timeFormatSvg,
+    settings.timeFormat,
+    [
+      { name: "24 hours", value: "24h" },
+      { name: "12 hours", value: "12h" },
+    ],
+  );
+  const autorefresh = createSettingField(
+    "autorefresh",
+    "Auto refresh",
+    autorefreshSvg,
+    settings.autorefresh,
+    [
+      { name: "1 hour", value: "1" },
+      { name: "3 hours", value: "3" },
+      { name: "5 hours", value: "5" },
+      { name: "12 hours", value: "12" },
+      { name: "24 hours", value: "24" },
+    ],
+  );
+
+  content.className = "content";
+
+  titleContainer.className = "title-container";
+  title.className = "title";
+  title.textContent = "Settings";
+
+  titleContainer.appendChild(title);
+
+  form.id = "settings";
+
+  form.appendChild(units);
+  form.appendChild(hourFormat);
+  form.appendChild(autorefresh);
+
+  content.appendChild(titleContainer);
+  content.appendChild(form);
+
+  // add events
+  addWriteSettingsEvent(form);
+
+  return content;
+}
+
 function renderHeader() {
   const header = document.createElement("header");
   header.appendChild(createAppTitle());
   header.appendChild(createChooseAreaInput("choose-area", "Choose area..."));
   header.appendChild(createHeaderButtons());
+
+  settingsDialog.setContent(setupSettingsDialogContent(), [
+    { classes: "primary", type: "submit", label: "Save changes" },
+    { classes: "secondary", type: "button", label: "Close" },
+  ]);
 
   document.body.appendChild(header);
 }
