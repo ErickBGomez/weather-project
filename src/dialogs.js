@@ -21,7 +21,7 @@ class Dialog {
   // Public methods
   setContent(
     content,
-    buttons = [{ name: "button", type: "button", label: "Button" }],
+    buttons = [{ classes: "button", type: "button", label: "Button" }],
   ) {
     const dialogButtons = document.createElement("div");
     dialogButtons.className = "buttons";
@@ -30,7 +30,7 @@ class Dialog {
 
     buttons.forEach((button) => {
       const buttonElement = document.createElement("button");
-      buttonElement.className = button.name;
+      buttonElement.className = button.classes;
       buttonElement.type = button.type;
       buttonElement.textContent = button.label;
       this.#addCloseEvent(buttonElement);

@@ -667,14 +667,14 @@ form#settings {
   font-weight: 400;
 }
 
-.dialog-buttons {
+dialog .buttons {
   margin-top: 12px;
   flex-direction: row-reverse;
   display: flex;
   gap: 8px;
 }
 
-.dialog-buttons > button {
+dialog .buttons > button {
   font-family: inherit;
   font-size: 0.7rem;
   padding: 8px 16px;
@@ -682,12 +682,12 @@ form#settings {
   font-weight: 600;
 }
 
-.dialog-buttons .primary {
+dialog .buttons .primary {
   background-color: var(--Primary);
   color: var(--White);
 }
 
-.dialog-buttons .secondary {
+dialog .buttons .secondary {
   border: 2px solid var(--Primary);
   color: var(--Primary);
 }

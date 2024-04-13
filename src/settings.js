@@ -114,7 +114,7 @@ function createDialogButtons(primaryLabel, secondaryLabel) {
   const primary = document.createElement("button");
   const secondary = document.createElement("button");
 
-  container.className = "dialog-buttons";
+  container.className = "buttons";
 
   primary.className = "primary";
   primary.type = "submit";

@@ -21,7 +21,10 @@ newDialog.setContent(
     text.textContent = "Text example";
     return text;
   })(),
-  [{ name: "close", type: "button", label: "Close dialog" }],
+  [
+    { classes: "ok primary", type: "button", label: "Ok" },
+    { classes: "close secondary", type: "button", label: "Close" },
+  ],
 );
 
 newDialog.showDialog();
