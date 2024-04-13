@@ -52,4 +52,9 @@ class Dialog {
   }
 }
 
+// Pending:
+// 1. Invoke dialogs
+// 2. Add custom events to dialog
+// 3. Create and add more content to other parts of the code
+
 export default Dialog;
