@@ -322,6 +322,10 @@ function renderHeader() {
     { classes: "primary", type: "submit", label: "Save changes" },
     { classes: "secondary", type: "button", label: "Close" },
   ]);
+  addSubmitSettingsEvent(
+    settingsDialog.getForm,
+    settingsDialog.getPrimaryButton,
+  );
 
   document.body.appendChild(header);
 }

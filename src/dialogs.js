@@ -7,6 +7,20 @@ class Dialog {
     this.#dialog = this.#setupDialog();
   }
 
+  // Getters
+
+  get getButtons() {
+    return Array.from(this.#dialog.querySelectorAll(".buttons button"));
+  }
+
+  get getPrimaryButton() {
+    return this.getButtons.find((button) => button.className === "primary");
+  }
+
+  get getForm() {
+    return this.#dialog.querySelector("form");
+  }
+
   // Private methods
   #setupDialog() {
     const dialog = document.createElement("dialog");
@@ -47,8 +61,9 @@ class Dialog {
   }
 
   closeDialog() {
+    if (!this.#dialog) return;
     this.#dialog.close();
-    document.body.removeChild(this.#dialog);
+    // document.body.removeChild(this.#dialog);
   }
 }
 
