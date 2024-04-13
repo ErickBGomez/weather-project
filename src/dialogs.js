@@ -4,24 +4,29 @@ class Dialog {
 
   constructor(id) {
     this.id = id;
+    this.#dialog = this.#setupDialog();
   }
 
   // Private methods
+  #setupDialog() {
+    const dialog = document.createElement("dialog");
+    dialog.id = this.id;
+    return dialog;
+  }
+
   #addCloseEvent(button) {
     button.addEventListener("click", () => this.closeDialog());
   }
 
   // Public methods
-  setDialogContent(
+  setContent(
     contentCallback,
     buttons = [{ name: "button", type: "button", label: "Button" }],
   ) {
-    const dialog = document.createElement("dialog");
-    dialog.id = this.id;
     const dialogButtons = document.createElement("div");
     dialogButtons.className = "buttons";
 
-    dialog.appendChild(contentCallback());
+    this.#dialog.appendChild(contentCallback());
 
     buttons.forEach((button) => {
       const buttonElement = document.createElement("button");
@@ -32,9 +37,7 @@ class Dialog {
       dialogButtons.appendChild(buttonElement);
     });
 
-    dialog.appendChild(dialogButtons);
-
-    this.#dialog = dialog;
+    this.#dialog.appendChild(dialogButtons);
   }
 
   showDialog() {

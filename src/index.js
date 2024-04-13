@@ -15,7 +15,7 @@ page.renderFooter();
 
 const newDialog = new Dialog("my-dialog");
 
-newDialog.setDialogContent(() => {
+newDialog.setContent(() => {
   const text = document.createElement("p");
   text.textContent = "Text example";
   return text;
