@@ -56,14 +56,17 @@ class Dialog {
 
   showDialog() {
     if (!this.#dialog) return;
-    document.body.appendChild(this.#dialog);
+
+    // Add dialog only once
+    if (!document.body.querySelector(`dialog#${this.#dialog.id}`)) {
+      document.body.appendChild(this.#dialog);
+    }
     this.#dialog.showModal();
   }
 
   closeDialog() {
     if (!this.#dialog) return;
     this.#dialog.close();
-    // document.body.removeChild(this.#dialog);
   }
 }
 
