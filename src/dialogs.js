@@ -7,6 +7,9 @@ class Dialog {
   }
 
   // Private methods
+  #addCloseEvent(button) {
+    button.addEventListener("click", () => this.closeDialog());
+  }
 
   // Public methods
   setDialogContent(
@@ -25,6 +28,7 @@ class Dialog {
       buttonElement.className = button.name;
       buttonElement.type = button.type;
       buttonElement.textContent = button.label;
+      this.#addCloseEvent(buttonElement);
       dialogButtons.appendChild(buttonElement);
     });
 
