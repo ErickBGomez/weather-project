@@ -20,13 +20,13 @@ class Dialog {
 
   // Public methods
   setContent(
-    contentCallback,
+    content,
     buttons = [{ name: "button", type: "button", label: "Button" }],
   ) {
     const dialogButtons = document.createElement("div");
     dialogButtons.className = "buttons";
 
-    this.#dialog.appendChild(contentCallback());
+    this.#dialog.appendChild(content);
 
     buttons.forEach((button) => {
       const buttonElement = document.createElement("button");

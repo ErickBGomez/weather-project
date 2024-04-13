@@ -15,10 +15,13 @@ page.renderFooter();
 
 const newDialog = new Dialog("my-dialog");
 
-newDialog.setContent(() => {
-  const text = document.createElement("p");
-  text.textContent = "Text example";
-  return text;
-}, [{ name: "close", type: "button", label: "Close dialog" }]);
+newDialog.setContent(
+  (() => {
+    const text = document.createElement("p");
+    text.textContent = "Text example";
+    return text;
+  })(),
+  [{ name: "close", type: "button", label: "Close dialog" }],
+);
 
 newDialog.showDialog();
