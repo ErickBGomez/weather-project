@@ -1,9 +1,14 @@
 class Dialog {
+  // Private methods
+  #dialog;
+
   constructor(id) {
     this.id = id;
-    this.dialog;
   }
 
+  // Private methods
+
+  // Public methods
   setDialogContent(
     contentCallback,
     buttons = [{ name: "button", type: "button", label: "Button" }],
@@ -25,19 +30,18 @@ class Dialog {
 
     dialog.appendChild(dialogButtons);
 
-    this.dialog = dialog;
-    console.log(this.dialog);
+    this.#dialog = dialog;
   }
 
   showDialog() {
-    if (!this.dialog) return;
-    document.body.appendChild(this.dialog);
-    this.dialog.showModal();
+    if (!this.#dialog) return;
+    document.body.appendChild(this.#dialog);
+    this.#dialog.showModal();
   }
 
   closeDialog() {
-    this.dialog.close();
-    document.body.removeChild(this.dialog);
+    this.#dialog.close();
+    document.body.removeChild(this.#dialog);
   }
 }
 
