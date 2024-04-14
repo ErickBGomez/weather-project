@@ -15,8 +15,11 @@ import getMoonPhaseIcon from "./moon-phases";
 import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
 import { fetchSearchSuggestions } from "./page";
+import Dialog from "./dialogs";
 
 let lastLocation;
+
+const alertBox = new Dialog("alert-box");
 
 // Fetch methods
 async function fetchWeather(query) {
@@ -27,13 +30,38 @@ async function fetchWeather(query) {
   return responseFetch.json();
 }
 
+function setAlertBoxContent() {
+  const content = document.createElement("div");
+  content.className = "content";
+  const title = document.createElement("p");
+  title.className = "title";
+  title.textContent = "Error";
+
+  const description = document.createElement("p");
+  description.className = "description";
+  description.textContent =
+    "The current location doesn't exist. Please enter another term";
+
+  content.appendChild(title);
+  content.appendChild(description);
+
+  return content;
+}
+
 // Events
 function addSearchEvent(form, input) {
+  alertBox.setContent(setAlertBoxContent(input.value), [
+    { classes: "primary", type: "button", label: "Ok" },
+  ]);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     // Check suggestions first before fetching an incorrect value to get the weather info
     const suggestions = await fetchSearchSuggestions(input.value);
-    if (!suggestions.length) return;
+    if (!suggestions.length) {
+      alertBox.showDialog();
+      return;
+    }
     setWeather(input.value);
     input.blur();
   });
