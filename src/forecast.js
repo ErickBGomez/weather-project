@@ -14,6 +14,7 @@ import getConditionIcon from "./conditions";
 import getMoonPhaseIcon from "./moon-phases";
 import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
+import { fetchSearchSuggestions } from "./page";
 
 let lastLocation;
 
@@ -28,8 +29,11 @@ async function fetchWeather(query) {
 
 // Events
 function addSearchEvent(form, input) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    // Check suggestions first before fetching an incorrect value to get the weather info
+    const suggestions = await fetchSearchSuggestions(input.value);
+    if (!suggestions.length) return;
     setWeather(input.value);
     input.blur();
   });

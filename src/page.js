@@ -352,4 +352,4 @@ function renderFooter() {
   document.body.appendChild(footer);
 }
 
-export { renderHeader, renderMain, renderFooter };
+export { renderHeader, renderMain, renderFooter, fetchSearchSuggestions };
