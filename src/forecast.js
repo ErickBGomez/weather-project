@@ -679,7 +679,7 @@ async function renderForecast(location) {
     main.innerHTML = "";
     main.appendChild(container);
   } catch (error) {
-    alert(`${location} not found!`);
+    alert("An error has ocurred");
     console.error(error);
   }
 }
