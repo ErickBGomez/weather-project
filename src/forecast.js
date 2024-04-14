@@ -39,6 +39,7 @@ function setAlertBoxContent() {
 
   const description = document.createElement("p");
   description.className = "description small-text";
+  // eslint-disable-next-line operator-linebreak
   description.textContent =
     "The current location doesn't exist. Please enter another term";
 
