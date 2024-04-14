@@ -692,6 +692,17 @@ dialog .buttons .secondary {
   color: var(--Primary);
 }
 
+/* Alert box */
+#alert-box {
+  max-width: 350px;
+}
+
+#alert-box .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
 /* Footer */
 footer {
   text-align: center;

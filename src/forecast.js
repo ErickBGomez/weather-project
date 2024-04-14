@@ -33,12 +33,12 @@ async function fetchWeather(query) {
 function setAlertBoxContent() {
   const content = document.createElement("div");
   content.className = "content";
-  const title = document.createElement("p");
+  const title = document.createElement("h1");
   title.className = "title";
   title.textContent = "Error";
 
   const description = document.createElement("p");
-  description.className = "description";
+  description.className = "description small-text";
   description.textContent =
     "The current location doesn't exist. Please enter another term";
 
