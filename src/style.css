@@ -770,6 +770,15 @@ a {
   text-decoration: none;
   font-weight: 600;
   color: var(--Primary);
+  transition: color 200ms;
+}
+
+a:hover {
+  color: var(--PrimaryHover);
+}
+
+a:active {
+  color: var(--PrimaryActive);
 }
 
 /* Animations */
