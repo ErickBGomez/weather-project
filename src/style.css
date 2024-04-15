@@ -811,4 +811,14 @@ a:active {
     padding: 45px 45px;
     column-gap: 12px;
   }
+
+  .double-section-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #day-forecast .condition .value {
+    display: none;
+  }
 }
