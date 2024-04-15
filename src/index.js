@@ -4,7 +4,7 @@ import * as forecast from "./forecast";
 import * as settings from "./settings";
 import Dialog from "./dialogs";
 
-const defaultLocation = "San Salvador";
+const defaultLocation = "London";
 
 settings.checkDefaultSettings();
 
