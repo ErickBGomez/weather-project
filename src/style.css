@@ -15,6 +15,8 @@
   --Black: #292a2e;
   --White: #f4f4f4;
   --Primary: #3a94e8;
+  --PrimaryHover: #75b0e7;
+  --PrimaryActive: #267ccc;
   --SmallTextBlack: #3e4755;
   --SmallTextWhite: #c0c8d1;
   --GrayText: #97a1ae;
@@ -83,16 +85,39 @@ button {
   background: none;
   border-radius: 8px;
   font-weight: 600;
+  user-select: none;
 }
 
 button.primary {
   background-color: var(--Primary);
   color: var(--White);
+  transition: background-color 200ms;
+}
+
+button.primary:hover {
+  background-color: var(--PrimaryHover);
+}
+
+button.primary:active {
+  background-color: var(--PrimaryActive);
 }
 
 button.secondary {
   border: 2px solid var(--Primary);
   color: var(--Primary);
+  transition:
+    border-color 200ms,
+    color 200ms;
+}
+
+button.secondary:hover {
+  border-color: var(--PrimaryHover);
+  color: var(--PrimaryHover);
+}
+
+button.secondary:active {
+  border-color: var(--PrimaryActive);
+  color: var(--PrimaryActive);
 }
 
 svg {
@@ -213,11 +238,6 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 #choose-area-button {
   padding: 11px;
   border-radius: 0 8px 8px 0;
-  transition: background-color 200ms;
-}
-
-#choose-area-button:hover {
-  background-color: #75b0e7;
 }
 
 #choose-area-button > svg {
