@@ -118,6 +118,7 @@ function createChooseAreaInput(id, placeholder) {
   searchSuggestions.className = "search-suggestions";
 
   button.id = "choose-area-button";
+  button.className = "primary";
   button.innerHTML = searchSvg;
 
   inputContainer.appendChild(input);

@@ -74,11 +74,25 @@ select {
 }
 
 button {
+  font-family: inherit;
+  font-size: 0.7rem;
   padding: 0;
   display: block;
   border: none;
   cursor: pointer;
   background: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+button.primary {
+  background-color: var(--Primary);
+  color: var(--White);
+}
+
+button.secondary {
+  border: 2px solid var(--Primary);
+  color: var(--Primary);
 }
 
 svg {
@@ -197,7 +211,6 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 }
 
 #choose-area-button {
-  background-color: var(--Primary);
   padding: 11px;
   border-radius: 0 8px 8px 0;
   transition: background-color 200ms;
@@ -708,22 +721,8 @@ dialog .buttons {
   gap: 8px;
 }
 
-dialog .buttons > button {
-  font-family: inherit;
-  font-size: 0.7rem;
+dialog button {
   padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-dialog .buttons .primary {
-  background-color: var(--Primary);
-  color: var(--White);
-}
-
-dialog .buttons .secondary {
-  border: 2px solid var(--Primary);
-  color: var(--Primary);
 }
 
 /* Alert box */
