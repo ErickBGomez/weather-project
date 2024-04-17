@@ -855,3 +855,9 @@ a:active {
     display: none;
   }
 }
+
+@media only screen and (max-width: 350px) {
+  #more-weather-info .title .label {
+    display: none;
+  }
+}
