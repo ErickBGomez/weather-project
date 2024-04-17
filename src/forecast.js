@@ -57,6 +57,7 @@ function addSearchEvent(form, input) {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!input.value) return;
     // Check suggestions first before fetching an incorrect value to get the weather info
     const suggestions = await fetchSearchSuggestions(input.value);
     if (!suggestions.length) {
