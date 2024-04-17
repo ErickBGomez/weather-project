@@ -852,7 +852,8 @@ a:active {
 }
 
 @media only screen and (max-width: 500px) {
-  #search-form {
+  #search-form,
+  .header-buttons {
     display: none;
   }
 }
