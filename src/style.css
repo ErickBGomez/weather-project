@@ -853,6 +853,50 @@ a:active {
   .header-buttons {
     display: none;
   }
+
+  #current-weather {
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(2, auto);
+    padding: 45px 65px;
+  }
+
+  #current-weather .condition-icon {
+    grid-row: 1/2;
+  }
+
+  #current-weather .condition-icon svg {
+    max-width: 80px;
+    min-height: 80px;
+  }
+
+  #current-weather .current-temp .value {
+    font-size: 1.8rem;
+  }
+
+  #current-weather .other-temps {
+    grid-column: 2/-1;
+    grid-row: 2/ -1;
+  }
+
+  #current-weather .location,
+  #current-weather .current-temp {
+    justify-self: start;
+  }
+
+  #current-weather .condition-icon,
+  #current-weather .other-temps {
+    justify-self: end;
+  }
+
+  #current-weather .current-temp,
+  #current-weather .other-temps {
+    align-self: end;
+  }
+
+  #current-weather .location,
+  #current-weather .condition-icon {
+    align-self: start;
+  }
 }
 
 @media only screen and (max-width: 418px) {
@@ -866,4 +910,5 @@ a:active {
   Define a current-weather phone design
   Dont wrap sunrise and sunset
   Add header sidebar 
+  Add search icon to header
 */
