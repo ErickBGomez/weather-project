@@ -307,6 +307,7 @@ main {
 
 #forecast section {
   border-radius: 16px;
+  overflow-x: scroll;
 }
 
 #forecast section:not(#current-weather) {
@@ -435,7 +436,6 @@ main {
   align-items: center;
   column-gap: 24px;
   row-gap: 20px;
-  overflow-x: scroll;
 }
 
 #day-forecast .condition,
@@ -838,12 +838,12 @@ a:active {
   }
 }
 
-@media only screen and (max-width: 580px) {
+/* @media only screen and (max-width: 580px) {
   #current-weather .condition-icon > svg {
-    /* Keep testing this part */
+     Keep testing this part 
     max-width: 30vw;
   }
-}
+} */
 
 @media only screen and (max-width: 550px) {
   #day-forecast .condition .value {
