@@ -813,7 +813,16 @@ a:active {
 }
 
 /* Media queries */
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 600px) {
+  #current-weather {
+    padding: 45px 45px;
+    column-gap: 12px;
+  }
+
+  .double-section-container {
+    flex-direction: column;
+  }
+
   #more-weather-info {
     flex-direction: column;
     gap: 20px;
@@ -823,17 +832,6 @@ a:active {
     padding: 0;
     margin: 0;
     border: none;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  #current-weather {
-    padding: 45px 45px;
-    column-gap: 12px;
-  }
-
-  .double-section-container {
-    flex-direction: column;
   }
 }
 
