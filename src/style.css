@@ -307,7 +307,6 @@ main {
 
 #forecast section {
   border-radius: 16px;
-  overflow-x: scroll;
 }
 
 #forecast section:not(#current-weather) {
@@ -855,6 +854,12 @@ a:active {
   #search-form,
   .header-buttons {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 418px) {
+  #forecast section {
+    overflow-x: scroll;
   }
 }
 
