@@ -435,6 +435,7 @@ main {
   align-items: center;
   column-gap: 24px;
   row-gap: 20px;
+  overflow-x: scroll;
 }
 
 #day-forecast .condition,
