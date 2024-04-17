@@ -858,12 +858,6 @@ a:active {
   }
 }
 
-@media only screen and (max-width: 350px) {
-  #more-weather-info .title .label {
-    display: none;
-  }
-}
-
 /* TODO:
   Change font size to phone design
   Define a current-weather phone design
