@@ -22,6 +22,9 @@
   --GrayText: #97a1ae;
   --Divider: #d0d7e0;
   --Rain: #3981c5;
+  --Snow: #d6eff7;
+  --RainContrast: #68b1f5;
+  --SnowContrast: #307c96;
   --UvIndex: #9967da;
   --Footer: #232629;
   --Background: #283454;
@@ -799,6 +802,16 @@ a:hover {
 
 a:active {
   color: var(--PrimaryActive);
+}
+
+/* SVG fill colors */
+#current-weather.day .condition-icon .raindrop {
+  fill: var(--RainContrast) !important;
+}
+
+#hour-forecast .condition-icon .snowflake,
+#day-forecast .condition .icon .snowflake {
+  fill: var(--SnowContrast) !important;
 }
 
 /* Animations */
