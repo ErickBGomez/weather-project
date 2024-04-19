@@ -25,22 +25,27 @@
          id="g59">
         <path
            id="path48"
+           class="snowflake"
            style="fill:#d6eff7;fill-opacity:1;stroke-width:1.852;stroke-linecap:round;paint-order:stroke fill markers"
            d="m 153.60035,106.8374 a 1.6933334,1.6933334 0 0 1 -1.69334,1.69334 1.6933334,1.6933334 0 0 1 -1.69333,-1.69334 1.6933334,1.6933334 0 0 1 1.69333,-1.69333 1.6933334,1.6933334 0 0 1 1.69334,1.69333 z" />
         <path
            id="path48-2"
+           class="snowflake"
            style="fill:#d6eff7;fill-opacity:1;stroke-width:1.852;stroke-linecap:round;paint-order:stroke fill markers"
            d="m 150.19727,111.9174 a 1.6933334,1.6933334 0 0 1 -1.69333,1.69333 1.6933334,1.6933334 0 0 1 -1.69334,-1.69333 1.6933334,1.6933334 0 0 1 1.69334,-1.69334 1.6933334,1.6933334 0 0 1 1.69333,1.69334 z" />
         <path
            id="path48-2-6"
+           class="snowflake"
            style="fill:#d6eff7;fill-opacity:1;stroke-width:1.852;stroke-linecap:round;paint-order:stroke fill markers"
            d="m 143.42394,111.9174 a 1.6933334,1.6933334 0 0 1 -1.69333,1.69333 1.6933334,1.6933334 0 0 1 -1.69334,-1.69333 1.6933334,1.6933334 0 0 1 1.69334,-1.69334 1.6933334,1.6933334 0 0 1 1.69333,1.69334 z" />
         <path
            id="path48-4"
+           class="snowflake"
            style="fill:#d6eff7;fill-opacity:1;stroke-width:1.852;stroke-linecap:round;paint-order:stroke fill markers"
            d="m 146.81061,106.8374 a 1.6933334,1.6933334 0 0 1 -1.69333,1.69334 1.6933334,1.6933334 0 0 1 -1.69333,-1.69334 1.6933334,1.6933334 0 0 1 1.69333,-1.69333 1.6933334,1.6933334 0 0 1 1.69333,1.69333 z" />
         <path
            id="path48-4-7"
+           class="snowflake"
            style="fill:#d6eff7;fill-opacity:1;stroke-width:1.852;stroke-linecap:round;paint-order:stroke fill markers"
            d="m 140.02088,106.8374 a 1.6933334,1.6933334 0 0 1 -1.69333,1.69334 1.6933334,1.6933334 0 0 1 -1.69334,-1.69334 1.6933334,1.6933334 0 0 1 1.69334,-1.69333 1.6933334,1.6933334 0 0 1 1.69333,1.69333 z" />
       </g>

@@ -19,14 +19,17 @@
        transform="translate(-4.7315064e-5,1.5980751)">
       <path
          id="path1"
+         class="raindrop"
          style="fill:#3981c5;fill-opacity:1;stroke-width:1.97547;stroke-linecap:round;paint-order:stroke fill markers"
          d="m 65.654975,105.47146 c 0,0.78832 -0.653135,1.42739 -1.458817,1.42739 -0.805682,0 -1.458817,-0.63907 -1.458816,-1.42739 -10e-7,-0.78831 1.458816,-2.46279 1.458816,-2.46279 0,0 1.458817,1.67448 1.458817,2.46279 z" />
       <path
          id="path1-9"
+         class="raindrop"
          style="fill:#3981c5;fill-opacity:1;stroke-width:3.56557;stroke-linecap:round;paint-order:stroke fill markers"
          d="m 62.208175,110.81482 c 0,1.42285 -1.178855,2.57632 -2.633046,2.57632 -1.454192,0 -2.633046,-1.15347 -2.633045,-2.57632 -1e-6,-1.42284 2.633045,-4.44514 2.633045,-4.44514 0,0 2.633046,3.0223 2.633046,4.44514 z" />
       <path
          id="path1-9-0"
+         class="raindrop"
          style="fill:#3981c5;fill-opacity:1;stroke-width:2.63397;stroke-linecap:round;paint-order:stroke fill markers"
          d="m 56.633486,105.10151 c 0,1.05108 -0.870846,1.90317 -1.945089,1.90317 -1.074242,0 -1.945088,-0.85209 -1.945087,-1.90317 -10e-7,-1.05109 1.945087,-3.28373 1.945087,-3.28373 0,0 1.945089,2.23264 1.945089,3.28373 z" />
       <path
