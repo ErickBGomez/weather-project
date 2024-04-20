@@ -326,7 +326,7 @@ main {
   justify-content: space-between;
   row-gap: 32px;
   column-gap: 50px;
-  padding: 45px 90px;
+  padding: 45px clamp(25px, 12vw, 90px);
 }
 
 #current-weather.day {
@@ -366,9 +366,9 @@ main {
   grid-row: 1 / -1;
 }
 
-#current-weather .condition-icon > svg {
-  max-width: 250px;
-  min-height: 250px;
+#current-weather .condition-icon svg {
+  max-width: clamp(90px, 33.3vw, 250px);
+  min-height: clamp(90px, 33.3vw, 250px);
 }
 
 #current-weather.day .condition-icon > svg {
@@ -826,9 +826,6 @@ a:active {
 }
 
 @media only screen and (max-width: 750px) {
-  #current-weather {
-    padding: 45px clamp(25px, 12vw, 90px);
-  }
 }
 
 /* Media queries */
