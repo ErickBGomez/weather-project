@@ -850,13 +850,6 @@ a:active {
   }
 }
 
-/* @media only screen and (max-width: 580px) {
-  #current-weather .condition-icon > svg {
-     Keep testing this part 
-    max-width: 30vw;
-  }
-} */
-
 @media only screen and (max-width: 550px) {
   #day-forecast {
     column-gap: 10px;
