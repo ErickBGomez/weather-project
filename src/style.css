@@ -825,10 +825,15 @@ a:active {
   }
 }
 
+@media only screen and (max-width: 750px) {
+  #current-weather {
+    padding: 45px clamp(25px, 12vw, 90px);
+  }
+}
+
 /* Media queries */
 @media only screen and (max-width: 600px) {
   #current-weather {
-    padding: 45px 45px;
     column-gap: 12px;
   }
 
@@ -870,7 +875,6 @@ a:active {
   #current-weather {
     grid-template-rows: repeat(2, auto);
     grid-template-columns: repeat(2, auto);
-    padding: 45px 65px;
   }
 
   #current-weather .condition-icon {
