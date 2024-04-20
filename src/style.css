@@ -858,6 +858,10 @@ a:active {
 } */
 
 @media only screen and (max-width: 550px) {
+  #day-forecast {
+    column-gap: 10px;
+  }
+
   #day-forecast .condition .value {
     display: none;
   }
