@@ -814,6 +814,10 @@ dialog button {
   margin-right: 16px;
 }
 
+#alert-box button {
+  padding: 8px 24px;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -947,11 +951,45 @@ a:active {
     align-self: start;
   }
 }
-
 @media only screen and (max-width: 400px) {
   header {
-    column-gap: 2px;
+    column-gap: 6px;
     padding: 16px 8px;
+  }
+
+  #settings-dialog form#settings {
+    gap: 24px;
+  }
+
+  #settings-dialog .settings-field {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #settings-dialog .field-title {
+    align-self: start;
+  }
+
+  #settings-dialog select {
+    align-self: stretch;
+    max-width: 100%;
+  }
+
+  #settings-dialog .buttons {
+    align-items: stretch;
+  }
+
+  #settings-dialog .buttons button {
+    width: 100%;
+  }
+
+  #settings-dialog .buttons button,
+  #settings-dialog select {
+    padding: 12px 16px;
+  }
+
+  #alert-box button {
+    padding: 12px 32px;
   }
 }
 
