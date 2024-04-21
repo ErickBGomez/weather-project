@@ -129,7 +129,7 @@ function createChooseAreaInput(id, placeholder) {
 
   searchSuggestions.className = "search-suggestions";
 
-  button.id = "choose-area-button";
+  button.id = "search-location-button";
   button.className = "primary";
   button.innerHTML = searchSvg;
 
@@ -328,7 +328,7 @@ function setupSettingsDialogContent() {
 function renderHeader() {
   const header = document.createElement("header");
   header.appendChild(createAppTitle());
-  header.appendChild(createChooseAreaInput("choose-area", "Search"));
+  header.appendChild(createChooseAreaInput("search-location", "Search"));
   header.appendChild(createHeaderButtons());
 
   settingsDialog.setContent(setupSettingsDialogContent(), [

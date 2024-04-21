@@ -274,12 +274,12 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
   color: var(--GrayText);
 }
 
-#choose-area-button {
+#search-location-button {
   padding: 11px;
   border-radius: 0 8px 8px 0;
 }
 
-#choose-area-button > svg {
+#search-location-button > svg {
   width: 24px;
   height: 24px;
   fill: var(--White);
@@ -949,7 +949,7 @@ a:active {
     display: none;
   }
 
-  #choose-area-button {
+  #search-location-button {
     padding: 10px;
   }
 
@@ -967,7 +967,7 @@ a:active {
 }
 
 @media only screen and (max-width: 200px) {
-  #choose-area {
+  #search-location {
     padding: 10px 9px;
     border: 1px solid var(--SmallTextBlack);
     border-radius: 8px;
@@ -977,7 +977,7 @@ a:active {
     display: none;
   }
 
-  #choose-area-button {
+  #search-location-button {
     display: none;
   }
 }
