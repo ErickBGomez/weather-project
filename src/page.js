@@ -328,7 +328,7 @@ function setupSettingsDialogContent() {
 function renderHeader() {
   const header = document.createElement("header");
   header.appendChild(createAppTitle());
-  header.appendChild(createChooseAreaInput("choose-area", "Choose area..."));
+  header.appendChild(createChooseAreaInput("choose-area", "Search"));
   header.appendChild(createHeaderButtons());
 
   settingsDialog.setContent(setupSettingsDialogContent(), [
