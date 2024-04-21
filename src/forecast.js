@@ -1,4 +1,4 @@
-import searchErrorSvg from "./img/ui/search.svg";
+import searchErrorSvg from "./img/ui/search-error.svg";
 import rainSvg from "./img/ui/rain.svg";
 import humidityOverlaySvg from "./img/ui/humidity-overlay.svg";
 import uvOverlaySvg from "./img/ui/uv-overlay.svg";
