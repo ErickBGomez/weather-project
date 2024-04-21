@@ -15,11 +15,11 @@
     <linearGradient
        id="linearGradient1">
       <stop
-         style="stop-color:#72b6dd;stop-opacity:1;"
+         style="stop-color:#78b6d7;stop-opacity:1;"
          offset="0.0937312"
          id="stop1" />
       <stop
-         style="stop-color:#166eb0;stop-opacity:1;"
+         style="stop-color:#2a90d4;stop-opacity:1;"
          offset="0.84257984"
          id="stop2" />
     </linearGradient>
@@ -31,21 +31,21 @@
        x2="32.808331"
        y2="32.808331"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(1.0093053e-6)" />
+       gradientTransform="matrix(1.0666668,0,0,1.0666668,-1.1288889,-1.1288889)" />
   </defs>
   <g
      id="layer1">
     <rect
-       style="fill:url(#linearGradient2);stroke:none;stroke-width:4.23333;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       style="fill:url(#linearGradient2);stroke:none;stroke-width:4.51555;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
        id="rect1"
-       width="31.749998"
-       height="31.749998"
-       x="1.0583342"
-       y="1.0583342"
-       ry="6.349999" />
+       width="33.866665"
+       height="33.866665"
+       x="4.6629367e-15"
+       y="4.6629367e-15"
+       ry="6.7733331" />
     <g
        id="g62"
-       transform="translate(-0.45161569,-1.5899909)">
+       transform="matrix(0.9,0,0,0.9,1.2868792,0.26234152)">
       <path
          id="path9-8"
          style="fill:#e3c063;fill-opacity:1;stroke-width:1.91246"
