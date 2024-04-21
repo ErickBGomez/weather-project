@@ -1,3 +1,7 @@
+import Storage from "./storage";
+
+const settingsMemory = new Storage("settings");
+
 const defaultSettings = {
   units: "c",
   timeFormat: "12h",
@@ -6,7 +10,7 @@ const defaultSettings = {
 
 // Events
 function writeSettings(settings) {
-  localStorage.setItem("settings", JSON.stringify(settings));
+  settingsMemory.saveItem(settings);
 }
 
 function writeInputSettings(inputs) {

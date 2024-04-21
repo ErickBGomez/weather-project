@@ -19,10 +19,8 @@ import { fetchSearchSuggestions, removeSuggestions } from "./page";
 import Dialog from "./dialogs";
 import Storage from "./storage";
 
-let lastLocation;
-
 const alertBox = new Dialog("alert-box");
-const storage = new Storage("lastLocation");
+const locationMemory = new Storage("lastLocation");
 
 // Fetch methods
 async function fetchWeather(query) {
@@ -696,10 +694,16 @@ async function renderForecast(location) {
   }
 }
 
-function setWeather(location = lastLocation) {
-  // Save last location on every invocation
-  lastLocation = location;
-  storage.saveItem(lastLocation);
+function setWeather(location) {
+  // Save current location query
+  // If there's not any location saved. Use default location "London".
+  if (!location) {
+    location = locationMemory.checkSavedItem()
+      ? locationMemory.getItem()
+      : "London";
+  }
+
+  locationMemory.saveItem(location);
 
   let forecastRefresh;
   // Interval from hours to miliseconds

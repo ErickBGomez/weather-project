@@ -1,19 +1,24 @@
 class Storage {
+  #savedItem;
+
   constructor(name) {
     this.name = name;
   }
 
   saveItem(item) {
+    this.#savedItem = item;
+
     if (typeof item === "object") {
-      localStorage.setItem(this.name, JSON.stringify(item));
+      localStorage.setItem(this.name, JSON.stringify(this.#savedItem));
       return;
     }
 
-    localStorage.setItem(this.name, item);
+    localStorage.setItem(this.name, this.#savedItem);
   }
 
   getItem() {
-    if (typeof item === "object") {
+    if (typeof this.#savedItem === "object") {
+      console.log("object");
       return JSON.parse(localStorage.getItem(this.name));
     }
 
