@@ -161,7 +161,7 @@ svg {
 
 header {
   display: grid;
-  grid-template-columns: 1fr minmax(225px, 325px) 1fr;
+  grid-template-columns: 1fr minmax(0px, 325px) 1fr;
   justify-content: space-between;
   align-items: center;
   background-color: var(--White);
@@ -841,6 +841,13 @@ a:active {
 }
 
 /* Media queries */
+/* Change this media query when setting final app name */
+@media only screen and (max-width: 950px) {
+  #app-title .label {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   #current-weather {
     column-gap: 12px;
@@ -875,10 +882,6 @@ a:active {
 @media only screen and (max-width: 500px) {
   header {
     grid-template-columns: repeat(2, auto);
-  }
-
-  #search-form {
-    display: none;
   }
 
   #current-weather {
