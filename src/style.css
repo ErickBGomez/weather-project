@@ -161,7 +161,7 @@ svg {
 
 header {
   display: grid;
-  grid-template-columns: 1fr minmax(225px, 325px) 1fr;
+  grid-template-columns: 1fr minmax(0px, 325px) 1fr;
   justify-content: space-between;
   align-items: center;
   background-color: var(--White);
@@ -170,8 +170,23 @@ header {
 }
 
 #app-title {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+#app-title .label {
   font-size: 1rem;
   font-weight: 600;
+}
+
+#app-title .icon {
+  padding: 6px;
+}
+
+#app-title .icon svg {
+  max-width: 34px;
+  min-height: 34px;
 }
 
 header form {
@@ -285,8 +300,8 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 }
 
 .settings-button > svg {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   fill: black;
 }
 
@@ -826,6 +841,13 @@ a:active {
 }
 
 /* Media queries */
+/* Change this media query when setting final app name */
+@media only screen and (max-width: 950px) {
+  #app-title .label {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   #current-weather {
     column-gap: 12px;
@@ -858,9 +880,8 @@ a:active {
 }
 
 @media only screen and (max-width: 500px) {
-  #search-form,
-  .header-buttons {
-    display: none;
+  header {
+    grid-template-columns: repeat(2, auto);
   }
 
   #current-weather {
