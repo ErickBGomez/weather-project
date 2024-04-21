@@ -925,12 +925,6 @@ a:active {
   }
 }
 
-@media only screen and (max-width: 418px) {
-  #forecast section {
-    overflow-x: scroll;
-  }
-}
-
 @media only screen and (max-width: 350px) {
   :root {
     font-size: 20px;
@@ -944,6 +938,10 @@ a:active {
 
   header #app-title {
     display: none;
+  }
+
+  #forecast section {
+    overflow-x: scroll;
   }
 
   #forecast section:not(#current-weather) {
