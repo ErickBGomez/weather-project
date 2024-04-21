@@ -858,8 +858,11 @@ a:active {
 }
 
 @media only screen and (max-width: 500px) {
-  #search-form,
-  .header-buttons {
+  header {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  #search-form {
     display: none;
   }
 
