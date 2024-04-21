@@ -965,3 +965,19 @@ a:active {
     padding: 24px 12px;
   }
 }
+
+@media only screen and (max-width: 200px) {
+  #choose-area {
+    padding: 10px 9px;
+    border: 1px solid var(--SmallTextBlack);
+    border-radius: 8px;
+  }
+
+  .clear-input {
+    display: none;
+  }
+
+  #choose-area-button {
+    display: none;
+  }
+}
