@@ -838,7 +838,7 @@ a:active {
 
 /* Media queries */
 /* Change this media query when setting final app name */
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 850px) {
   #app-title .label {
     display: none;
   }

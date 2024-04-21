@@ -96,7 +96,7 @@ function createAppTitle() {
   container.id = "app-title";
 
   label.className = "label";
-  label.textContent = "The Weather App";
+  label.textContent = "Weather App";
 
   icon.className = "icon";
   icon.innerHTML = appIcon;

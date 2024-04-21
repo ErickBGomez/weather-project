@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Weather Project | Erick B. Gómez",
+      title: "Weather App | Erick B. Gómez",
       favicon: "./src/img/favicon.svg",
     }),
   ],
