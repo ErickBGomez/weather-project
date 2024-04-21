@@ -16,7 +16,6 @@ async function fetchSearchSuggestions(query) {
   const responseFetch = await fetch(
     `https://api.weatherapi.com/v1/search.json?key=d9bcc94c28e04844af1222420240303&q=${query}`,
   );
-
   return responseFetch.json();
 }
 
@@ -31,6 +30,7 @@ function addClearInputEvent(clear, input) {
 
 function addSuggestionsBehaviorEvent(input, searchSuggestions) {
   let searchTimeout;
+  const suggestionsDelay = 500;
 
   input.addEventListener("input", () => {
     // Reset timer when input event triggers
@@ -42,7 +42,7 @@ function addSuggestionsBehaviorEvent(input, searchSuggestions) {
     if (!input.value) return;
     searchTimeout = setTimeout(
       () => addSuggestions(input, searchSuggestions),
-      500,
+      suggestionsDelay,
     );
   });
 
@@ -365,4 +365,10 @@ function renderFooter() {
   document.body.appendChild(footer);
 }
 
-export { renderHeader, renderMain, renderFooter, fetchSearchSuggestions };
+export {
+  renderHeader,
+  renderMain,
+  renderFooter,
+  fetchSearchSuggestions,
+  removeSuggestions,
+};

@@ -15,7 +15,7 @@ import getConditionIcon from "./conditions";
 import getMoonPhaseIcon from "./moon-phases";
 import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
-import { fetchSearchSuggestions } from "./page";
+import { fetchSearchSuggestions, removeSuggestions } from "./page";
 import Dialog from "./dialogs";
 
 let lastLocation;
@@ -68,10 +68,12 @@ function addSearchEvent(form, input) {
     if (!input.value) return;
     // Check suggestions first before fetching an incorrect value to get the weather info
     const suggestions = await fetchSearchSuggestions(input.value);
+
     if (!suggestions.length) {
       alertBox.showDialog();
       return;
     }
+    removeSuggestions();
     setWeather(input.value);
     input.blur();
   });
