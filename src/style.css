@@ -786,7 +786,7 @@ dialog button {
 
 /* Alert box */
 #alert-box {
-  max-width: 480px;
+  width: 480px;
 }
 
 #alert-box .content {
@@ -986,6 +986,18 @@ a:active {
   #settings-dialog .buttons button,
   #settings-dialog select {
     padding: 12px 16px;
+  }
+
+  #alert-box .content {
+    column-gap: 16px;
+  }
+
+  #alert-box .icon {
+    margin: 0;
+  }
+
+  #alert-box .description {
+    margin: 0;
   }
 
   #alert-box button {
