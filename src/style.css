@@ -786,7 +786,7 @@ dialog button {
 
 /* Alert box */
 #alert-box {
-  max-width: 500px;
+  max-width: 480px;
 }
 
 #alert-box .content {
@@ -805,8 +805,13 @@ dialog button {
 }
 
 #alert-box .icon {
+  margin-left: 16px;
   width: 56px;
   aspect-ratio: 1/1;
+}
+
+#alert-box .description {
+  margin-right: 16px;
 }
 
 /* Footer */
