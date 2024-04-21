@@ -227,6 +227,7 @@ input[type="search"]:not(:placeholder-shown) + .clear-input {
 
 .search-suggestions {
   position: absolute;
+  z-index: 1;
   top: 50px;
   background-color: #fff;
   width: 100%;
@@ -933,6 +934,16 @@ a:active {
 @media only screen and (max-width: 350px) {
   :root {
     font-size: 20px;
+  }
+
+  header {
+    grid-template-columns: 1fr auto;
+    column-gap: 2px;
+    padding: 16px 8px;
+  }
+
+  header #app-title {
+    display: none;
   }
 
   #forecast section:not(#current-weather) {
