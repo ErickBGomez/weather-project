@@ -180,6 +180,10 @@ header {
   font-weight: 600;
 }
 
+#app-title .icon {
+  padding: 0 6px;
+}
+
 #app-title .icon svg {
   max-width: 40px;
   min-height: 40px;
@@ -925,6 +929,13 @@ a:active {
   }
 }
 
+@media only screen and (max-width: 400px) {
+  header {
+    column-gap: 2px;
+    padding: 16px 8px;
+  }
+}
+
 @media only screen and (max-width: 350px) {
   :root {
     font-size: 20px;
@@ -932,8 +943,6 @@ a:active {
 
   header {
     grid-template-columns: 1fr auto;
-    column-gap: 2px;
-    padding: 16px 8px;
   }
 
   header #app-title {
