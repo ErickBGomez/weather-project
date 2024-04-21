@@ -1,3 +1,4 @@
+import appIcon from "./img/erick-notepad.svg";
 import searchSvg from "./img/ui/search.svg";
 import settingsSvg from "./img/ui/settings.svg";
 import closeSvg from "./img/ui/close.svg";
@@ -88,11 +89,22 @@ function addSubmitSettingsEvent(form, submitButton) {
 
 // Header
 function createAppTitle() {
-  const title = document.createElement("h1");
-  title.id = "app-title";
-  title.textContent = "The Weather App";
+  const container = document.createElement("div");
+  const label = document.createElement("h1");
+  const icon = document.createElement("span");
 
-  return title;
+  container.id = "app-title";
+
+  label.className = "label";
+  label.textContent = "The Weather App";
+
+  icon.className = "icon";
+  icon.innerHTML = appIcon;
+
+  container.appendChild(icon);
+  container.appendChild(label);
+
+  return container;
 }
 
 function createChooseAreaInput(id, placeholder) {
