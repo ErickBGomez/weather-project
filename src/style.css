@@ -786,13 +786,27 @@ dialog button {
 
 /* Alert box */
 #alert-box {
-  max-width: 350px;
+  max-width: 500px;
+}
+
+#alert-box .content {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: repeat(2, min-content);
+  gap: 10px 30px;
+  align-items: center;
 }
 
 #alert-box .title {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 12px;
+  grid-column: 1 / -1;
+}
+
+#alert-box .icon {
+  width: 56px;
+  aspect-ratio: 1/1;
 }
 
 /* Footer */

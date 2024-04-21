@@ -1,3 +1,4 @@
+import searchErrorSvg from "./img/ui/search.svg";
 import rainSvg from "./img/ui/rain.svg";
 import humidityOverlaySvg from "./img/ui/humidity-overlay.svg";
 import uvOverlaySvg from "./img/ui/uv-overlay.svg";
@@ -32,18 +33,25 @@ async function fetchWeather(query) {
 
 function setAlertBoxContent() {
   const content = document.createElement("div");
-  content.className = "content";
   const title = document.createElement("h1");
-  title.className = "title";
-  title.textContent = "Error";
-
+  const icon = document.createElement("span");
   const description = document.createElement("p");
+
+  content.className = "content";
+
+  title.className = "title";
+  title.textContent = "Oops! Error";
+
+  icon.className = "icon";
+  icon.innerHTML = searchErrorSvg;
+
   description.className = "description small-text";
   // eslint-disable-next-line operator-linebreak
   description.textContent =
-    "The current location doesn't exist. Please enter another term";
+    "It seems like the location you entered doesn't exist. Please try again with a different location.";
 
   content.appendChild(title);
+  content.appendChild(icon);
   content.appendChild(description);
 
   return content;
