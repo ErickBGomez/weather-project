@@ -651,7 +651,6 @@ async function renderForecast(location) {
     renderLoadingScreen();
 
     const weather = await fetchWeather(location);
-    console.log(weather);
 
     const settings = readSettings();
 

@@ -9,10 +9,7 @@ async function getConditionIcon(conditionCode, isDay = true) {
   });
 
   // Return empty string if conditionCode doesn't exist
-  if (!currentCondition) {
-    console.log(`${conditionCode} not added yet!`);
-    return "";
-  }
+  if (!currentCondition) return "";
 
   // If the condition contains time-based icons, return their corresponding icon
   // (example, clear-day and clear-night)
