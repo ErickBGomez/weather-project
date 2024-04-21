@@ -17,11 +17,12 @@ import getSunPositionIcon from "./sun-position";
 import * as time from "./time";
 import { fetchSearchSuggestions, removeSuggestions } from "./page";
 import Dialog from "./dialogs";
-import * as storage from "./storage";
+import Storage from "./storage";
 
 let lastLocation;
 
 const alertBox = new Dialog("alert-box");
+const storage = new Storage("lastLocation");
 
 // Fetch methods
 async function fetchWeather(query) {
@@ -698,7 +699,7 @@ async function renderForecast(location) {
 function setWeather(location = lastLocation) {
   // Save last location on every invocation
   lastLocation = location;
-  storage.setLastLocation(lastLocation);
+  storage.saveItem(lastLocation);
 
   let forecastRefresh;
   // Interval from hours to miliseconds

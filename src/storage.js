@@ -1,13 +1,28 @@
-function setLastLocation(location) {
-  localStorage.setItem("lastLocation", location);
+class Storage {
+  constructor(name) {
+    this.name = name;
+  }
+
+  saveItem(item) {
+    if (typeof item === "object") {
+      localStorage.setItem(this.name, JSON.stringify(item));
+      return;
+    }
+
+    localStorage.setItem(this.name, item);
+  }
+
+  getItem() {
+    if (typeof item === "object") {
+      return JSON.parse(localStorage.getItem(this.name));
+    }
+
+    return localStorage.getItem(this.name);
+  }
+
+  checkSavedItem() {
+    return Boolean(this.getItem());
+  }
 }
 
-function getLastLocation() {
-  return localStorage.getItem("lastLocation");
-}
-
-function checkLastLocation() {
-  return Boolean(getLastLocation());
-}
-
-export { setLastLocation, getLastLocation, checkLastLocation };
+export default Storage;
