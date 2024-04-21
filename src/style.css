@@ -877,7 +877,7 @@ a:active {
 
 @media only screen and (max-width: 500px) {
   header {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
   }
 
   #current-weather {
