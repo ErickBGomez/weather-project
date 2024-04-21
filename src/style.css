@@ -949,6 +949,14 @@ a:active {
     display: none;
   }
 
+  #choose-area-button {
+    padding: 10px;
+  }
+
+  .clear-input {
+    top: 9px;
+  }
+
   #forecast section {
     overflow-x: scroll;
   }
