@@ -1,4 +1,4 @@
-import appIcon from "./img/erick-notepad.svg";
+import appIcon from "./img/favicon.svg";
 import searchSvg from "./img/ui/search.svg";
 import settingsSvg from "./img/ui/settings.svg";
 import closeSvg from "./img/ui/close.svg";

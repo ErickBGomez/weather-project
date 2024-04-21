@@ -171,7 +171,7 @@ header {
 
 #app-title {
   display: flex;
-  gap: 6px;
+  gap: 12px;
   align-items: center;
 }
 
@@ -180,13 +180,9 @@ header {
   font-weight: 600;
 }
 
-#app-title .icon {
-  padding: 6px;
-}
-
 #app-title .icon svg {
-  max-width: 34px;
-  min-height: 34px;
+  max-width: 40px;
+  min-height: 40px;
 }
 
 header form {
