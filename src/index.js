@@ -2,8 +2,11 @@ import "./style.css";
 import * as page from "./page";
 import * as forecast from "./forecast";
 import * as settings from "./settings";
+import * as storage from "./storage";
 
-const defaultLocation = "London";
+const defaultLocation = !storage.checkLastLocation()
+  ? "London"
+  : storage.getLastLocation();
 
 settings.checkDefaultSettings();
 
