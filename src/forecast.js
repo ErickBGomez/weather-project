@@ -203,9 +203,10 @@ function createCurrentWeather(
 
   // Condition icon
   conditionIcon.className = "condition-icon";
-  getConditionIcon(current.condition.code, current.is_day).then((icon) => {
-    conditionIcon.innerHTML = icon;
-  });
+  conditionIcon.innerHTML = getConditionIcon(
+    current.condition.code,
+    current.is_day,
+  );
 
   container.appendChild(locationContainer);
   container.appendChild(currentTempContainer);
@@ -229,9 +230,7 @@ function createHourElement(hour, timeValue, settings) {
   timeElement.textContent = getTime(timeValue, settings.timeFormat);
 
   conditionIcon.className = "condition-icon";
-  getConditionIcon(hour.condition.code, hour.is_day).then((icon) => {
-    conditionIcon.innerHTML = icon;
-  });
+  conditionIcon.innerHTML = getConditionIcon(hour.condition.code, hour.is_day);
 
   temperature.className = "temperature small-text";
   temperature.textContent = getTemperature(
@@ -327,9 +326,7 @@ function createDayForecast(dayForecast, unitsSettings) {
 
     conditionContainer.className = "condition";
     conditionIcon.className = "icon";
-    getConditionIcon(day.day.condition.code).then((icon) => {
-      conditionIcon.innerHTML = icon;
-    });
+    conditionIcon.innerHTML = getConditionIcon(day.day.condition.code);
     conditionValue.className = "value small-text";
     conditionValue.textContent = day.day.condition.text;
 

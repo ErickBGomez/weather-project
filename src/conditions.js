@@ -1,8 +1,6 @@
 import conditions from "./json/conditions.json";
 
-async function getConditionIcon(conditionCode, isDay = true) {
-  conditionCode = 1000;
-
+function getConditionIcon(conditionCode, isDay = true) {
   // eslint-disable-next-line arrow-body-style
   const currentCondition = conditions.find((condition) => {
     return condition.codes.includes(conditionCode);
@@ -16,8 +14,6 @@ async function getConditionIcon(conditionCode, isDay = true) {
   const condition = Array.isArray(currentCondition.condition)
     ? currentCondition.condition[+isDay]
     : currentCondition.condition;
-
-  // Fetch svg from "./img/forecast"
 
   return condition.icon;
 }
