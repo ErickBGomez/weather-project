@@ -1,8 +1,6 @@
 import moonPhases from "./json/moon-phases.json";
 
-async function getMoonPhaseIcon(phaseValue) {
-  const path = "./img/moon-phases/";
-
+function getMoonPhaseIcon(phaseValue) {
   // eslint-disable-next-line arrow-body-style
   const currentPhase = moonPhases.find((phase) => {
     return phase.name === phaseValue;
@@ -10,9 +8,7 @@ async function getMoonPhaseIcon(phaseValue) {
 
   if (!currentPhase) return "";
 
-  const svg = await import(`${path}${currentPhase.icon}`);
-
-  return svg.default;
+  return currentPhase.icon;
 }
 
 export default getMoonPhaseIcon;
