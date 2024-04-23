@@ -605,16 +605,17 @@ async function createSunAndMoonInfo(astro, lastTimeUpdated, timeSettings) {
     astro.sunset,
     lastTimeUpdated.split(" ")[1],
   );
-  const moonIcon = await getMoonPhaseIcon(astro.moon_phase);
 
   const sun = createAstroInfo("sun-position", sunIcon, [
     { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
     { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
   ]);
 
-  const moon = createAstroInfo("moon-phase", moonIcon, [
-    { label: "Moon phase", value: astro.moon_phase },
-  ]);
+  const moon = createAstroInfo(
+    "moon-phase",
+    getMoonPhaseIcon(astro.moon_phase),
+    [{ label: "Moon phase", value: astro.moon_phase }],
+  );
 
   return setDoubleSection(sun, moon);
 }
