@@ -1,58 +1,136 @@
 [
   {
     "codes": [1000],
-    "icon": ["clear-night.svg", "clear-day.svg"]
+    "condition": [
+      {
+        "name": "clear-night",
+        "icon": ""
+      },
+      {
+        "name": "clear-day",
+        "icon": ""
+      }
+    ]
   },
   {
     "codes": [1009, 1030, 1135],
-    "icon": "cloud.svg"
+    "condition": {
+      "name": "cloud",
+      "icon": ""
+    }
   },
   {
     "codes": [1003, 1006],
-    "icon": ["cloud-night.svg", "cloud-day.svg"]
+    "condition": [
+      {
+        "name": "cloud-night",
+        "icon": ""
+      },
+      {
+        "name": "cloud-day",
+        "icon": ""
+      }
+    ]
   },
   {
     "codes": [1153, 1186, 1189, 1192, 1195, 1243, 1246],
-    "icon": "rain.svg"
+    "condition": {
+      "name": "rain",
+      "icon": ""
+    }
   },
   {
     "codes": [1150, 1063, 1180, 1183, 1240],
-    "icon": ["rain-night.svg", "rain-day.svg"]
+    "condition": [
+      {
+        "name": "rain-night",
+        "icon": ""
+      },
+      {
+        "name": "rain-day",
+        "icon": ""
+      }
+    ]
   },
   {
     "codes": [1114, 1117, 1147, 1168, 1171, 1219, 1225, 1237, 1258, 1264],
-    "icon": "snow.svg"
+    "condition": {
+      "name": "snow",
+      "icon": ""
+    }
   },
   {
     "codes": [1066, 1210, 1213, 1216, 1222, 1255, 1261],
-    "icon": ["snow-night.svg", "snow-day.svg"]
+    "condition": {
+      "name": "snow-night",
+      "icon": ""
+    }
   },
   {
     "codes": [1201, 1207, 1252],
-    "icon": "sleet.svg"
+    "condition": {
+      "name": "sleet",
+      "icon": ""
+    }
   },
   {
     "codes": [1069, 1072, 1198, 1204, 1249],
-    "icon": ["sleet-night.svg", "sleet-day.svg"]
+    "condition": [
+      {
+        "name": "sleet-night",
+        "icon": ""
+      },
+      {
+        "name": "sleet-day",
+        "icon": ""
+      }
+    ]
   },
   {
     "codes": [1087],
-    "icon": "thunder.svg"
+    "condition": {
+      "name": "thunder",
+      "icon": ""
+    }
   },
   {
     "codes": [1276],
-    "icon": "thunder-rain.svg"
+    "condition": {
+      "name": "thunder-rain",
+      "icon": ""
+    }
   },
   {
     "codes": [1273],
-    "icon": ["thunder-rain-night.svg", "thunder-rain-day.svg"]
+    "condition": [
+      {
+        "name": "thunder-rain-night",
+        "icon": ""
+      },
+      {
+        "name": "thunder-rain-day",
+        "icon": ""
+      }
+    ]
   },
   {
     "codes": [1282],
-    "icon": "thunder-snow.svg"
+    "condition": {
+      "name": "thunder-snow",
+      "icon": ""
+    }
   },
   {
     "codes": [1279],
-    "icon": ["thunder-snow-night.svg", "thunder-snow-day.svg"]
+    "condition": [
+      {
+        "name": "thunder-snow-night",
+        "icon": ""
+      },
+      {
+        "name": "thunder-snow-day",
+        "icon": ""
+      }
+    ]
   }
 ]
