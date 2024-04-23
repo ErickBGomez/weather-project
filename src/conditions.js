@@ -1,7 +1,7 @@
 import conditions from "./json/conditions.json";
 
 async function getConditionIcon(conditionCode, isDay = true) {
-  const path = "./img/forecast/";
+  conditionCode = 1000;
 
   // eslint-disable-next-line arrow-body-style
   const currentCondition = conditions.find((condition) => {
@@ -13,14 +13,13 @@ async function getConditionIcon(conditionCode, isDay = true) {
 
   // If the condition contains time-based icons, return their corresponding icon
   // (example, clear-day and clear-night)
-  const iconName = Array.isArray(currentCondition.icon)
-    ? currentCondition.icon[+isDay]
-    : currentCondition.icon;
+  const condition = Array.isArray(currentCondition.condition)
+    ? currentCondition.condition[+isDay]
+    : currentCondition.condition;
 
   // Fetch svg from "./img/forecast"
-  const svg = await import(`${path}${iconName}`);
 
-  return svg.default;
+  return condition.icon;
 }
 
 export default getConditionIcon;
