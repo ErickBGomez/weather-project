@@ -1,0 +1,22 @@
+[
+  {
+    "position": "0",
+    "name": "night",
+    "icon": ""
+  },
+  {
+    "position": "1",
+    "name": "sunrise",
+    "icon": ""
+  },
+  {
+    "position": "2",
+    "name": "noon",
+    "icon": ""
+  },
+  {
+    "position": "3",
+    "name": "sunset",
+    "icon": ""
+  }
+]
