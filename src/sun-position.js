@@ -14,7 +14,6 @@ function getSunPositionIndex(sunrise, sunset, currentTime) {
   if (percentage >= 0.2 && percentage <= 0.8) return 2; // Noon
   return 3; // Sunset
 }
-
 function getSunPositionIcon(sunrise, sunset, currentTime) {
   const currentIndex = getSunPositionIndex(sunrise, sunset, currentTime);
 

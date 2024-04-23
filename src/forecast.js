@@ -600,16 +600,18 @@ function createAstroInfo(
 }
 
 async function createSunAndMoonInfo(astro, lastTimeUpdated, timeSettings) {
-  const sunIcon = await getSunPositionIcon(
-    astro.sunrise,
-    astro.sunset,
-    lastTimeUpdated.split(" ")[1],
+  const sun = createAstroInfo(
+    "sun-position",
+    getSunPositionIcon(
+      astro.sunrise,
+      astro.sunset,
+      lastTimeUpdated.split(" ")[1],
+    ),
+    [
+      { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
+      { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
+    ],
   );
-
-  const sun = createAstroInfo("sun-position", sunIcon, [
-    { label: "Sunrise", value: getTime(astro.sunrise, timeSettings) },
-    { label: "Sunset", value: getTime(astro.sunset, timeSettings) },
-  ]);
 
   const moon = createAstroInfo(
     "moon-phase",
