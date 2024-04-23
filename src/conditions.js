@@ -9,7 +9,6 @@ function getConditionIcon(conditionCode, isDay = true) {
   // Return empty string if conditionCode doesn't exist
   if (!currentCondition) return "";
 
-  // If the condition contains time-based icons, return their corresponding icon
   // (example, clear-day and clear-night)
   const condition = Array.isArray(currentCondition.condition)
     ? currentCondition.condition[+isDay]
