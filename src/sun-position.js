@@ -1,3 +1,4 @@
+import sunPositions from "./json/sun-positions.json";
 import * as time from "./time";
 
 function getSunPositionIndex(sunrise, sunset, currentTime) {
@@ -14,13 +15,17 @@ function getSunPositionIndex(sunrise, sunset, currentTime) {
   return 3; // Sunset
 }
 
-async function getSunPositionIcon(sunrise, sunset, currentTime) {
-  const path = "./img/sun-positions/";
-  const index = getSunPositionIndex(sunrise, sunset, currentTime);
+function getSunPositionIcon(sunrise, sunset, currentTime) {
+  const currentIndex = getSunPositionIndex(sunrise, sunset, currentTime);
 
-  const currentSunIcon = await import(`${path}sun-${index}.svg`);
+  // eslint-disable-next-line arrow-body-style
+  const currentPosition = sunPositions.find((position, index) => {
+    return index === currentIndex;
+  });
 
-  return currentSunIcon.default;
+  if (!currentPosition) return "";
+
+  return currentPosition.icon;
 }
 
 export default getSunPositionIcon;
