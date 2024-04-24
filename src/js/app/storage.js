@@ -18,7 +18,6 @@ class Storage {
 
   getItem() {
     if (typeof this.#savedItem === "object") {
-      console.log("object");
       return JSON.parse(localStorage.getItem(this.name));
     }
 
